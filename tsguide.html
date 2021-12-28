@@ -98,20 +98,17 @@ this exception are:</p>
 <li><a href="https://jquery.com/">jquery</a>, использует <code>$</code> как префикс</li>
 <li><a href="https://threejs.org/">threejs</a>, использует <code>THREE</code> как префикс</li>
 </ul></li>
-<li><p><strong>Constants</strong>: <code>CONSTANT_CASE</code> indicates that a value is <em>intended</em> to not
-be changed, and may be used for values that can technically be modified
-(i.e. values that are not deeply frozen) to indicate to users that they must
-not be modified.</p>
+<li><p><strong>Константы</strong>: <code>CONSTANT_CASE</code> указывает на то, что значение <em>не предназначено</em> для изменений и может быть использовано для тех значений, что могут быть изменены технически (т.е. значений, которые не являются глубоко замороженными) но не должны изменяться пользователями.</p>
 
 <pre><code class="language-ts good">const UNIT_SUFFIXES = {
   'milliseconds': 'ms',
   'seconds': 's',
 };
-// Even though per the rules of JavaScript UNIT_SUFFIXES is
-// mutable, the uppercase shows users to not modify it.
+// Несмотря на то, что в соответствии с правилами JavaScript UNIT_SUFFIXES является изменяемым,
+// верхний регистр символов обозначает для пользователей, что они не должны изменять значения.
 </code></pre>
 
-<p>A constant can also be a <code>static readonly</code> property of a class.</p>
+<p>Константой также может быть статическое, предназначенное только для чтения (<code>static readonly</code>) свойство класса.</p>
 
 <pre><code class="language-ts good">class Foo {
   private static readonly MY_SPECIAL_NUMBER = 5;
@@ -122,17 +119,12 @@ not be modified.</p>
 }
 </code></pre>
 
-<p>If a value can be instantiated more than once over the lifetime of the
-program, or if users mutate it in any way, it must use <code>lowerCamelCase</code>.</p>
+<p>Если во время работы программы значение создается более одного раза, или если пользователи каким-либо образом изменяют его, то для этого должен использоваться <code>lowerCamelCase</code> стиль.</p>
 
-<p>If a value is an arrow function that implements an interface, then it can be
-declared <code>lowerCamelCase</code>.</p></li>
-<li>
-
-</li>
+<p>Если значение представляет собой стрелочную функцию которая реализует интерфейс, тогда это может быть обьявлено в <code>lowerCamelCase</code> стиле.</p></li>
 </ul>
 
-<h4 id="aliases">Aliases</h4>
+<h4 id="aliases">Псевдонимы</h4>
 
 <p>When creating a local-scope alias of an existing symbol, use the format of the
 existing identifier. The local alias must match the existing naming and format
@@ -149,7 +141,7 @@ class Teapot {
 }
 </code></pre>
 
-<h4 id="naming-style">Naming style</h4>
+<h4 id="naming-style">Стиль именования</h4>
 
 <p>TypeScript expresses information in types, so names <em>should not</em> be decorated
 with information that is included in the type. (See also
@@ -157,15 +149,13 @@ with information that is included in the type. (See also
  for more about what
 not to include.)</p>
 
-<p>Some concrete examples of this rule:</p>
+<p>Несколько конкретных примеров для этого правила:</p>
 
 <ul>
-<li>Do not use trailing or leading underscores for private properties or
-methods.</li>
-<li>Do not use the <code>opt_</code> prefix for optional parameters.
+<li>Не используйте начальные или завершащие символы подчеркивания для приватных свойств или методов.</li>
+<li>Не используйте префикс <code>opt_</code> для необязательных параметров.
 <ul>
-<li>For accessors, see <a href="#getters-and-setters-accessors">accessor rules</a>
-below.</li>
+<li>Для аксессоров, см. ниже <a href="#getters-and-setters-accessors">правила использования аксессоров</a>.</li>
 </ul></li>
 <li>Do not mark interfaces specially (<del><code>IMyInterface</code></del> or
 <del><code>MyFooInterface</code></del>) unless it's idiomatic in its
