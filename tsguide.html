@@ -170,62 +170,48 @@ Judgement on whether this is a useful convention is left up to individual
 teams, but <em>should</em> be consistent within projects.</li>
 </ul>
 
-<h4 id="descriptive-names">Descriptive names</h4>
+<h4 id="descriptive-names">Описательные названия</h4>
 
-<p>Names <em>must</em> be descriptive and clear to a new reader. Do not use abbreviations
-that are ambiguous or unfamiliar to readers outside your project, and do not
-abbreviate by deleting letters within a word.</p>
+<p>Названия <em>должны</em> быть описательными и ясными для новых читателей. Не используйте аббревиатуры, которые могут быть незнакомыми или двусмысленными для читателей за пределами вашего проекта и не сокращайте, удаляя в словах буквы.</p>
 
 <ul>
-<li><strong>Exception</strong>: Variables that are in scope for 10 lines or fewer, including
-arguments that are <em>not</em> part of an exported API, <em>may</em> use short (e.g.
-single letter) variable names.</li>
+<li><strong>Исключение</strong>: Для переменных, область действия которых составляет не более 10 строк, включая аргументы, которые <em>не</em> являются частью экспортируемого API, <em>возможно</em> использование коротких (например, однобуквенных) имен переменных.</li>
 </ul>
 
-<h3 id="file-encoding-utf-8">File encoding: UTF-8</h3>
+<h3 id="file-encoding-utf-8">Кодировка файлов: UTF-8</h3>
 
-<p>For non-ASCII characters, use the actual Unicode character (e.g. <code>∞</code>). For
-non-printable characters, the equivalent hex or Unicode escapes (e.g. <code>\u221e</code>)
-can be used along with an explanatory comment.</p>
+<p>Для символов, отличных от ASCII, используйте фактический символ Юникода (например <code>∞</code>). Для непечатаемых символов можно использовать эквивалентный шестнадцатеричный код или экранирование Unicode-символов (например <code>\u221e</code>) вместе с пояснительным комментарием.</p>
 
-<pre><code class="language-ts good">// Perfectly clear, even without a comment.
+<pre><code class="language-ts good">// Совершенно ясно даже без комментария
 const units = 'μs';
 
-// Use escapes for non-printable characters.
-const output = '\ufeff' + content;  // byte order mark
+// Используйте Unicode-экранирование для непечатаемых символов
+const output = '\ufeff' + content; // это маркер последовательности байтов (Unicode BOM)
 </code></pre>
 
-<pre><code class="language-ts bad">// Hard to read and prone to mistakes, even with the comment.
-const units = '\u03bcs'; // Greek letter mu, 's'
+<pre><code class="language-ts bad">// Даже с комментарием, это сложно для чтения и подвержено потенциальным ошибкам.
+const units = '\u03bcs'; // Греческая буква mu, 's'
 
-// The reader has no idea what this is.
+// Читающий код не поймет, что это такое
 const output = '\ufeff' + content;
 </code></pre>
 
-<h3 id="comments-documentation">Comments &amp; Documentation</h3>
+<h3 id="comments-documentation">Комментарии &amp; Документация</h3>
 
-<h4 id="jsdoc-vs-comments">JSDoc vs comments</h4>
+<h4 id="jsdoc-vs-comments">Использование JSDoc в сравнении с обычными комментариями</h4>
 
-<p>There are two types of comments, JSDoc (<code>/** ... */</code>) and non-JSDoc ordinary
-comments (<code>// ...</code> or <code>/* ... */</code>).</p>
+<p>Существует два типа комментариев, JSDoc (<code>/** ... */</code>) и не относящиеся к JSDoc обычные комментарии (<code>// ...</code> или <code>/* ... */</code>).</p>
 
 <ul>
-<li>Use <code>/** JSDoc */</code> comments for documentation, i.e. comments a user of the
-code should read.</li>
-<li>Use <code>// line comments</code> for implementation comments, i.e. comments that only
-concern the implementation of the code itself.</li>
+<li>Используйте <code>/** JSDoc */</code> комментарии для документации. Это те комментарии, с которыми стоит ознакомиться при использовании кода.</li>
+<li>Используйте <code>// строчные комментарии</code> для комментирования реализации. Эти комментарии которые касаются только реализации самого кода.</li>
 </ul>
 
-<p>JSDoc comments are understood by tools (such as editors and documentation
-generators), while ordinary comments are only for other humans.</p>
+<p>Комментарии JSDoc могут распознаваться различными программными инструментами, такими как редакторы кода и генераторы документации, в то время как обычные комментарии могут быть распознаны только другими людьми.</p>
 
-<h4 id="jsdoc-rules-follow-the-javascript-style">JSDoc rules follow the JavaScript style</h4>
+<h4 id="jsdoc-rules-follow-the-javascript-style">Правила JSDoc соответствуют стилю языка JavaScript</h4>
 
-<p>In general, follow the
-
-<a href="https://google.github.io/styleguide/jsguide.html#jsdoc">JavaScript style guide's rules for JSDoc</a>,
-sections 7.1 - 7.5. The remainder of this section describes exceptions to those
-rules.</p>
+<p>В общих чертах, следуйте <a href="https://google.github.io/styleguide/jsguide.html#jsdoc">правилам для JSDoc из руководства по стилю написания JavaScript</a>, разделы 7.1 - 7.5. В остальной части этого раздела описываются исключения из этих правил.</p>
 
 <h4 id="document-all-top-level-exports-of-modules">Document all top-level exports of modules</h4>
 
@@ -237,15 +223,15 @@ not immediately obvious from their name, as judged by your reviewer.</p>
 <p>Exception: Symbols that are only exported to be consumed by tooling, such as
 @NgModule classes, do not require comments.</p>
 
-<h4 id="omit-comments-that-are-redundant-with-typescript">Omit comments that are redundant with TypeScript</h4>
+<h4 id="omit-comments-that-are-redundant-with-typescript">Исключите те комментарии, которые излишни в TypeScript</h4>
 
-<p>For example, do not declare types in <code>@param</code> or <code>@return</code> blocks, do not write
-<code>@implements</code>, <code>@enum</code>, <code>@private</code> etc. on code that uses the <code>implements</code>,
-<code>enum</code>, <code>private</code> etc. keywords.</p>
+<p>Для примера, не указывайте типы в <code>@param</code> или <code>@return</code> блоках, не пишите
+<code>@implements</code>, <code>@enum</code>, <code>@private</code> в коде, который использует <code>implements</code>,
+<code>enum</code>, <code>private</code> и пр. ключевые слова.</p>
 
-<h4 id="do-not-use-override">Do not use <code>@override</code></h4>
+<h4 id="do-not-use-override">Не используйте <code>@override</code></h4>
 
-<p>Do not use <code>@override</code> in TypeScript source code.</p>
+<p>Не используйте <code>@override</code> в исходном коде TypeScript.</p>
 
 <p><code>@override</code> is not enforced by the compiler, which is surprising and leads to
 annotations and implementation going out of sync. Including it purely for
