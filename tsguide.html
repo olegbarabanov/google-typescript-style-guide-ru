@@ -237,19 +237,19 @@ not immediately obvious from their name, as judged by your reviewer.</p>
 annotations and implementation going out of sync. Including it purely for
 documentation purposes is confusing.</p>
 
-<h4 id="redundant-comments">Make comments that actually add information</h4>
+<h4 id="redundant-comments">Делайте комментарии, которые действительно добавляют информацию</h4>
 
 <p>For non-exported symbols, sometimes the name and type of the function or
 parameter is enough. Code will <em>usually</em> benefit from more documentation than
 just variable names though!</p>
 
 <ul>
-<li><p>Avoid comments that just restate the parameter name and type, e.g.</p>
+<li><p>Избегайте комментариев, в которых просто повторяется имя и тип параметра.</p>
 
-<pre><code class="language-ts bad">/** @param fooBarService The Bar service for the Foo application. */
+<pre><code class="language-ts bad">/** @param fooBarService Сервис "The Bar" для приложения "the Foo". */
 </code></pre></li>
-<li><p>Because of this rule, <code>@param</code> and <code>@return</code> lines are only required when
-they add information, and may otherwise be omitted.</p>
+
+<li><p>Исходя из этого правила, строки <code>@param</code> и <code>@return</code> требуются только тогда, когда они добавлявляют новую информацию, а иначе их можно исключить.</p>
 
 <pre><code class="language-ts good">/**
  * POSTs the request to start coffee brewing.
@@ -261,7 +261,7 @@ brew(amountLitres: number, logger: Logger) {
 </code></pre></li>
 </ul>
 
-<h4 id="parameter-property-comments">Parameter property comments</h4>
+<h4 id="parameter-property-comments">Комментарии к свойствам параметров</h4>
 
 <p>A parameter property is when a class declares a field and a constructor
 parameter in a single declaration, by marking a parameter in the constructor.
@@ -294,7 +294,7 @@ class OrdinaryClass {
 }
 </code></pre>
 
-<h4 id="comments-when-calling-a-function">Comments when calling a function</h4>
+<h4 id="comments-when-calling-a-function">Комментарии при вызове функции </h4>
 
 <p>If needed, document parameters at call sites inline using block comments. Also
 consider named parameters using object literals and destructuring. The exact
@@ -319,7 +319,7 @@ export class Percolator implements CoffeeBrewer {
 }
 </code></pre>
 
-<h4 id="place-documentation-prior-to-decorators">Place documentation prior to decorators</h4>
+<h4 id="place-documentation-prior-to-decorators">Размещайте документацию перед декораторами</h4>
 
 <p>When a class, method, or property have both decorators like <code>@Component</code> and
 JsDoc, please make sure to write the JsDoc before the decorator.</p>
