@@ -54,7 +54,7 @@ This is the external guide that's based on the internal Google version but has b
 </tr>
 <tr>
 <td><code>#ident</code></td>
-<td>private identifiers are never used.</td>
+<td>идентификаторы приватного доступа никогда не используются.</td>
 </tr>
 </tbody>
 </table>
@@ -108,7 +108,7 @@ this exception are:</p>
 // верхний регистр символов обозначает для пользователей, что они не должны изменять значения.
 </code></pre>
 
-<p>Константой также может быть статическое, предназначенное только для чтения (<code>static readonly</code>) свойство класса.</p>
+<p>Константой также может быть статическое свойство класса, которое предназначенно только для чтения (<code>static readonly</code>) .</p>
 
 <pre><code class="language-ts good">class Foo {
   private static readonly MY_SPECIAL_NUMBER = 5;
@@ -296,25 +296,25 @@ class OrdinaryClass {
 
 <h4 id="comments-when-calling-a-function">Комментарии при вызове функции </h4>
 
-<p>If needed, document parameters at call sites inline using block comments. Also
-consider named parameters using object literals and destructuring. The exact
-formatting and placement of the comment is not prescribed.</p>
+<p>При необходимости, документируйте параметры в местах вызова при помощи встраивания блочных комментариев.
+   При этом нет каких-либо четких правил, касательно точного форматирования и размещения комментария.
+   Также рассмотрите возможность применения именованных параметров с использованием литералов объекта и деструктуризации.</p>
 
-<pre><code class="language-ts good">// Inline block comments for parameters that'd be hard to understand:
+<pre><code class="language-ts good">// Встраивание блочных комментариев для параметров, которые трудны для понимания:
 new Percolator().brew(/* amountLitres= */ 5);
-// Also consider using named arguments and destructuring parameters (in brew's declaration):
+// Также рассмотрите возможность использования именованных аргументов и деструктуризации параметров (в объявлении метода "brew"):
 new Percolator().brew({amountLitres: 5});
 </code></pre>
 
 <pre><code class="language-ts good">/** An ancient {@link CoffeeBrewer} */
 export class Percolator implements CoffeeBrewer {
   /**
-   * Brews coffee.
-   * @param amountLitres The amount to brew. Must fit the pot size!
+   * Сварить кофе.
+   * @param amountLitres Количество, которое надо сварить. Должен соответствовать объему кофейника!
    */
   brew(amountLitres: number) {
-    // This implementation creates terrible coffee, but whatever.
-    // TODO(b/12345): Improve percolator brewing.
+    // Так или иначе, эта реализация создает ужасный кофе.
+    // TODO(b/12345): Улучшить процесс варки кофе в кофеварке.
   }
 }
 </code></pre>
@@ -363,24 +363,24 @@ constructors).</li>
 </ul>
 
 <pre><code class="language-ts bad">class Foo {
-  public bar = new Bar();  // BAD: public modifier not needed
+  public bar = new Bar();  // BAD: нет необходимости в модификаторе "public"
 
-  constructor(public readonly baz: Baz) {}  // BAD: readonly implies it's a property which defaults to public
+  constructor(public readonly baz: Baz) {}  // BAD: модификатор "readonly" подразумевает, что это свойство имеет по умолчанию модификатор "public"
 }
 </code></pre>
 
 <pre><code class="language-ts good">class Foo {
-  bar = new Bar();  // GOOD: public modifier not needed
+  bar = new Bar();  // GOOD: нет необходимости в модификаторе "public"
 
-  constructor(public baz: Baz) {}  // public modifier allowed
+  constructor(public baz: Baz) {}  // допускается модификатор "public"
 }
 </code></pre>
 
 <p>See also <a href="#export-visibility">export visibility</a> below.</p>
 
-<h3 id="constructors">Constructors</h3>
+<h3 id="constructors">Конструкторы</h3>
 
-<p>Constructor calls must use parentheses, even when no arguments are passed:</p>
+<p>При вызове конструктора всегда должны использоваться скобки, даже если никакие аргументы не передаются:</p>
 
 <pre><code class="language-ts bad">const x = new Foo;
 </code></pre>
