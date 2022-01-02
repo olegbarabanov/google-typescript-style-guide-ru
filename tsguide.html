@@ -215,10 +215,7 @@ const output = '\ufeff' + content;
 
 <h4 id="document-all-top-level-exports-of-modules">Document all top-level exports of modules</h4>
 
-<p>Use <code>/** JSDoc */</code> comments to communicate information to the users of your
-code. Avoid merely restating the property or parameter name. You <em>should</em> also
-document all properties and methods (exported/public or not) whose purpose is
-not immediately obvious from their name, as judged by your reviewer.</p>
+<p>Используйте <code>/** JSDoc */</code> комментарии для передачи информации пользователям вашего кода. Избегайте простого повторения имени свойства или параметра. Вам <em>рекомендуется</em> документировать все свойства и методы (экспортируемые/публичные или нет), назначение которых, по мнению вашего рецензента, не сразу очевидно из их названия.</p>
 
 <p>Exception: Symbols that are only exported to be consumed by tooling, such as
 @NgModule classes, do not require comments.</p>
@@ -451,10 +448,8 @@ to enforce visibility.</p>
 
 </section>
 
-<h4 id="use-readonly">Use <code>readonly</code></h4>
-
-<p>Mark properties that are never reassigned outside of the constructor with the
-<code>readonly</code> modifier (these need not be deeply immutable).</p>
+<h4 id="use-readonly">Используйте модификатор <code>readonly</code></h4>
+<p>Пометьте модификатором <code>readonly</code> те свойства, которые никогда не переназначаются вне конструктора (они не обязательно должны быть глубоко неизменяемыми).</p>
 
 <h4 id="parameter-properties">Parameter properties</h4>
 
