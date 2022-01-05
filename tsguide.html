@@ -342,21 +342,18 @@ export class FooComponent {}
 </code></pre></li>
 </ul>
 
-<h2 id="language-rules">Language Rules</h2>
+<h2 id="language-rules">Языковые правила</h2>
 
-<h3 id="visibility">Visibility</h3>
+<h3 id="visibility">Видимость</h3>
 
 <p>Restricting visibility of properties, methods, and entire types helps with
 keeping code decoupled.</p>
 
 <ul>
-<li>Limit symbol visibility as much as possible.</li>
-<li>Consider converting private methods to non-exported functions within the
-same file but outside of any class, and moving private properties into a
-separate, non-exported class.</li>
-<li>TypeScript symbols are public by default. Never use the <code>public</code> modifier
-except when declaring non-readonly public parameter properties (in
-constructors).</li>
+<li>Максимально ограничивайте область видимости обозначений.</li>
+<li>Рассмотрите возможность преобразования приватных методов в неэкспортируемые функции в том же файле, 
+  но вне какого-либо класса, а также перемещение приватных свойств в отдельные, неэкспортируемые классы.</li>
+<li>В TypeScript все обозначения по умолчанию публичные. Никогда не используйте модификатор <code>public</code> за исключением случаев объявления публичных свойств параметров, недоступных только для чтения.</li>
 </ul>
 
 <pre><code class="language-ts bad">class Foo {
@@ -423,14 +420,14 @@ class NoInstantiation {
 
 <h4 id="private-fields">No <code>#private</code> fields</h4>
 
-<p>Do not use private fields (also known as private identifiers):</p>
+<p>Не используйте приватные поля (также известные как приватные идентификаторы):</p>
 
 <pre><code class="language-ts bad">class Clazz {
   #ident = 1;
 }
 </code></pre>
 
-<p>Instead, use TypeScript's visibility annotations:</p>
+<p>Вместо этого используйте поддерживаемые TypeScript аннотации видимости:</p>
 
 <pre><code class="language-ts good">class Clazz {
   private ident = 1;
@@ -438,7 +435,7 @@ class NoInstantiation {
 </code></pre>
 
 <section class="zippy">
-Why?
+Почему?
 
 <p> Private identifiers cause substantial emit size and
 performance regressions when down-leveled by TypeScript, and are unsupported
@@ -520,7 +517,7 @@ compiler, this pattern can be broken by rearranging the build rules,
 and also violates <a href="#optimization-compatibility">optimization compatibility</a>.
 </p></section>
 
-<h4>Getters and Setters (Accessors)</h4>
+<h4>Геттеры и Сеттеры (Аксессоры)</h4>
 
 <p>Getters and setters for class members may be used. The getter method must be a
 <a href="https://en.wikipedia.org/wiki/Pure_function">pure function</a> (i.e., result is
@@ -590,26 +587,21 @@ const b = false;
 const n = 5;
 </code></pre>
 
-<h3 id="array-constructor">Array constructor</h3>
+<h3 id="array-constructor">Конструктор массива</h3>
 
-<p>TypeScript code must not use the <code>Array()</code> constructor, with or without <code>new</code>.
-It has confusing and contradictory usage:</p>
-
-
+<p>В коде на Typescript не должны использоваться <code>Array()</code> конструкторы, с или без <code>new</code>.
+Его применение неоднозначно и сбивает с толку:</p>
 
 <pre><code class="language-ts bad">const a = new Array(2); // [undefined, undefined]
 const b = new Array(2, 3); // [2, 3];
 </code></pre>
 
-
-
-<p>Instead, always use bracket notation to initialize arrays, or <code>from</code> to
-initialize an <code>Array</code> with a certain size:</p>
+<p>Вместо этого всегда используйте скобки для инициализации массивов , или <code>from</code> для инициализации <code>Array</code> с определенным размером:</p>
 
 <pre><code class="language-ts good">const a = [2];
 const b = [2, 3];
 
-// Equivalent to Array(2):
+// Эквивалент для Array(2):
 const c = [];
 c.length = 2;
 
