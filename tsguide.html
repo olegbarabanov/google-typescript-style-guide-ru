@@ -609,10 +609,10 @@ c.length = 2;
 Array.from&lt;number&gt;({length: 5}).fill(0);
 </code></pre>
 
-<h3 id="type-coercion">Type coercion</h3>
+<h3 id="type-coercion">Преобразование типов</h3>
 
-<p>TypeScript code may use the <code>String()</code> and <code>Boolean()</code> (note: no <code>new</code>!)
-functions, string template literals, or <code>!!</code> to coerce types.</p>
+<p>В TypeScript коде можно использовать <code>String()</code> и <code>Boolean()</code> (примечание: без <code>new</code>!)
+функции, строковые шаблонные литералы, или <code>!!</code> для преобразования типов.</p>
 
 <pre><code class="language-ts good">const bool = Boolean(false);
 const str = String(aNumber);
@@ -626,51 +626,42 @@ operands to the plus operator are of matching types.</p>
 <p>Code must use <code>Number()</code> to parse numeric values, and <em>must</em> check its return
 for <code>NaN</code> values explicitly, unless failing to parse is impossible from context.</p>
 
-<p>Note: <code>Number('')</code>, <code>Number(' ')</code>, and <code>Number('\t')</code> would return <code>0</code> instead
-of <code>NaN</code>. <code>Number('Infinity')</code> and <code>Number('-Infinity')</code> would return <code>Infinity</code>
-and <code>-Infinity</code> respectively. These cases may require special handling.</p>
+<p>Примечание: <code>Number('')</code>, <code>Number(' ')</code>, и <code>Number('\t')</code> могут вернуть <code>0</code> вместо <code>NaN</code>. <code>Number('Infinity')</code> и <code>Number('-Infinity')</code> могут вернуть <code>Infinity</code>
+и <code>-Infinity</code> соответственно. Эти случаи могут потребовать особого обращения.</p>
 
 <pre><code class="language-ts good">const aNumber = Number('123');
-if (isNaN(aNumber)) throw new Error(...);  // Handle NaN if the string might not contain a number
-assertFinite(aNumber, ...);                // Optional: if NaN cannot happen because it was validated before.
+if (isNaN(aNumber)) throw new Error(...);  // Обрабатываем NaN, если в строке может не быть чисел
+assertFinite(aNumber, ...);                // Необязательно: если NaN не может возникнуть, потому что он был проверен ранее.
 </code></pre>
 
-<p>Code must not use unary plus (<code>+</code>) to coerce strings to numbers. Parsing numbers
-can fail, has surprising corner cases, and can be a code smell (parsing at the
-wrong layer). A unary plus is too easy to miss in code reviews given this.</p>
+<p>В коде не должен использоваться унарный плюс (<code>+</code>) для преобразования строки в число. Парсинг чисел может привести к неудаче, иметь неожиданные исключительные ситуации и может быть признаком дурно пахнущего кода (парсинг чисел не на том уровне). Учитывая это, унарный плюс слишком легко пропустить при проверке кода.</p>
 
 <pre><code class="language-ts bad">const x = +y;
 </code></pre>
 
-<p>Code must also not use <code>parseInt</code> or <code>parseFloat</code> to parse numbers, except for
-non-base-10 strings (see below). Both of those functions ignore trailing
-characters in the string, which can shadow error conditions (e.g. parsing <code>12
-dwarves</code> as <code>12</code>).</p>
+<p>Код также не должен использовать <code>parseInt</code> или <code>parseFloat</code> для парсинга чисел, за исключением строк не с десятичными значениями (см. ниже). Обе эти функции игнорируют конечные символы в строке, что может привести к возникновению ошибочного состояния (например, парсинг <code>12 гномов</code> как <code>12</code>).</p>
 
-<pre><code class="language-ts bad">const n = parseInt(someString, 10);  // Error prone,
-const f = parseFloat(someString);    // regardless of passing a radix.
+<pre><code class="language-ts bad">const n = parseInt(someString, 10);  // Подвержено ошибкам,
+const f = parseFloat(someString);    // независимо от передачи основания системы счисления.
 </code></pre>
 
-<p>Code that must parse using a radix <em>must</em> check that its input is a number
-before calling into <code>parseInt</code>;</p>
+<p>Код, который должен выполнять парсинг числа с использованием системы счисления, должен проверять, является ли его ввод числом, прежде чем вызывать <code>parseInt</code>;</p>
 
 <pre><code class="language-ts good">if (!/^[a-fA-F0-9]+$/.test(someString)) throw new Error(...);
-// Needed to parse hexadecimal.
+  // Требуется для парсинга восьмеричного числа.
 // tslint:disable-next-line:ban
-const n = parseInt(someString, 16);  // Only allowed for radix != 10
+const n = parseInt(someString, 16);  // Допустимо только для основания числа != 10
 </code></pre>
 
-<p>Use <code>Number()</code> followed by <code>Math.floor</code> or <code>Math.trunc</code> (where available) to
-parse integer numbers:</p>
+<p>Используйте <code>Number()</code>, а затем <code>Math.floor</code> или <code>Math.trunc</code> (там, где это возможно) для парсинга целых чисел:</p>
 
 <pre><code class="language-ts good">let f = Number(someString);
 if (isNaN(f)) handleError();
 f = Math.floor(f);
 </code></pre>
 
-<p>Do not use explicit boolean coercions in conditional clauses that have implicit
-boolean coercion. Those are the conditions in an <code>if</code>, <code>for</code> and <code>while</code>
-statements.</p>
+<p>Не используйте явное булево преобразование в условиях, в которых уже имеется неявное булево преобразование. Это условия в операторах <code>if</code>, <code>for</code> и <code>while</code>.</p>
+
 
 <pre><code class="language-ts bad">const foo: MyInterface|null = ...;
 if (!!foo) {...}
@@ -682,37 +673,33 @@ if (foo) {...}
 while (foo) {...}
 </code></pre>
 
-<p>Code may use explicit comparisons:</p>
+<p>В коде можно использовать явные сравнения:</p>
 
-<pre><code class="language-ts good">// Explicitly comparing &gt; 0 is OK:
+<pre><code class="language-ts good">// Явное сравнение &gt; 0 это хорошо:
 if (arr.length &gt; 0) {...}
-// so is relying on boolean coercion:
+// так же как и полагаться на неявное булево преобразование:
 if (arr.length) {...}
 </code></pre>
 
-<h3 id="variables">Variables</h3>
+<h3 id="variables">Переменные</h3>
 
-<p>Always use <code>const</code> or <code>let</code> to declare variables. Use <code>const</code> by default, unless
-a variable needs to be reassigned. Never use <code>var</code>.</p>
+<p>Всегда используйте <code>const</code> или <code>let</code> для обьявления переменных. По умолчанию используйте <code>const</code>, если не требуется переназначение переменной. Никогда не используйте <code>var</code>.</p>
 
-<pre><code class="language-ts good">const foo = otherValue;  // Use if "foo" never changes.
-let bar = someValue;     // Use if "bar" is ever assigned into later on.
+<pre><code class="language-ts good">const foo = otherValue;  // Используйте, если "foo" никогда не меняется.
+let bar = someValue;     // Используйте, если для "bar" когда-либо позднее будет присвоено значение 
 </code></pre>
 
-<p><code>const</code> and <code>let</code> are block scoped, like variables in most other languages.
-<code>var</code> in JavaScript is function scoped, which can cause difficult to understand
-bugs. Don't use it.</p>
+<p><code>const</code> и <code>let</code> имеют блочную область видимости, как и переменные в большинстве других языков.
+  <code>var</code> в JavaScript ограничен областью действия функции, что может вызвать трудные для понимания ошибки. Не используйте его.</p>
 
-<pre><code class="language-ts bad">var foo = someValue;     // Don't use - var scoping is complex and causes bugs.
+<pre><code class="language-ts bad">var foo = someValue;     // Не используйте - область видимости var сложна и подвержена ошибкам.
 </code></pre>
 
-<p>Variables must not be used before their declaration.</p>
+<p>Переменные не должны использоваться до их объявления.</p>
 
-<h3 id="exceptions">Exceptions</h3>
+<h3 id="exceptions">Исключения</h3>
 
-<p>Always use <code>new Error()</code> when instantiating exceptions, instead of just calling
-<code>Error()</code>. Both forms create a new <code>Error</code> instance, but using <code>new</code> is more
-consistent with how other objects are instantiated.</p>
+<p>Всегда используйте <code>new Error()</code> при создании исключений вместо простого вызова <code>Error()</code>. В обоих случаях создается новый экземпляр <code>Error</code>, но использование <code>new</code> более согласуется с тем, как создаются экземпляры других объектов.</p>
 
 <pre><code class="language-ts good">throw new Error('Foo is not a valid bar.');
 </code></pre>
@@ -720,19 +707,18 @@ consistent with how other objects are instantiated.</p>
 <pre><code class="language-ts bad">throw Error('Foo is not a valid bar.');
 </code></pre>
 
-<h3 id="iterating-objects">Iterating objects</h3>
+<h3 id="iterating-objects">Итерация объектов</h3>
 
-<p>Iterating objects with <code>for (... in ...)</code> is error prone. It will include
-enumerable properties from the prototype chain.</p>
+<p>Итерация объектов с помощью <code>for (... in ...)</code> подвержена вероятным ошибкам, т.к. это включает в себя все перечисляемые свойства из цепочки прототипов.</p>
 
-<p>Do not use unfiltered <code>for (... in ...)</code> statements:</p>
+<p>Не используйте не фильтрованные <code>for (... in ...)</code> выражения:</p>
 
 <pre><code class="language-ts bad">for (const x in someObj) {
-  // x could come from some parent prototype!
+  // x может происходить от некоторого родительского прототипа!
 }
 </code></pre>
 
-<p>Either filter values explicitly with an <code>if</code> statement, or use <code>for (... of
+<p>Либо явно отфильтруйте значения с помощью оператора <code>if</code>, либо используйте <code>for (... of
 Object.keys(...))</code>.</p>
 
 <pre><code class="language-ts good">for (const x in someObj) {
@@ -808,9 +794,7 @@ more complex codepaths where it is more surprising.
 
 <h3 id="using-the-spread-operator">Using the spread operator</h3>
 
-<p>Using the spread operator <code>[...foo]; {...bar}</code> is a convenient shorthand for
-copying arrays and objects. When using the spread operator on objects, later
-values replace earlier values at the same key.</p>
+<p>Использование spread-оператора <code>[...foo]; {...bar}</code>это удобное сокращение для копирования массивов и объектов. При использовании spread-оператора для объектов, более поздние значения заменяют более ранние значения с тем же ключом.</p>
 
 <pre><code class="language-ts good">const foo = {
   num: 1,
@@ -831,10 +815,7 @@ foo3.num === 1;
 
 </code></pre>
 
-<p>When using the spread operator, the value being spread must match what is being
-created. That is, when creating an object, only objects may be used with the
-spread operator; when creating an array, only spread iterables. Primitives,
-including <code>null</code> and <code>undefined</code>, may never be spread.</p>
+<p>При использовании spread-оператора раскладываемое значение должно соответствовать создаваемому. Т.е. при создании объекта с spread-оператором  можно использовать только объекты, а при создании массива раскладывайте только итерируемые объекты. Примитивы, включая <code>null</code> и <code>undefined</code>, никогда не могут быть разложены.</p>
 
 <pre><code class="language-ts bad">const foo = {num: 7};
 const bar = {num: 5, ...(shouldUseFoo &amp;&amp; foo)}; // might be undefined
@@ -875,17 +856,16 @@ for (let i = 0; i &lt; x; i++)
 <pre><code class="language-ts good">if (x) x.doFoo();
 </code></pre>
 
-<h3 id="switch-statements">Switch Statements</h3>
+<h3 id="switch-statements">Switch оператор</h3>
 
-<p>All <code>switch</code> statements must contain a <code>default</code> statement group, even if it
-contains no code.</p>
+<p>Каждый <code>switch</code> оператор должен включать в себя блок по умолчанию (<code>default</code>), даже если там не содержится кода.</p>
 
 <pre><code class="language-ts good">switch (x) {
   case Y:
     doSomethingElse();
     break;
   default:
-    // nothing to do.
+    // ничего не делать.
 }
 </code></pre>
 
@@ -895,45 +875,42 @@ compiler):</p>
 <pre><code class="language-ts bad">switch (x) {
   case X:
     doSomething();
-    // fall through - not allowed!
+    // дальнейший пропуск - не разрешен!
   case Y:
     // ...
 }
 </code></pre>
 
-<p>Empty statement groups are allowed to fall through:</p>
+<p>Допускается пропуск пустых групп операторов:</p>
 
 <pre><code class="language-ts good">switch (x) {
   case X:
   case Y:
     doSomething();
     break;
-  default: // nothing to do.
+  default: // ничего не делать.
 }
 </code></pre>
 
-<h3 id="equality-checks">Equality Checks</h3>
+<h3 id="equality-checks">Проверка равенства</h3>
 
-<p>Always use triple equals (<code>===</code>) and not equals (<code>!==</code>). The double equality
-operators cause error prone type coercions that are hard to understand and
-slower to implement for JavaScript Virtual Machines. See also the
-<a href="https://dorey.github.io/JavaScript-Equality-Table/">JavaScript equality table</a>.</p>
+<p>Всегда используйте тройное равенство (<code>===</code>) и неравенство (<code>!==</code>). Операторы двойного равенства вызывают склонные к ошибкам приведения типов, которые трудны для понимания и работают медленнее в реализации виртуальных машин JavaScript. Смотрите также <a href="https://dorey.github.io/JavaScript-Equality-Table/">JavaScript таблицу равенства</a>.</p>
 
 <pre><code class="language-ts bad">if (foo == 'bar' || baz != bam) {
-  // Hard to understand behaviour due to type coercion.
+  // Трудное для понимания поведение из-за преобразования типов.
 }
 </code></pre>
 
 <pre><code class="language-ts good">if (foo === 'bar' || baz !== bam) {
-  // All good here.
+  // Здесь все хорошо и понятно.
 }
 </code></pre>
 
-<p><strong>Exception</strong>: Comparisons to the literal <code>null</code> value may use the <code>==</code> and <code>!=</code>
-operators to cover both <code>null</code> and <code>undefined</code> values.</p>
+<p><strong>Исключение</strong>: При сравнении с <code>null</code> значением можно использовать <code>==</code> и <code>!=</code>
+  операторы для общего охвата <code>null</code> и <code>undefined</code> значений.</p>
 
 <pre><code class="language-ts good">if (foo == null) {
-  // Will trigger when foo is null or undefined.
+  // Будет срабатывать, когда foo равен null или undefined. 
 }
 </code></pre>
 
@@ -1409,7 +1386,7 @@ class MyComp {
 
 <h2 id="source-organization">Source Organization</h2>
 
-<h3 id="modules">Modules</h3>
+<h3 id="modules">Модули</h3>
 
 <h4 id="import-paths">Import Paths</h4>
 
