@@ -949,10 +949,7 @@ const fooSearch: SearchFunction = (source, subString) =&gt; { ... };
 <pre><code class="language-ts bad">bar(function() { ... })
 </code></pre>
 
-<p>Function expressions (defined with the <code>function</code> keyword) may only be used if
-code has to dynamically rebind the <code>this</code> pointer, but code <em>should not</em> rebind
-the <code>this</code> pointer in general. Code in regular functions (as opposed to arrow
-functions and methods) <em>should not</em> access <code>this</code>.</p>
+<p>Функциональные выражения (определенные с помощью ключевого слова <code>function</code>) могут использоваться только в том случае, если код должен динамически перепривязать <code>this</code>, но в коде в принципе  <em>не рекомендуется</em> перепривязывать <code>this</code>. В коде обычных функций (в отличие от стрелочных функций и методов) <em>не рекомендуется</em> обращаться к <code>this</code>.</p>
 
 <h4 id="expression-bodies-vs-block-bodies">Expression bodies vs block bodies</h4>
 
@@ -995,28 +992,27 @@ const transformed = [1, 2, 3].map(v =&gt; {
 });
 </code></pre>
 
-<h4 id="rebinding-this">Rebinding <code>this</code></h4>
+<h4 id="rebinding-this">Перепривязывание <code>this</code></h4>
+Функциональные выражения не должны использовать this, если только они не существуют специально для перепривязки указателя this. В большинстве случаев повторной привязки можно избежать, используя стрелочные функции или явно заданные параметры.
 
-<p>Function expressions must not use <code>this</code> unless they specifically exist to
-rebind the <code>this</code> pointer. Rebinding <code>this</code> can in most cases be avoided by
-using arrow functions or explicit parameters.</p>
+<p>Функциональные выражения не должны использовать <code>this</code> если только они не существуют специально для перепривязки <code>this</code>. В большинстве случаев перепривязки <code>this</code> можно избежать, используя стрелочные функции или явно заданные параметры.</p>
 
 <pre><code class="language-ts bad">function clickHandler() {
-  // Bad: what's `this` in this context?
+  // Плохо: что такое «this» в этом контексте?
   this.textContent = 'Hello';
 }
-// Bad: the `this` pointer reference is implicitly set to document.body.
+// Плохо: `this` неявно ссылается на document.body .
 document.body.onclick = clickHandler;
 </code></pre>
 
-<pre><code class="language-ts good">// Good: explicitly reference the object from an arrow function.
+<pre><code class="language-ts good">// Хорошо: явная ссылка на объект из стрелочной функции.
 document.body.onclick = () =&gt; { document.body.textContent = 'hello'; };
-// Alternatively: take an explicit parameter
+// Альтернатива: взять явно заданный параметр
 const setTextFn = (e: HTMLElement) =&gt; { e.textContent = 'hello'; };
 document.body.onclick = setTextFn.bind(null, document.body);
 </code></pre>
 
-<h4 id="arrow-functions-as-properties">Arrow functions as properties</h4>
+<h4 id="arrow-functions-as-properties">Стрелочные функции как свойства</h4>
 
 <p>Classes usually <em>should not</em> contain properties initialized to arrow functions.
 Arrow function properties require the calling function to understand that the
@@ -1121,22 +1117,16 @@ class Component {
 }
 </code></pre>
 
-<h3 id="automatic-semicolon-insertion">Automatic Semicolon Insertion</h3>
+<h3 id="automatic-semicolon-insertion">Автоматическая вставка точки с запятой</h3>
 
-<p>Do not rely on Automatic Semicolon Insertion (ASI). Explicitly terminate all
-statements using a semicolon. This prevents bugs due to incorrect semicolon
-insertions and ensures compatibility with tools with limited ASI support (e.g.
-clang-format).</p>
+<p>Не следует полагаться на автоматическую вставку точки с запятой (<abbr title="Automatic Semicolon Insertion">ASI</abbr>). Явно завершайте все
+  операторы с помощью точки с запятой. Это предотвращает ошибки, возникающие из-за неправильной вставки точки с запятой, а также обеспечивает совместимость с инструментами которые имеют ограниченную поддержку ASI (например, clang-format).</p>
 
 <h3 id="ts-ignore">@ts-ignore</h3>
 
-<p>Do not use <code>@ts-ignore</code>. It superficially seems to be an easy way to <q>fix</q> a
-compiler error, but in practice, a specific compiler error is often caused by a
-larger problem that can be fixed more directly.</p>
+<p>Не используйте <code>@ts-ignore</code>. На первый взгляд кажется, что это простой способ исправить ошибку компилятора, но на практике конкретная ошибка компилятора часто вызывается более серьезной проблемой, которая может быть исправлена более явным путем.</p>
 
-<p>For example, if you are using <code>@ts-ignore</code> to suppress a type error, then it's
-hard to predict what types the surrounding code will end up seeing. For many
-type errors, the advice in <a href="#any">how to best use <code>any</code></a> is useful.</p>
+<p>Например, если вы используете <code>@ts-ignore</code> для подавления ошибок типизации, то будет трудно предсказать, какие типы в конечном итоге будет видеть окружающий код. Для многих ошибок типизации, полезны советы в разделе <a href="#any">как лучше всего использовать <code>any</code></a>.</p>
 
 <h3 id="type-and-non-nullability-assertions">Type and Non-nullability Assertions</h3>
 
