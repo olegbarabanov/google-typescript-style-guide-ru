@@ -519,11 +519,8 @@ and also violates <a href="#optimization-compatibility">optimization compatibili
 
 <h4>Геттеры и Сеттеры (Аксессоры)</h4>
 
-<p>Getters and setters for class members may be used. The getter method must be a
-<a href="https://en.wikipedia.org/wiki/Pure_function">pure function</a> (i.e., result is
-consistent and has no side effects). They are also useful as a means of
-restricting the visibility of internal or verbose implementation details (shown
-below).</p>
+<p>Для членов класса можно иcпользовать геттеры и сеттеры. Методы-геттеры должен быть 
+  <a href="https://en.wikipedia.org/wiki/Pure_function">чистыми функциями</a> (т.е. не имеет побочных эффектов и каждый раз возвращает одинаковый результат при одних и тех же параметрах). Они также полезны как средство ограничения видимости внутренних или подробных деталей реализации (показано ниже).</p>
 
 <pre><code class="language-ts good">class Foo {
   constructor(private readonly someService: SomeService) {}
@@ -538,13 +535,7 @@ below).</p>
 }
 </code></pre>
 
-<p>If an accessor is used to hide a class property, the hidden property may be
-prefixed or suffixed with any whole word, like <code>internal</code> or <code>wrapped</code>. When
-using these private properties, access the value through the accessor whenever
-possible. At least one accessor for a property must be non-trivial: do not
-define <q>pass-through</q> accessors only for the purpose of hiding a property.
-Instead, make the property public (or consider making it <code>readonly</code> rather than
-just defining a getter with no setter).</p>
+<p>Если аксессор используется для сокрытия свойства класса, скрытое свойство может иметь префикс или суффикс с любым целым словом, например <code>internal</code> или <code>wrapped</code>. При использовании этих приватных свойств по возможности обращайтесь к их значению через аксессор. По крайней мере один аксессор к свойству должен быть нетривиальным: не определяйте <q>сквозные</q> аксессоры только для того, чтобы скрыть свойство. Вместо этого сделайте свойство публичным (или подумайте о том, чтобы сделать его доступным только для чтения (<code>readonly</code>), чем просто определять геттер без сеттера).</p>
 
 <pre><code class="language-ts good">class Foo {
   private wrappedBar = '';
@@ -560,7 +551,7 @@ just defining a getter with no setter).</p>
 
 <pre><code class="language-ts bad">class Bar {
   private barInternal = '';
-  // Neither of these accessors have logic, so just make bar public.
+  // Ни один из этих аксессоров не имеет логики, поэтому просто сделайте bar публичным
   get bar() {
     return this.barInternal;
   }
@@ -571,11 +562,11 @@ just defining a getter with no setter).</p>
 }
 </code></pre>
 
-<h3 id="primitive-types-wrapper-classes">Primitive Types &amp; Wrapper Classes</h3>
+<h3 id="primitive-types-wrapper-classes">Примитивные типы &amp; Классы-обертки</h3>
 
-<p>TypeScript code must not instantiate the wrapper classes for the primitive types
-<code>String</code>, <code>Boolean</code>, and <code>Number</code>. Wrapper classes have surprising behaviour,
-such as <code>new Boolean(false)</code> evaluating to <code>true</code>.</p>
+<p>Код TypeScript не должен создавать экземпляры классов-оболочек для примитивных типов
+<code>String</code>, <code>Boolean</code>, и <code>Number</code>. Классы-оболочки имеют удивительное поведение,
+такое как <code>new Boolean(false)</code> равное <code>true</code>.</p>
 
 <pre><code class="language-ts bad">const s = new String('hello');
 const b = new Boolean(false);
@@ -914,37 +905,30 @@ compiler):</p>
 }
 </code></pre>
 
-<h3 id="function-declarations">Function Declarations</h3>
+<h3 id="function-declarations">Объявление функции</h3>
 
-<p>Use <code>function foo() { ... }</code> to declare named functions, including functions in
-nested scopes, e.g. within another function.</p>
+<p>Используйте <code>function foo() { ... }</code> для объявления именованных функций, включая функции во вложенных областях, например внутри другой функции.</p>
 
-<p>Use function declarations instead of assigning a function expression into a
-local variable (<del><code>const x = function() {...};</code></del>). TypeScript already disallows
-rebinding functions, so preventing overwriting a function declaration by using
-<code>const</code> is unnecessary.</p>
+<p>Используйте объявления функций вместо присваивания функционального выражения локальной переменной (<del><code>const x = function() {...};</code></del>). TypeScript уже запрещает переназначение функций, поэтому предотвращение перезаписи объявления функции с помощью <code>const</code> не требуется.</p>
 
-<p>Exception: Use arrow functions assigned to variables instead of function
-declarations if the function accesses the outer scope's <code>this</code>.</p>
+<p>Исключение: Если функция обращается к <code>this</code> внешней области видимости, используйте назначаемые переменным стрелочные функции вместо объявления функции.</p>
 
 <pre><code class="language-ts good">function foo() { ... }
 </code></pre>
 
-<pre><code class="language-ts bad">// Given the above declaration, this won't compile:
-foo = () =&gt; 3;  // ERROR: Invalid left-hand side of assignment expression.
+<pre><code class="language-ts bad">// Учитывая приведенное выше объявление, это не будет компилироваться:
+foo = () =&gt; 3;  // ERROR: Недопустимая левая часть выражения присваивания.
 
-// So declarations like this are unnecessary.
+// Так что такие объявления излишни.
 const foo = function() { ... }
 </code></pre>
 
 <blockquote>
-<p>Note the difference between function declarations (<code>function foo() {}</code>)
-discussed here, and function expressions (<del><code>doSomethingWith(function()
-{});</code></del>) discussed <a href="#function-expressions">below</a>.</p>
+<p>Обратите внимание на разницу между объявлениями функций (<code>function foo() {}</code>) обсуждаемыми здесь, и функциональными выражениями (<del><code>doSomethingWith(function()
+{});</code></del>) которые обсуждаются <a href="#function-expressions">ниже</a>.</p>
 </blockquote>
 
-<p>Top level arrow functions <em>may</em> be used to explicitly declare that a function
-implements an interface.</p>
+<p>Стрелочные функции верхнего уровня <em>могут</em> использоваться для явного объявления того, что функция реализует интерфейс.</p>
 
 <pre><code class="language-ts good">interface SearchFunction {
   (source: string, subString: string): boolean;
@@ -953,12 +937,11 @@ implements an interface.</p>
 const fooSearch: SearchFunction = (source, subString) =&gt; { ... };
 </code></pre>
 
-<h3 id="function-expressions">Function Expressions</h3>
+<h3 id="function-expressions">Функциональные выражения</h3>
 
-<h4 id="use-arrow-functions-in-expressions">Use arrow functions in expressions</h4>
+<h4 id="use-arrow-functions-in-expressions">Использование стрелочных функций в выражениях</h4>
 
-<p>Always use arrow functions instead of pre-ES6 function expressions defined with
-the <code>function</code> keyword.</p>
+<p>Всегда используйте стрелочные функции вместо функциональных выражений которые были до ES6 и задавались с помощью ключевого слова <code>function</code>.</p>
 
 <pre><code class="language-ts good">bar(() =&gt; { this.doSomething(); })
 </code></pre>
