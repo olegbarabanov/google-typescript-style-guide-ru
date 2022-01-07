@@ -565,7 +565,7 @@ and also violates <a href="#optimization-compatibility">optimization compatibili
 <h3 id="primitive-types-wrapper-classes">Примитивные типы &amp; Классы-обертки</h3>
 
 <p>Код TypeScript не должен создавать экземпляры классов-оболочек для примитивных типов
-<code>String</code>, <code>Boolean</code>, и <code>Number</code>. Классы-оболочки имеют удивительное поведение,
+<code>String</code>, <code>Boolean</code>, и <code>Number</code>. Классы-оболочки имеют удивляющее поведение,
 такое как <code>new Boolean(false)</code> равное <code>true</code>.</p>
 
 <pre><code class="language-ts bad">const s = new String('hello');
@@ -1128,15 +1128,11 @@ class Component {
 
 <p>Например, если вы используете <code>@ts-ignore</code> для подавления ошибок типизации, то будет трудно предсказать, какие типы в конечном итоге будет видеть окружающий код. Для многих ошибок типизации, полезны советы в разделе <a href="#any">как лучше всего использовать <code>any</code></a>.</p>
 
-<h3 id="type-and-non-nullability-assertions">Type and Non-nullability Assertions</h3>
+<h3 id="type-and-non-nullability-assertions">Утверждения типа (Type Assertions) и утверждения ненулевого значения (Non-nullability Assertions)</h3>
 
-<p>Type assertions (<code>x as SomeType</code>) and non-nullability assertions (<code>y!</code>) are
-unsafe. Both only silence the TypeScript compiler, but do not insert any runtime
-checks to match these assertions, so they can cause your program to crash at
-runtime.</p>
+<p>Утверждения типа (<code>x as SomeType</code>) и утверждения ненулевого значения (<code>y!</code>) не безопасны. Оба только заглушают компилятор TypeScript, но не вставляют никаких проверок во время выполнения, чтобы соответствовать этим утверждениям, поэтому они могут привести к сбою вашей программы во время выполнения.</p>
 
-<p>Because of this, you <em>should not</em> use type and non-nullability assertions
-without an obvious or explicit reason for doing so.</p>
+<p>По этой причине, вам <em>не рекомендуется</em> использовать утверждения типа и утверждения ненулевого значения без явной или объяснимой причины.</p>
 
 <p>Instead of the following:</p>
 
@@ -1145,10 +1141,9 @@ without an obvious or explicit reason for doing so.</p>
 y!.bar();
 </code></pre>
 
-<p>When you want to assert a type or non-nullability the best answer is to
-explicitly write a runtime check that performs that check.</p>
+<p>Если вы хотите произвести утверждение типа или утверждение ненулевого значения то лучшим решением будет написать проверку, которая будет работать во время выполнения.</p>
 
-<pre><code class="language-ts good">// assuming Foo is a class.
+<pre><code class="language-ts good">// предположим, что Foo - это класс.
 if (x instanceof Foo) {
   x.foo();
 }
@@ -1158,26 +1153,22 @@ if (y) {
 }
 </code></pre>
 
-<p>Sometimes due to some local property of your code you can be sure that the
-assertion form is safe. In those situations, you <em>should</em> add clarification to
-explain why you are ok with the unsafe behavior:</p>
+<p>Иногда из-за некоторых внутренних особенностей вашего кода вы можете быть уверены, что форма утверждения безопасна. В таких ситуациях <em>рекомендуется</em> добавить пояснение, объясняющее, почему вы согласны с небезопасным поведением:</p>
 
-<pre><code class="language-ts good">// x is a Foo, because ...
+<pre><code class="language-ts good">// x это Foo, потому что ...
 (x as Foo).foo();
 
-// y cannot be null, because ...
+// y не может быть null, потому что ...
 y!.bar();
 </code></pre>
 
-<p>If the reasoning behind a type or non-nullability assertion is obvious, the
-comments may not be necessary. For example, generated proto code is always
-nullable, but perhaps it is well-known in the context of the code that certain
-fields are always provided by the backend. Use your judgement.</p>
 
-<h4 id="type-assertions-syntax">Type Assertions Syntax</h4>
+<p>Комментарии могут не потребоваться, если очевидны причины, лежащие в основе применения утверждения типа или утверждения ненулевого значения.
+  Например, сгенерированный код-прототип всегда допускает значение null, но, возможно, в контексте кода хорошо известно, что определенные поля всегда предоставляются серверной частью. В таком случае, принимайте решение руководствуясь своим профессиональным видением.</p>
 
-<p>Type assertions must use the <code>as</code> syntax (as opposed to the angle brackets
-syntax). This enforces parentheses around the assertion when accessing a member.</p>
+<h4 id="type-assertions-syntax">Синтаксис утверждения типа</h4>
+
+<p>Утверждения типа должны использовать синтаксис <code>as</code> (в отличие от синтаксиса угловых скобок). Это позволяет заключить утверждение в круглые скобки при обращении к элементу.</p>
 
 <pre><code class="language-ts bad">const x = (&lt;Foo&gt;z).length;
 const y = &lt;Foo&gt;z.length;
@@ -1186,26 +1177,24 @@ const y = &lt;Foo&gt;z.length;
 <pre><code class="language-ts good">const x = (z as Foo).length;
 </code></pre>
 
-<h4 id="type-assertions-and-object-literals">Type Assertions and Object Literals</h4>
+<h4 id="type-assertions-and-object-literals">Утверждение типа и литералы объекта</h4>
 
-<p>Use type annotations (<code>: Foo</code>) instead of type assertions (<code>as Foo</code>) to specify
-the type of an object literal. This allows detecting refactoring bugs when the
-fields of an interface change over time.</p>
+<p>Используйте аннотации типа (<code>: Foo</code>) вместо утверждения типа (<code>as Foo</code>) для указания типа объектного литерала. Это позволяет обнаружить ошибки рефакторинга, когда поля интерфейса меняются со временем.</p>
 
 <pre><code class="language-ts bad">interface Foo {
   bar: number;
-  baz?: string;  // was "bam", but later renamed to "baz".
+  baz?: string;  // был "bam", но позднее был переименован в "baz".
 }
 
 const foo = {
   bar: 123,
-  bam: 'abc',  // no error!
+  bam: 'abc',  // нет ошибки!
 } as Foo;
 
 function func() {
   return {
     bar: 123,
-    bam: 'abc',  // no error!
+    bam: 'abc',  // нет ошибки!
   } as Foo;
 }
 </code></pre>
@@ -1217,21 +1206,20 @@ function func() {
 
 const foo: Foo = {
   bar: 123,
-  bam: 'abc',  // complains about "bam" not being defined on Foo.
+  bam: 'abc',  // жалуется на то, что "bam" не был объявлен в Foo.
 };
 
 function func(): Foo {
   return {
     bar: 123,
-    bam: 'abc',   // complains about "bam" not being defined on Foo.
+    bam: 'abc',  // жалуется на то, что "bam" не был объявлен в Foo.
   };
 }
 </code></pre>
 
 <h3 id="member-property-declarations">Member property declarations</h3>
 
-<p>Interface and class declarations must use the <code>;</code> character to separate
-individual member declarations:</p>
+<p>В объявлениях интерфейсов и классов для разделения объявлений отдельных членов необходимо использовать символ<code>;</code></p>
 
 <pre><code class="language-ts good">interface Foo {
   memberA: string;
@@ -1239,8 +1227,7 @@ individual member declarations:</p>
 }
 </code></pre>
 
-<p>Interfaces specifically must not use the <code>,</code> character to separate fields, for
-symmetry with class declarations:</p>
+<p>Интерфейсы специально не должны использовать символ <code>,</code> для разделения полей, что необходимо для симметричности с объявлениями классов:</p>
 
 <pre><code class="language-ts bad">interface Foo {
   memberA: string,
@@ -1248,7 +1235,7 @@ symmetry with class declarations:</p>
 }
 </code></pre>
 
-<p>Inline object type declarations must use the comma as a separator:</p>
+<p>Встраиваемые объявления типов объектов в качестве разделителя должны использовать запятую:</p>
 
 <pre><code class="language-ts good">type SomeTypeAlias = {
   memberA: string,
@@ -1260,10 +1247,10 @@ let someProperty: {memberC: string, memberD: number};
 
 <h4 id="optimization-compatibility-for-property-access">Optimization compatibility for property access</h4>
 
-<p>Code must not mix quoted property access with dotted property access:</p>
+<p>Код не должен смешивать доступ к свойству в кавычках с доступом к свойству через точку</p>
 
-<pre><code class="language-ts bad">// Bad: code must use either non-quoted or quoted access for any property
-// consistently across the entire application:
+<pre><code class="language-ts bad">// Плохо: код должен использовать либо доступ без кавычек, либо доступ в кавычках для любого свойства
+// единообразно для всего приложения:
 console.log(x['someField']);
 console.log(x.someField);
 </code></pre>
@@ -1274,7 +1261,7 @@ that are external to the application to prevent renaming:</p>
 <p>Prefer for code to account for a possible property-renaming optimization, and
 declare all properties that are external to the application to prevent renaming:</p>
 
-<pre><code class="language-ts good">// Good: declaring an interface
+<pre><code class="language-ts good">// Хорошо: объявление интерфейса
 declare interface ServerInfoJson {
   appVersion: string;
   user: UserJson;
@@ -1285,10 +1272,7 @@ console.log(data.appVersion); // Type safe &amp; renaming safe!
 
 <h4 id="optimization-compatibility-for-module-object-imports">Optimization compatibility for module object imports</h4>
 
-<p>When importing a module object, directly access properties on the module object
-rather than passing it around. This ensures that modules can be analyzed and
-optimized. Treating
-<a href="#module-versus-destructuring-imports">module imports</a> as namespaces is fine.</p>
+<p>При импорте объекта модуля напрямую обращайтесь к свойствам объекта модуля, а не передавайте его. Это гарантирует, что модули могут быть проанализированы и оптимизированы. Отношение к <a href="#module-versus-destructuring-imports">импорту модулей</a> как к пространствам имен является нормальным.</p>
 
 <pre><code class="language-ts good">import {method1, method2} from 'utils';
 class A {
@@ -1309,11 +1293,9 @@ to code that only runs server side (e.g. in NodeJS for a test runner). It is
 still strongly encouraged to always declare all types and avoid mixing quoted
 and unquoted property access, for code hygiene.</p>
 
-<h3 id="enums">Enums</h3>
+<h3 id="enums">Перечисления (Enums)</h3>
 
-<p>Always use <code>enum</code> and not <code>const enum</code>. TypeScript enums already cannot be
-mutated; <code>const enum</code> is a separate language feature related to optimization
-that makes the enum invisible to JavaScript users of the module.</p>
+<p>Всегда используйте <code>enum</code>, а не <code>const enum</code>. В TypeScript перечисления и так не могут быть изменены, а <code>const enum</code> - это отдельная особенность языка, связанная с оптимизацией, которая делает перечисление невидимым для пользователей JavaScript модуля.</p>
 
 <h3 id="debugger-statements">Debugger statements</h3>
 
@@ -1324,36 +1306,31 @@ that makes the enum invisible to JavaScript users of the module.</p>
 }
 </code></pre>
 
-<h3 id="decorators">Decorators</h3>
+<h3 id="decorators">Декораторы</h3>
 
-<p>Decorators are syntax with an <code>@</code> prefix, like <code>@MyDecorator</code>.</p>
+<p>Декораторы обозначаются с помощью префикса <code>@</code>, например <code>@MyDecorator</code>.</p>
 
-<p>Do not define new decorators. Only use the decorators defined by
-frameworks:</p>
+<p>Не определяйте новых декораторов. Используйте только те декораторы, которые определены фреймворками:</p>
 
 <ul>
-<li>Angular (e.g. <code>@Component</code>, <code>@NgModule</code>, etc.)</li>
-<li>Polymer (e.g. <code>@property</code>)</li>
+<li>Angular (например, <code>@Component</code>, <code>@NgModule</code> и т.д.)</li>
+<li>Polymer (например,<code>@property</code>)</li>
 </ul>
 
 <section>
-Why?
+Почему?
 
-<p>We generally want to avoid decorators, because they were an experimental
-feature that have since diverged from the TC39 proposal and have known bugs that
-won't be fixed.
-</p></section>
+<p>В основном мы предпочитаем избегать декораторов, поскольку они были экспериментальной функцией, которая с тех пор отклонилась от предложения TC39 и имеет известные ошибки, которые вряд ли будут исправлены.</p></section>
 
-<p>When using decorators, the decorator must immediately precede the symbol it
-decorates, with no empty lines between:</p>
+<p>При использовании декораторов, декоратор должен непосредственно предшествовать элементу, к которому он применяется, без пустых строк между ними:</p>
 
-<pre><code class="language-ts">/** JSDoc comments go before decorators */
-@Component({...})  // Note: no empty line after the decorator.
+<pre><code class="language-ts">/** Комментарии JSDoc идут перед декораторами */
+@Component({...})  // Примечание: после декоратора не должно быть пустой строки. 
 class MyComp {
-  @Input() myField: string;  // Decorators on fields may be on the same line...
+  @Input() myField: string;  // Декораторы полей могут находиться на одной линии... 
 
   @Input()
-  myOtherField: string;  // ... or wrap.
+  myOtherField: string;  // ...  или переноситься.
 }
 </code></pre>
 
