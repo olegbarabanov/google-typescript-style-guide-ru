@@ -382,11 +382,7 @@ keeping code decoupled.</p>
 <pre><code class="language-ts good">const x = new Foo();
 </code></pre>
 
-<p>It is unnecessary to provide an empty constructor or one that simply delegates
-into its parent class because ES2015 provides a default class constructor if one
-is not specified. However constructors with parameter properties, modifiers or
-parameter decorators should not be omitted even if the body of the constructor
-is empty.</p>
+<p>Нет необходимости предоставлять пустой конструктор или конструктор, который просто делегирует в родительский класс, поскольку ES2015 предоставляет конструктор класса по умолчанию, если он не указан. Однако не следует убирать конструкторы со свойствами параметров, модификаторами или декораторами параметров, даже если тело конструктора пустое.</p>
 
 <pre><code class="language-ts bad">class UnnecessaryConstructor {
   constructor() {}
@@ -418,7 +414,7 @@ class NoInstantiation {
 
 <h3 id="class-members">Class Members</h3>
 
-<h4 id="private-fields">No <code>#private</code> fields</h4>
+<h4 id="private-fields">Не используйте приватные поля вида <code>#private</code></h4>
 
 <p>Не используйте приватные поля (также известные как приватные идентификаторы):</p>
 
@@ -993,7 +989,6 @@ const transformed = [1, 2, 3].map(v =&gt; {
 </code></pre>
 
 <h4 id="rebinding-this">Перепривязывание <code>this</code></h4>
-Функциональные выражения не должны использовать this, если только они не существуют специально для перепривязки указателя this. В большинстве случаев повторной привязки можно избежать, используя стрелочные функции или явно заданные параметры.
 
 <p>Функциональные выражения не должны использовать <code>this</code> если только они не существуют специально для перепривязки <code>this</code>. В большинстве случаев перепривязки <code>this</code> можно избежать, используя стрелочные функции или явно заданные параметры.</p>
 
@@ -1014,20 +1009,13 @@ document.body.onclick = setTextFn.bind(null, document.body);
 
 <h4 id="arrow-functions-as-properties">Стрелочные функции как свойства</h4>
 
-<p>Classes usually <em>should not</em> contain properties initialized to arrow functions.
-Arrow function properties require the calling function to understand that the
-callee's <code>this</code> is already bound, which increases confusion about what <code>this</code>
-is, and call sites and references using such handlers look broken (i.e. require
-non-local knowledge to determine that they are correct). Code <em>should</em> always
-use arrow functions to call instance methods (<code>const handler = (x) =&gt; {
-this.listener(x); };</code>), and <em>should not</em> obtain or pass references to instance
-methods (<del><code>const handler = this.listener; handler(x);</code></del>).</p>
+<p>В классах обычно <em>не рекомендуется</em> содержать свойства, которые проинициализированы как стрелочные функции.
+Использование стрелочных функций как свойств требует, чтобы вызывающая их функция корректно понимала, что у вызываемой функции уже есть привязанный <code>this</code>, что увеличивает путаницу в понимании того, что такое <code>this</code>, а сами места вызовов и ссылки использующие эти функции, могут смотреться некорректно работающими (т.к. это требует дополнительных знаний из-за пределов локального пространства вызывающей функции, чтобы определить, что они корректны). В коде <em>рекомендуется</em> всегда использовать стрелочные функции для вызова методов экземпляра (<code>const handler = (x) =&gt; { this.listener(x); };</code>), и <em>не рекомендуется</em> получать или передавать ссылки на методы экземпляра (<del><code>const handler = this.listener; handler(x);</code></del>).</p>
 
 <blockquote>
 <p>Note: in some specific situations, e.g. when binding functions in a template,
 arrow functions as properties are useful and create much more readable code.
-Use judgement with this rule. Also, see the
-<a href="#event-handlers"><code>Event Handlers</code></a> section below.</p>
+Use judgement with this rule. Также см. раздел <a href="#event-handlers"><code>Обработчики событий</code></a> ниже.</p>
 </blockquote>
 
 <pre><code class="language-ts bad">class DelayHandler {
@@ -1042,10 +1030,10 @@ Use judgement with this rule. Also, see the
 }
 </code></pre>
 
-<pre><code class="language-ts bad">// Arrow functions usually should not be properties.
+<pre><code class="language-ts bad">// Стрелочные функции обычно не рекомендуется задавать свойствам.
 class DelayHandler {
   constructor() {
-    // Bad: this code looks like it forgot to bind `this`.
+    // Плохо: этот код выглядит так, как будто ту забыли привязать `this`. 
     setTimeout(this.patienceTracker, 5000);
   }
   private patienceTracker = () =&gt; {
@@ -1054,10 +1042,10 @@ class DelayHandler {
 }
 </code></pre>
 
-<pre><code class="language-ts good">// Explicitly manage `this` at call time.
+<pre><code class="language-ts good">// Явное управление `this` во время вызова.
 class DelayHandler {
   constructor() {
-    // Use anonymous functions if possible.
+    // По возможности используйте анонимные функции.
     setTimeout(() =&gt; {
       this.patienceTracker();
     }, 5000);
@@ -1068,51 +1056,46 @@ class DelayHandler {
 }
 </code></pre>
 
-<h4 id="event-handlers">Event Handlers</h4>
+<h4 id="event-handlers">Обработчики событий</h4>
 
-<p>Event handlers <em>may</em> use arrow functions when there is no need to uninstall the
-handler (for example, if the event is emitted by the class itself). If the
-handler must be uninstalled, arrow function properties are the right approach,
-because they automatically capture <code>this</code> and provide a stable reference to
-uninstall.</p>
+<p>Обработчики событий <em>могут</em> использовать стрелочные функции, когда нет необходимости удалять обработчик (например, если событие генерируется самим классом). Если обработчик впоследствии должен быть удален, тогда правильным подходом будет использование назначенной свойству стрелочной функции, поскольку они автоматически захватывают <code>this</code> и при этом обеспечивается постоянная ссылка на обработчик для его последующего удаления.</p>
 
-<pre><code class="language-ts good">// Event handlers may be anonymous functions or arrow function properties.
+<pre><code class="language-ts good">// Обработчики событий могут быть анонимными функциями или назначенные свойствам стрелочными функциями.
 class Component {
   onAttached() {
-    // The event is emitted by this class, no need to uninstall.
+    // Событие генерируется этим классом, удалять его не нужно.
     this.addEventListener('click', () =&gt; {
       this.listener();
     });
-    // this.listener is a stable reference, we can uninstall it later.
+    // this.listener это постоянная ссылка на функцию-обработчик, которую мы позже можем удалить.
     window.addEventListener('onbeforeunload', this.listener);
   }
   onDetached() {
-    // The event is emitted by window. If we don't uninstall, this.listener will
-    // keep a reference to `this` because it's bound, causing a memory leak.
+    // Событие генерируется окном (window). Если мы не удалим функцию-обработчик (this.listener), то она
+    // сохранит ссылку на `this` к которой привязана, что приведет к утечке памяти.
     window.removeEventListener('onbeforeunload', this.listener);
   }
-  // An arrow function stored in a property is bound to `this` automatically.
+  // Стрелочная функция, хранящаяся в свойстве, автоматически привязывается к `this`.
   private listener = () =&gt; {
-    confirm('Do you want to exit the page?');
+    confirm('Вы хотите покинуть страницу?');
   }
 }
 </code></pre>
 
-<p>Do not use <code>bind</code> in the expression that installs an event handler, because it
-creates a temporary reference that can't be uninstalled.</p>
+<p>Не используйте <code>bind</code> в выражениях, которые устанавливают обработчики событий, потому что это создает временную ссылку, которую нельзя удалить.</p>
 
-<pre><code class="language-ts bad">// Binding listeners creates a temporary reference that prevents uninstalling.
+<pre><code class="language-ts bad">// Привязка слушателей создает временную ссылку, которая недоступна для удаления.
 class Component {
   onAttached() {
-    // This creates a temporary reference that we won't be able to uninstall
+    // Это создает временную ссылку, которая нам не будет доступна для удаления.
     window.addEventListener('onbeforeunload', this.listener.bind(this));
   }
   onDetached() {
-    // This bind creates a different reference, so this line does nothing.
+    // метод bind каждый раз создает новую ссылку, поэтому эта строка не делает ничего.
     window.removeEventListener('onbeforeunload', this.listener.bind(this));
   }
   private listener() {
-    confirm('Do you want to exit the page?');
+    confirm('Вы хотите покинуть страницу?');
   }
 }
 </code></pre>
@@ -1338,25 +1321,21 @@ class MyComp {
 
 <h3 id="modules">Модули</h3>
 
-<h4 id="import-paths">Import Paths</h4>
+<h4 id="import-paths">Используемые в импортах пути</h4>
+Пути могут быть относительными, т. е. начинаться с . или .., или уходить в корень базового каталога, например root/path/to/file.
 
-<p>TypeScript code must use paths to import other TypeScript code. Paths may be
-relative, i.e. starting with <code>.</code> or <code>..</code>,
- or rooted at the base directory, e.g.
-<code>root/path/to/file</code>.</p>
+<p>Код TypeScript обязательно должен содержать пути для импорта другого кода TypeScript. Пути могут быть относительными, т.е. начинаться с <code>.</code> или <code>..</code>, или начинаться с базовой директории, например <code>root/path/to/file</code>.</p>
 
-<p>Code <em>should</em> use relative imports (<code>./foo</code>) rather than absolute imports
-<code>path/to/foo</code> when referring to files within the same (logical) project.</p>
+<p>В коде <em>рекомендуется</em> использовать относительные импорты (<code>./foo</code>) вместо абсолютных импортов <code>path/to/foo</code> когда ссылается на файлы в пределах одного и того же (в логическом смысле) проекта.</p>
 
-<p>Consider limiting the number of parent steps (<code>../../../</code>) as those can make
-module and path structures hard to understand.</p>
+<p>Рассмотрите возможность ограничения количества родительских шагов (<code>../../../</code>) так как это может затруднить понимание структуры модулей и путей.</p>
 
 <pre><code class="language-ts good">import {Symbol1} from 'google3/path/from/root';
 import {Symbol2} from '../parent/file';
 import {Symbol3} from './sibling';
 </code></pre>
 
-<h4 id="namespaces-vs-modules">Namespaces vs Modules</h4>
+<h4 id="namespaces-vs-modules">Пространства имен (namespace) & Модули</h4>
 
 <p>TypeScript supports two methods to organize code: <em>namespaces</em> and <em>modules</em>,
 but namespaces are disallowed. google3 code must use TypeScript <em>modules</em> (which
@@ -1389,23 +1368,22 @@ the <code>module</code> keyword in the form <code>module Foo { ... }</code>. Don
 Always use ES6 imports.</p>
 </blockquote>
 
-<h3 id="exports">Exports</h3>
+<h3 id="exports">Экспорты"</h3>
 
-<p>Use named exports in all code:</p>
+<p>Используйте именованный экспорты во всем коде::</p>
 
-<pre><code class="language-ts good">// Use named exports:
+<pre><code class="language-ts good">// Использование именованного экспорта:
 export class Foo { ... }
 </code></pre>
 
-<p>Do not use default exports. This ensures that all imports follow a uniform
-pattern.</p>
+<p>Не используйте экспорт по умолчанию. Это гарантирует, что все импорты будут следовать единому шаблону.</p>
 
-<pre><code class="language-ts bad">// Do not use default exports:
-export default class Foo { ... } // BAD!
+<pre><code class="language-ts bad">// Не используйте экспорт по умолчанию:
+export default class Foo { ... } // ПЛОХО!
 </code></pre>
 
 <section class="zippy">
-Why?
+Почему?
 
 <p>Default exports provide no canonical name, which makes central maintenance
 difficult with relatively little benefit to code owners, including potentially
@@ -1415,25 +1393,24 @@ decreased readability:</p>
 import Bar from './bar';  // Also legal.
 </code></pre>
 
-<p>Named exports have the benefit of erroring when import statements try to import
-something that hasn't been declared. In <code>foo.ts</code>:</p>
+<p>Преимущество именованного экспорта заключается в том, что оно приводит к ошибкам, когда операторы импорта пытаются импортировать что-то, что не было объявлено. В <code>foo.ts</code>:</p>
 
 <pre><code class="language-ts bad">const foo = 'blah';
 export default foo;
 </code></pre>
 
-<p>And in <code>bar.ts</code>:</p>
+<p>И в <code>bar.ts</code>:</p>
 
 <pre><code class="language-ts bad">import {fizz} from './foo';
 </code></pre>
 
-<p>Results in <code>error TS2614: Module '"./foo"' has no exported member 'fizz'.</code> While
+<p>В результате возникает ошибка <code>error TS2614: Module '"./foo"' has no exported member 'fizz'.</code> While
 <code>bar.ts</code>:</p>
 
 <pre><code class="language-ts bad">import fizz from './foo';
 </code></pre>
 
-<p>Results in <code>fizz === foo</code>, which is probably unexpected and difficult to debug.</p>
+<p>В результате получается <code>fizz === foo</code>, что может быть неожиданным и затрудняющим отладку.</p>
 
 <p>Additionally, default exports encourage people to put everything into one big
 object to namespace it all together:</p>
@@ -1517,24 +1494,24 @@ of namespacing.</p>
 }
 </code></pre>
 
-<p>Instead, export individual constants and functions:</p>
+<p>Вместо этого экспортируйте отдельные константы и функции:</p>
 
 <pre><code class="language-ts good">export const FOO = 1;
 export function bar() { return 1; }
 </code></pre>
 
-<h3 id="imports">Imports</h3>
+<h3 id="imports">Импорты</h3>
 
-<p>There are four variants of import statements in ES6 and TypeScript:</p>
+<p>В ES6 и TypeScript есть четыре варианта операторов импорта:</p>
 
 <section>
 
 <table>
 <thead>
 <tr>
-<th>Import type</th>
-<th>Example</th>
-<th>Use for</th>
+<th>Вид импорта</th>
+<th>Пример</th>
+<th>Назначение</th>
 </tr>
 </thead>
 
