@@ -1412,8 +1412,7 @@ export default foo;
 
 <p>В результате получается <code>fizz === foo</code>, что может быть неожиданным и затрудняющим отладку.</p>
 
-<p>Additionally, default exports encourage people to put everything into one big
-object to namespace it all together:</p>
+<p>Кроме того, экспорт по умолчанию побуждает людей помещать все в один большой объект, чтобы разместить все вместе в пространстве имен:</p>
 
 <pre><code class="language-ts bad">export default class Foo {
   static SOME_CONSTANT = ...
@@ -1422,11 +1421,9 @@ object to namespace it all together:</p>
 }
 </code></pre>
 
-<p>With the above pattern, we have file scope, which can be used as a namespace. We
-also have a perhaps needless second scope (the class <code>Foo</code>) that can be
-ambiguously used as both a type and a value in other files.</p>
+<p>В приведенном выше примере у нас есть область видимости файла, которая может использоваться как пространство имен. У нас также есть, возможно, ненужная вторая область видимости (класс <code>Foo</code>), который в других файлах может двусмысленно использоваться и как тип, и как значение.</p>
 
-<p>Instead, prefer use of file scope for namespacing, as well as named exports:</p>
+<p>Вместо этого предпочтительно использовать файловую область видимости для пространства имен, а также именованный экспорт:</p>
 
 <pre><code class="language-ts good">export const SOME_CONSTANT = ...
 export function someHelpfulFunction()
@@ -1443,11 +1440,9 @@ export class Foo {
 Only export symbols that are used outside of the module. Generally minimize the
 exported API surface of modules.</p>
 
-<h4 id="mutable-exports">Mutable Exports</h4>
+<h4 id="mutable-exports">Мутабельность экспортов</h4>
 
-<p>Regardless of technical support, mutable exports can create hard to understand
-and debug code, in particular with re-exports across multiple modules. One way
-to paraphrase this style point is that <code>export let</code> is not allowed.</p>
+<p>Независимо от технической стороны, мутабельные экспорты могут создавать трудно понимаемый и отлаживаемый код, особенно при реэкспорте в различных модулях. Если по другому сформулировать это правило, то <code>export let</code> не допускается.</p>
 
 <section>
 
@@ -1461,14 +1456,13 @@ window.setTimeout(() =&gt; {
 
 </section>
 
-<p>If one needs to support externally accessible and mutable bindings, they should
-instead use explicit getter functions.</p>
+<p>Если необходимо поддерживать доступные извне мутабельные привязки, то вместо этого рекомендуется явно использовать функции-геттеры.</p>
 
 <pre><code class="language-ts good">let foo = 3;
 window.setTimeout(() =&gt; {
   foo = 4;
 }, 1000 /* ms */);
-// Use an explicit getter to access the mutable export.
+// Используйте явно заданный геттер для доступа к мутабельному экспорту.
 export function getFoo() { return foo; };
 </code></pre>
 
@@ -1483,10 +1477,9 @@ after the module's body has executed.</p>
 export const SomeApi = pickApi();
 </code></pre>
 
-<h4 id="container-classes">Container Classes</h4>
+<h4 id="container-classes">Классы-контейнеры</h4>
 
-<p>Do not create container classes with static methods or properties for the sake
-of namespacing.</p>
+<p>Не создавайте классы-контейнеры со статическими методами или свойствами ради пространства имен.</p>
 
 <pre><code class="language-ts bad">export class Container {
   static FOO = 1;
@@ -1621,13 +1614,12 @@ describe('foo', () =&gt; {
 ...
 </code></pre>
 
-<h4 id="renaming-imports">Renaming imports</h4>
+<h4 id="renaming-imports">Переименование импортов</h4>
 
-<p>Code <em>should</em> fix name collisions by using a module import or renaming the
-exports themselves. Code <em>may</em> rename imports (<code>import {SomeThing as
-SomeOtherThing}</code>) if needed.</p>
+<p>В коде <em>рекомендуется</em> устранить возможные конфликты имен используя импорт модулей и переименовывая сами экспорты. При необходимости в коде <em>можно</em> переименовывать импорты (<code>import {SomeThing as
+  SomeOtherThing}</code>).</p>
 
-<p>Three examples where renaming can be helpful:</p>
+<p>Три примера, когда переименование может быть полезным:</p>
 
 <ol>
 <li>If it's necessary to avoid collisions with other imported symbols.</li>
@@ -1637,18 +1629,18 @@ improve code clarity. For example, when using RxJS the <code>from</code> functio
 be more readable when renamed to <code>observableFrom</code>.</li>
 </ol>
 
-<h4 id="import-export-type">Import &amp; export type</h4>
+<h4 id="import-export-type">Импорты &amp; экспорты типов</h4>
 
-<p>Do not use <code>import type ... from</code> or <code>export type ... from</code>.</p>
+<p>Не используйте <code>import type ... from</code> или <code>export type ... from</code>.</p>
 
-<p>Note: this does not apply to exporting type definitions, i.e. <code>export type Foo =
+<p>Примечание: это не относится к экспорту определений типов, т.е. <code>export type Foo =
 ...;</code>.</p>
 
 <pre><code class="language-ts bad">import type {Foo} from './foo';
 export type {Bar} from './bar';
 </code></pre>
 
-<p>Instead, just use regular imports:</p>
+<p>Вместо этого просто используйте обычный импорт:</p>
 
 <pre><code class="language-ts good">import {Foo} from './foo';
 export {Bar} from './bar';
@@ -1684,9 +1676,9 @@ communicates intent.</p>
 have packages named <code>products</code>, <code>checkout</code>, <code>backend</code>, not <del><code>views</code>, <code>models</code>,
 <code>controllers</code></del>.</p>
 
-<h2 id="type-system">Type System</h2>
+<h2 id="type-system">Система типов</h2>
 
-<h3 id="type-inference">Type Inference</h3>
+<h3 id="type-inference">Вывод типа</h3>
 
 <p>Code may rely on type inference as implemented by the TypeScript compiler for
 all type expressions (variables, fields, return types, etc). The google3
@@ -1886,7 +1878,7 @@ makeSound(horse);
 
 </section>
 
-<h3 id="interfaces-vs-type-aliases">Interfaces vs Type Aliases</h3>
+<h3 id="interfaces-vs-type-aliases">Интерфейсы и псевдонимы типов</h3>
 
 <p>TypeScript supports
 <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases">type aliases</a>
@@ -1920,14 +1912,13 @@ really just be interfaces for anything that they can model. There is no benefit
 to type aliases when there are so many issues around display/perf.</q>
 </p></section>
 
-<h3 id="arrayt-type"><code>Array&lt;T&gt;</code> Type</h3>
+<h3 id="arrayt-type">Тип <code>Array&lt;T&gt;</code></h3>
 
-<p>For simple types (containing just alphanumeric characters and dot), use the
-syntax sugar for arrays, <code>T[]</code>, rather than the longer form <code>Array&lt;T&gt;</code>.</p>
+<p>Для простых типов (содержащих только буквенно-цифровые символы и точку) используйте синтаксический сахар для массивов, <code>T[]</code>, а не более длинную форму <code>Array&lt;T&gt;</code>.</p>
 
-<p>For anything more complex, use the longer form <code>Array&lt;T&gt;</code>.</p>
+<p>Для чего-то более сложного используйте более длинную форму <code>Array&lt;T&gt;</code>.</p>
 
-<p>This also applies for <code>readonly T[]</code> vs <code>ReadonlyArray&lt;T&gt;</code>.</p>
+<p>Это также относится к <code>readonly T[]</code> и <code>ReadonlyArray&lt;T&gt;</code>.</p>
 
 <pre><code class="language-ts good">const a: string[];
 const b: readonly string[];
@@ -1936,7 +1927,7 @@ const d: Array&lt;string|number&gt;;
 const e: ReadonlyArray&lt;string|number&gt;;
 </code></pre>
 
-<pre><code class="language-ts bad">const f: Array&lt;string&gt;;            // the syntax sugar is shorter
+<pre><code class="language-ts bad">const f: Array&lt;string&gt;;            //  синтаксический сахар короче 
 const g: ReadonlyArray&lt;string&gt;;
 const h: {n: number, s: string}[]; // the braces/parens make it harder to read
 const i: (string|number)[];
@@ -2056,7 +2047,7 @@ support, allows better optimization, and arguably makes the code easier to
 understand.
 </p></section>
 
-<h3 id="any"><code>any</code> Type</h3>
+<h3 id="any">Тип <code>any</code></h3>
 
 <p>TypeScript's <code>any</code> type is a super and subtype of all other types, and allows
 dereferencing all properties. As such, <code>any</code> is dangerous - it can mask severe
@@ -2064,14 +2055,13 @@ programming errors, and its use undermines the value of having static types in
 the first place.</p>
 
 <section>
-<strong>Consider <em>not</em> to use <code>any</code>.</strong> In circumstances where you
-want to use <code>any</code>, consider one of:
+<strong>Подумайте о том, чтобы <em>не</em> использовать <code>any</code>.</strong> В тех обстоятельствах, в которых вы захотите использовать <code>any</code>, рассмотрите один из вариантов:
 </section>
 
 <ul>
-<li><a href="#any-specific">Provide a more specific type</a></li>
-<li><a href="#any-unknown">Use <code>unknown</code></a></li>
-<li><a href="#any-suppress">Suppress the lint warning and document why</a></li>
+<li><a href="#any-specific">Указать более конкретный тип</a></li>
+<li><a href="#any-unknown">Использовать <code>unknown</code></a></li>
+<li><a href="#any-suppress">Подавить предупреждение анализатора кода и задокументировать, почему </a></li>
 </ul>
 
 <h4 id="any-specific">Providing a more specific type</h4>
@@ -2224,7 +2214,7 @@ global rules. Evaluate your style guide proposal against the following:</p>
 <li><p><strong>Code should avoid patterns that are known to cause problems, especially
 for users new to the language.</strong></p>
 
-<p>Examples:</p>
+<p>Примеры:</p>
 
 <ul>
 <li>The <code>any</code> type is easy to misuse (is that variable <em>really</em> both a
@@ -2249,7 +2239,7 @@ reason and avoid pointless debates in code reviews.</p>
 <p>We should usually match JavaScript style as well, because people often write
 both languages together.</p>
 
-<p>Examples:</p>
+<p>Примеры:</p>
 
 <ul>
 <li>The capitalization style of names.</li>
@@ -2261,7 +2251,7 @@ both languages together.</p>
 <p>Code usually lives longer than the original author works on it, and the
 TypeScript team must keep all of Google working into the future.</p>
 
-<p>Examples:</p>
+<p>Примеры:</p>
 
 <ul>
 <li>We use software to automate changes to code, so code is autoformatted so
