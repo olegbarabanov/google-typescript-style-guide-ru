@@ -14,10 +14,10 @@
 <h1>TypeScript - руководство по стилю написания кода</h1>
 
 <section>
-This is the external guide that's based on the internal Google version but has been adjusted for the broader audience. There is no automatic deployment process for this version as it's pushed on-demand by volunteers.
+  Это внешнее руководство, основанное на внутренней версии Google, но адаптированное для более широкой аудитории. There is no automatic deployment process for this version as it's pushed on-demand by volunteers.
 
-<p>It contains both rules and best practices. Choose those that work best for your team.
-</p></section>
+<p>В нем содержатся как правила, так и лучшие практики. Выберите те, которые лучше всего подходят для вашей команды.</p>
+</section>
 
 <p>Данное руководство ссылается на терминологию стандарта <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a> при использовании фраз <em>ДОЛЖНЫ</em>, <em>НЕ ДОЛЖНЫ</em>, <em>РЕКОМЕНДУЕТСЯ</em>, <em>НЕ РЕКОМЕНДУЕТСЯ</em>, и <em>ВОЗМОЖНО</em>.
   All examples given are non-normative and serve only to illustrate the normative
@@ -1321,7 +1321,7 @@ class MyComp {
 
 <h3 id="modules">Модули</h3>
 
-<h4 id="import-paths">Используемые в импортах пути</h4>
+<h4 id="import-paths">Использование путей в импортах</h4>
 Пути могут быть относительными, т. е. начинаться с . или .., или уходить в корень базового каталога, например root/path/to/file.
 
 <p>Код TypeScript обязательно должен содержать пути для импорта другого кода TypeScript. Пути могут быть относительными, т.е. начинаться с <code>.</code> или <code>..</code>, или начинаться с базовой директории, например <code>root/path/to/file</code>.</p>
@@ -1337,38 +1337,30 @@ import {Symbol3} from './sibling';
 
 <h4 id="namespaces-vs-modules">Пространства имен (namespace) & Модули</h4>
 
-<p>TypeScript supports two methods to organize code: <em>namespaces</em> and <em>modules</em>,
-but namespaces are disallowed. google3 code must use TypeScript <em>modules</em> (which
-are <a href="http://exploringjs.com/es6/ch_modules.html">ECMAScript 6 modules</a>). That
-is, your code <em>must</em> refer to code in other files using imports and exports of
-the form <code>import {foo} from 'bar';</code></p>
+<p>TypeScript поддерживает два метода организации кода: пространства имен (<em>namespaces</em>) и модули, но использование пространств имен необходимо избегать. В коде должны использоваться TypeScript <em>модули</em> (которые являются <a href="http://exploringjs.com/es6/ch_modules.html">модулями ECMAScript 6</a>). То есть ваш код <em>должен</em> ссылаться на код в других файлах с помощью импорта и экспорта вида <code>import {foo} from 'bar';</code></p>
 
-<p>Your code must not use the <code>namespace Foo { ... }</code> construct. <code>namespace</code>s may
-only be used when required to interface with external, third party code. To
-semantically namespace your code, use separate files.</p>
+<p>В вашем коде не должны использоваться <code>namespace Foo { ... }</code> конструкции. Пространства имен (<code>namespace</code>) могут использоваться только тогда, когда это необходимо для взаимодействия с внешним сторонним кодом. Чтобы семантически разделить пространство имен вашего кода, используйте отдельные файлы.</p>
 
-<p>Code must not use <code>require</code> (as in <code>import x = require('...');</code>) for imports.
-Use ES6 module syntax.</p>
+<p>В коде не должны использоваться <code>require</code> (как в <code>import x = require('...');</code>) для импортов.
+Используйте ES6 синтаксис модулей.</p>
 
-<pre><code class="language-ts bad">// Bad: do not use namespaces:
+<pre><code class="language-ts bad">// Плохо: не используйте пространства имен:
 namespace Rocket {
   function launch() { ... }
 }
 
-// Bad: do not use &lt;reference&gt;
+// Плохо: не используйте &lt;reference&gt;
 /// &lt;reference path="..."/&gt;
 
-// Bad: do not use require()
+// Плохо: не используйте require()
 import x = require('mydep');
 </code></pre>
 
 <blockquote>
-<p>NB: TypeScript <code>namespace</code>s used to be called internal modules and used to use
-the <code>module</code> keyword in the form <code>module Foo { ... }</code>. Don't use that either.
-Always use ES6 imports.</p>
+  <p>Примечание: В TypeScript  пространства имен (<code>namespace</code>) раньше назывались внутренними модулями и использовали ключевое слово <code>module</code> в виде <code>module Foo { ... }</code>. Не используйте такую форму. Всегда используйте ES6 импорты.</p>
 </blockquote>
 
-<h3 id="exports">Экспорты"</h3>
+<h3 id="exports">Экспорты</h3>
 
 <p>Используйте именованный экспорты во всем коде::</p>
 
