@@ -2171,15 +2171,13 @@ use(address.port);
 const {host, port} = splitHostPort(userAddress);
 </code></pre>
 
-<h3 id="wrapper-types">Wrapper types</h3>
+<h3 id="wrapper-types">Типы-обертки</h3>
 
-<p>There are a few types related to JavaScript primitives that should never be
-used:</p>
+<p>Есть несколько типов, связанных с примитивами JavaScript, которые никогда не следует использовать:</p>
 
 <ul>
-<li><code>String</code>, <code>Boolean</code>, and <code>Number</code> have slightly different meaning from the
-corresponding primitive types <code>string</code>, <code>boolean</code>, and <code>number</code>. Always use
-the lowercase version.</li>
+<li><code>String</code>, <code>Boolean</code>, и <code>Number</code> имеют несколько иное значение, чем соответствующие примитивные типы <code>string</code>, <code>boolean</code>, and <code>number</code>. Всегда используйте версию со строчными буквами.</li>
+
 <li><code>Object</code> has similarities to both <code>{}</code> and <code>object</code>, but is slightly looser.
 Use <code>{}</code> for a type that include everything except <code>null</code> and <code>undefined</code>,
 or lowercase <code>object</code> to further exclude the other primitive types (the
@@ -2191,8 +2189,8 @@ three mentioned above, plus <code>symbol</code> and <code>bigint</code>).</li>
 <h3 id="return-type-only-generics">Return type only generics</h3>
 
 <p>Avoid creating APIs that have return type only generics. When working with
-existing APIs that have return type only generics always explicitly specify the
-generics.</p>
+  existing APIs that have return type only generics always explicitly specify the
+  generics.</p>
 
 <h2 id="consistency">Consistency</h2>
 
@@ -2211,15 +2209,12 @@ decisions be made locally. So the default answer should be <q>leave it out</q>.<
 global rules. Evaluate your style guide proposal against the following:</p>
 
 <ol>
-<li><p><strong>Code should avoid patterns that are known to cause problems, especially
-for users new to the language.</strong></p>
+<li><p><strong>В коде рекомендуется избегать шаблонов, которые известны как вызывающие проблемы, особенно для пользователей, только начинающих изучать язык.</strong></p>
 
 <p>Примеры:</p>
 
 <ul>
-<li>The <code>any</code> type is easy to misuse (is that variable <em>really</em> both a
-number and callable as a function?), so we have recommendations for how
-to use it.</li>
+  <li>Типом <code>any</code> легко злоупотребить (<em>действительно</em> ли эта переменная может быть и числом, и вызываться как функция?),поэтому у нас есть рекомендации по его использованию.</li>
 <li>TypeScript <code>namespace</code> causes trouble for Closure optimization.</li>
 <li>Periods within filenames make them ugly/confusing to import from
 JavaScript.</li>
