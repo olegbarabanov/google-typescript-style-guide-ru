@@ -722,19 +722,18 @@ for (const [key, value] of Object.entries(someObj)) { // note: for _of_!
 
 <h3 id="iterating-containers">Iterating containers</h3>
 
-<p>Do not use <code>for (... in ...)</code> to iterate over arrays. It will counterintuitively
-give the array's indices (as strings!), not values:</p>
+<p>Не используйте <code>for (... in ...)</code> для итерации по массивам. It will counterintuitively
+  give the array's indices (as strings!), not values:</p>
 
 <pre><code class="language-ts bad">for (const x in someArray) {
-  // x is the index!
+  // x - это индекс!
 }
 </code></pre>
 
-<p>Use <code>for (... of someArr)</code> or vanilla <code>for</code> loops with indices to iterate over
-arrays.</p>
+<p>Для итерации по массивам используйте <code>for (... of someArr)</code> или обычные циклы <code>for</code> с индексами.</p>
 
 <pre><code class="language-ts good">for (const x of someArr) {
-  // x is a value of someArr.
+  // x - ссылается на значение из someArr
 }
 
 for (let i = 0; i &lt; someArr.length; i++) {
@@ -743,13 +742,11 @@ for (let i = 0; i &lt; someArr.length; i++) {
   // ...
 }
 for (const [i, x] of someArr.entries()) {
-  // Alternative version of the above.
+  // Альтернативная версия предыдущего.
 }
 </code></pre>
 
-<p>Do not use <code>Array.prototype.forEach</code>, <code>Set.prototype.forEach</code>, and
-<code>Map.prototype.forEach</code>. They make code harder to debug and defeat some useful
-compiler checks (e.g. reachability).</p>
+<p>Не используйте <code>Array.prototype.forEach</code>, <code>Set.prototype.forEach</code>, и <code>Map.prototype.forEach</code>. Они усложняют отладку кода и препятствуют некоторым полезным проверкам компилятора (например, проверку достижимости).</p>
 
 <pre><code class="language-ts bad">someArr.forEach((item, index) =&gt; {
   someFn(item, index);
@@ -757,19 +754,15 @@ compiler checks (e.g. reachability).</p>
 </code></pre>
 
 <section class="zippy">
-Why?
+Почему?
 
-<p>Consider this code:</p>
+<p>Рассмотрим следующий код:</p>
 
 <pre><code class="language-ts bad">let x: string|null = 'abc';
 myArray.forEach(() =&gt; { x.charAt(0); });
 </code></pre>
 
-<p>You can recognize that this code is fine: <code>x</code> isn't null and it doesn't change
-before it is accessed. But the compiler cannot know that this <code>.forEach()</code> call
-doesn't hang on to the closure that was passed in and call it at some later
-point, maybe after <code>x</code> was set to null, so it flags this code as an error. The
-equivalent for-of loop is fine.</p>
+<p>Вы можете видеть, что этот код вполне в порядке: <code>x</code> не является null и не изменяется до обращения к нему. Но компилятор не может знать, что этот вызов <code>.forEach()</code> не привязан к переданному замыканию и не вызовет его позже, возможно, после того, как <code>x</code> будет установлен в null, поэтому он помечает этот код как ошибку. Эквивалентный цикл for-of работает нормально.</p>
 
 <p>
 <a href="https://www.typescriptlang.org/play?#code/DYUwLgBAHgXBDOYBOBLAdgcwD5oK7GAgF4IByAQwCMBjUgbgCgBtAXQDoAzAeyQFFzqACwAUwgJTEAfBADeDCNDZDySAIJhhABjGMAvjoYNQkAJ5xEqTDnyESFGvQbckEYdS5pEEAPoQuHCFYJOQUTJUEVdS0DXQYgA">See the error and non-error in the playground</a>
@@ -1539,11 +1532,11 @@ as custom elements)</td>
 </tbody>
 </table>
 
-<pre><code class="language-ts good">// Good: choose between two options as appropriate (see below).
+<pre><code class="language-ts good">// Хорошо: выберите один из двух вариантов в зависимости от ситуации (см. ниже).
 import * as ng from '@angular/core';
 import {Foo} from './foo';
 
-// Only when needed: default imports.
+// Только при необходимости: импорт по умолчанию.
 import Button from 'Button';
 
 // Sometimes needed to import libraries for their side effects:
@@ -1764,10 +1757,9 @@ class CoffeeService {
 }
 </code></pre>
 
-<h4 id="optionals-vs-undefined-type">Optionals vs <code>|undefined</code> type</h4>
+<h4 id="optionals-vs-undefined-type">Опциональные свойства & тип <code>|undefined</code></h4>
 
-<p>In addition, TypeScript supports a special construct for optional parameters and
-fields, using <code>?</code>:</p>
+<p>Также язык TypeScript поддерживает специальную конструкцию для опциональных параметров и полей, используя <code>?</code>:</p>
 
 <pre><code class="language-ts good">interface CoffeeOrder {
   sugarCubes: number;
@@ -1777,16 +1769,11 @@ fields, using <code>?</code>:</p>
 function pourCoffee(volume?: Milliliter) { ... }
 </code></pre>
 
-<p>Optional parameters implicitly include <code>|undefined</code> in their type. However, they
-are different in that they can be left out when constructing a value or calling
-a method. For example, <code>{sugarCubes: 1}</code> is a valid <code>CoffeeOrder</code> because <code>milk</code>
-is optional.</p>
+<p>Опциональные параметры неявно включают <code>|undefined</code> в свой тип. Однако они отличаются тем, что их можно не указывать при составлении выражения или вызове метода. Например, <code>{sugarCubes: 1}</code> является валидным <code>CoffeeOrder</code> поскольку <code>milk</code> является опциональным.</p>
 
-<p>Use optional fields (on interfaces or classes) and parameters rather than a
-<code>|undefined</code> type.</p>
+<p>Используйте опциональные поля (в интерфейсах или классах) и параметры вместо <code>|undefined</code> типов.</p>
 
-<p>For classes preferably avoid this pattern altogether and initialize as many
-fields as possible.</p>
+<p>Для классов лучше вообще избегать этого приёма и инициализировать как можно больше полей.</p>
 
 <pre><code class="language-ts good">class MyClass {
   field = '';
