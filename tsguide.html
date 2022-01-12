@@ -433,12 +433,7 @@ class NoInstantiation {
 <section class="zippy">
 Почему?
 
-<p> Private identifiers cause substantial emit size and
-performance regressions when down-leveled by TypeScript, and are unsupported
-before ES2015. They can only be downleveled to ES2015, not lower. At the same
-time, they do not offer substantial benefits when static type checking is used
-to enforce visibility.</p>
-
+<p> Приватные идентификаторы вызывают существенные проблемы с размером и производительностью при понижении версии стандарта ECMAScript, в которую будет скомпилирован код TypeScript и не поддерживаются до ES2015. Они могут быть понижены только до уровня ES2015, но не ниже. At the same time, they do not offer substantial benefits when static type checking is used to enforce visibility.</p>
 </section>
 
 <h4 id="use-readonly">Используйте модификатор <code>readonly</code></h4>
@@ -2187,9 +2182,8 @@ global rules. Evaluate your style guide proposal against the following:</p>
 
 <ul>
   <li>Типом <code>any</code> легко злоупотребить (<em>действительно</em> ли эта переменная может быть и числом, и вызываться как функция?),поэтому у нас есть рекомендации по его использованию.</li>
-<li>TypeScript <code>namespace</code> causes trouble for Closure optimization.</li>
-<li>Periods within filenames make them ugly/confusing to import from
-JavaScript.</li>
+<li>В TypeScript пространство имен (<code>namespace</code>) создает проблемы с оптимизациями Closure.</li>
+<li>Точки в именах файлов делают их уродливыми/запутанными для импорта из JavaScript.</li>
 <li>Static functions in classes optimize confusingly, while often file-level
 functions accomplish the same goal.</li>
 <li>Users unaware of the <code>private</code> keyword will attempt to obfuscate their
