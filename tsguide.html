@@ -1913,10 +1913,10 @@ const i: (string|number)[];
 const j: readonly (string|number)[];
 </code></pre>
 
-<h3 id="indexable-key-string-number-type">Indexable (<code>{[key: string]: number}</code>) Type</h3>
+<h3 id="indexable-key-string-number-type">Индексируемый (<code>{[key: string]: number}</code>) тип</h3>
 
-<p>In JavaScript, it's common to use an object as an associative array (aka <q>map</q>,
-<q>hash</q>, or <q>dict</q>):</p>
+<p>В JavaScript принято использовать объект в качестве ассоциативного массива (он же <q>карта (map)</q>,
+  <q>хеш-таблица</q>, или <q>словарь</q>):</p>
 
 <pre><code class="language-ts">const fileSizes: {[fileName: string]: number} = {};
 fileSizes['readme.txt'] = 541;
@@ -1932,17 +1932,10 @@ for documentation; it's unused otherwise.)</p>
 </code></pre>
 
 <blockquote>
-<p>Rather than using one of these, consider using the ES6 <code>Map</code> and <code>Set</code> types
-instead. JavaScript objects have
-<a href="http://2ality.com/2012/01/objects-as-maps.html">surprising undesirable behaviors</a>
-and the ES6 types more explicitly convey your intent. Also, <code>Map</code>s can be
-keyed by—and <code>Set</code>s can contain—types other than <code>string</code>.</p>
+<p>Вместо использования одного из тех вариантов, рассмотрите возможность использования типов ES6 <code>Map</code> и <code>Set</code>. Объекты JavaScript обладают довольно <a href="http://2ality.com/2012/01/objects-as-maps.html">неожиданным нежелательным поведением</a>, а типы ES6 более явно передают ваши намерения. Также, <code>Set</code>могут хранить значения, а <code>Map</code> еще и ключи, отличные от <code>string</code>.</p>
 </blockquote>
 
-<p>TypeScript's builtin <code>Record&lt;Keys, ValueType&gt;</code> type allows constructing types
-with a defined set of keys. This is distinct from associative arrays in that the
-keys are statically known. See advice on that
-<a href="#mapped-conditional-types">below</a>.</p>
+<p>Встроенный в TypeScript тип <code>Record&lt;Keys, ValueType&gt;</code> позволяет создавать типы с определенным набором ключей. Это отличается от ассоциативных массивов тем, что ключи известны статически. См. рекомендации по этому вопросу <a href="#mapped-conditional-types">ниже</a>.</p>
 
 <h3 id="mapped-conditional-types">Mapped &amp; Conditional Types</h3>
 
