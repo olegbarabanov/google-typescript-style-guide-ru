@@ -803,10 +803,9 @@ const fooStrings = ['a', 'b', 'c'];
 const ids = [...fooStrings, 'd', 'e'];
 </code></pre>
 
-<h3 id="control-flow-statements-blocks">Control flow statements &amp; blocks</h3>
+<h3 id="control-flow-statements-blocks">Операторы управления потоком &amp; блоки</h3>
 
-<p>Control flow statements spanning multiple lines always use blocks for the
-containing code.</p>
+<p>Операторы управления потоком, охватывающие несколько строк, всегда используют блоки для размещения содержащегося в них кода.</p>
 
 <pre><code class="language-ts good">for (let i = 0; i &lt; x; i++) {
   doSomethingWith(i);
@@ -823,7 +822,7 @@ for (let i = 0; i &lt; x; i++)
   doSomethingWithALongMethodName(i);
 </code></pre>
 
-<p>The exception is that <code>if</code> statements fitting on one line may elide the block.</p>
+<p>Исключением являются операторы <code>if</code>, которые помещаются на одной строке и могут не использовать блоки.</p>
 
 <pre><code class="language-ts good">if (x) x.doFoo();
 </code></pre>
