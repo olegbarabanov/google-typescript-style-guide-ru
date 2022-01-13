@@ -1265,9 +1265,9 @@ and unquoted property access, for code hygiene.</p>
 
 <p>Всегда используйте <code>enum</code>, а не <code>const enum</code>. В TypeScript перечисления и так не могут быть изменены, а <code>const enum</code> - это отдельная особенность языка, связанная с оптимизацией, которая делает перечисление невидимым для пользователей JavaScript модуля.</p>
 
-<h3 id="debugger-statements">Debugger statements</h3>
+<h3 id="debugger-statements">Команды отладчика</h3>
 
-<p>Debugger statements must not be included in production code.</p>
+<p>Команды отладчика (наподобие <code>debugger;</code>) не должны включаться в рабочий код.</p>
 
 <pre><code class="language-ts bad">function debugMe() {
   debugger;
