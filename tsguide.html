@@ -1412,9 +1412,7 @@ export class Foo {
 
 <h4 id="export-visibility">Export visibility</h4>
 
-<p>TypeScript does not support restricting the visibility for exported symbols.
-Only export symbols that are used outside of the module. Generally minimize the
-exported API surface of modules.</p>
+<p>TypeScript не поддерживает ограничение видимости экспортируемых элементов. Экспортируйте только те элементы, которые используются вне модуля. Как правило, минимизируйте экспортируемую часть API модулей.</p>
 
 <h4 id="mutable-exports">Мутабельность экспортов</h4>
 
@@ -1598,11 +1596,9 @@ describe('foo', () =&gt; {
 <p>Три примера, когда переименование может быть полезным:</p>
 
 <ol>
-<li>If it's necessary to avoid collisions with other imported symbols.</li>
-<li>If the imported symbol name is generated.</li>
-<li>If importing symbols whose names are unclear by themselves, renaming can
-improve code clarity. For example, when using RxJS the <code>from</code> function might
-be more readable when renamed to <code>observableFrom</code>.</li>
+<li>Если необходимо избежать коллизий с другими импортируемыми элементами.</li>
+<li>Если имя импортированного элемента генерируется.</li>
+<li>При импорте элементов, имена которых сами по себе неясны, переименование может улучшить ясность кода. Например, при использовании RxJS функция <code>from</code> может быть более удобочитаемой, если ее переименовать в <code>observableFrom</code>.</li>
 </ol>
 
 <h4 id="import-export-type">Импорты &amp; экспорты типов</h4>
@@ -1626,7 +1622,7 @@ export {Bar} from './bar';
 used as values and only generates runtime loads for the latter.</p>
 
 <section class="zippy">
-Why?
+Почему?
 
 <p>TypeScript tooling automatically handles the distinction and does not insert
 runtime loads for type references. This gives a better developer UX: toggling
@@ -1646,11 +1642,10 @@ communicates intent.</p>
 
 </section>
 
-<h3 id="organize-by-feature">Organize By Feature</h3>
+<h3 id="organize-by-feature">Формирование по функциональному назначению</h3>
 
-<p>Organize packages by feature, not by type. For example, an online shop <em>should</em>
-have packages named <code>products</code>, <code>checkout</code>, <code>backend</code>, not <del><code>views</code>, <code>models</code>,
-<code>controllers</code></del>.</p>
+<p>Формируйте пакеты по их функциональному назначению, а не по типам. Например, для интернет-магазина <em>рекомендуется</em> иметь пакеты с названиями <code>products</code>, <code>checkout</code>, <code>backend</code>, а не <del><code>views</code>, <code>models</code>,
+  <code>controllers</code></del>.</p>
 
 <h2 id="type-system">Система типов</h2>
 
