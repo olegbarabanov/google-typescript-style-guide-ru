@@ -1676,16 +1676,13 @@ program. Whether an annotation is required is decided by the code reviewer.</p>
 
 <h4 id="return-types">Return types</h4>
 
-<p>Whether to include return type annotations for functions and methods is up to
-the code author. Reviewers <em>may</em> ask for annotations to clarify complex return
-types that are hard to understand. Projects <em>may</em> have a local policy to always
-require return types, but this is not a general TypeScript style requirement.</p>
+<p>Вопрос о том, следует ли включать аннотации типа возвращаемого значения для функций и методов, зависит от автора кода. Рецензенты <em>могут</em> запросить аннотации для уточнения сложных типов возвращаемых данных, которые трудно понять. В проектах <em>может</em> существовать локальная политика, согласно которой всегда требуется указывать возвращаемые типы, но это не является общим требованием стиля TypeScript.</p>
 
 <p>There are two benefits to explicitly typing out the implicit return values of
 functions and methods:</p>
 
 <ul>
-<li>More precise documentation to benefit readers of the code.</li>
+<li>Более точная документация для повышения удобства чтения кода.</li>
 <li>Surface potential type errors faster in the future if there are code changes
 that change the return type of the function.</li>
 </ul>
