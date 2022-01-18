@@ -2064,20 +2064,18 @@ To safely use <code>unknown</code> values, narrow the type using a
 <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types">type guard</a>
 </section>
 
-<h4 id="any-suppress">Suppressing <code>any</code> lint warnings</h4>
+<h4 id="any-suppress">Подавление предупреждений линтера, связанных с использованием <code>any</code></h4>
 
-<p>Sometimes using <code>any</code> is legitimate, for example in tests to construct a mock
-object. In such cases, add a comment that suppresses the lint warning, and
-document why it is legitimate.</p>
+<p>Иногда использование <code>any</code> вполне оправдано, например, в тестах для создания Mock-объектов. В таких случаях добавьте комментарий, который подавляет предупреждение линтера, и задокументируйте, почему это решение оправдано.</p>
 
-<pre><code class="language-ts good">// This test only needs a partial implementation of BookService, and if
-// we overlooked something the test will fail in an obvious way.
-// This is an intentionally unsafe partial mock
+<pre><code class="language-ts good">// Этому тесту нужна только частичная реализация BookService,
+// и если мы что-то упустили, тест очевидно провалится
+// Это намеренно небезопасный частичный Mock-объект
 // tslint:disable-next-line:no-any
 const mockBookService = ({get() { return mockBook; }} as any) as BookService;
-// Shopping cart is not used in this test
+// Корзина покупателя (класс ShoppingCart) в этом тесте не используется
 // tslint:disable-next-line:no-any
-const component = new MyComponent(mockBookService, /* unused ShoppingCart */ null as any);
+const component = new MyComponent(mockBookService, /* неиспользуемый ShoppingCart */ null as any);
 </code></pre>
 
 <h3 id="tuple-types">Tuple Types</h3>
