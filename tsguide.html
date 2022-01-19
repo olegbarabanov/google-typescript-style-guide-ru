@@ -1529,10 +1529,9 @@ import '@polymer/paper-button';
 
 </section>
 
-<h4 id="module-versus-destructuring-imports">Module versus destructuring imports</h4>
+<h4 id="module-versus-destructuring-imports">Модульный и деструктурирующий импорты</h4>
 
-<p>Both module and destructuring imports have advantages depending on the
-situation.</p>
+<p>Как модульный, так и деструктурирующий импорт имеют свои преимущества в зависимости от ситуации.</p>
 
 <p>Despite the <code>*</code>, a module import is not comparable to a <q>wildcard</q> import as
 seen in other languages. Instead, module imports give a name to the entire
@@ -1542,9 +1541,7 @@ less import churn (all symbols are available), fewer name collisions, and allow
 terser names in the module that's imported. Module imports are particularly
 useful when using many different symbols from large APIs.</p>
 
-<p>Destructuring imports give local names for each imported symbol. They allow
-terser code when using the imported symbol, which is particularly useful for
-very commonly used symbols, such as Jasmine's <code>describe</code> and <code>it</code>.</p>
+<p>Деструктурирующий импорт дает локальные имена для каждого импортируемого элемента. Они позволяют использовать более краткий и лаконичный код при использовании импортируемого элемента, что особенно полезно для очень часто используемых элементов, как например, <code>describe</code> и <code>it</code> в Jasmine.</p>
 
 <pre><code class="language-ts bad">// Bad: overlong import statement of needlessly namespaced names.
 import {TableViewItem, TableViewHeader, TableViewRow, TableViewModel,
@@ -1552,7 +1549,7 @@ import {TableViewItem, TableViewHeader, TableViewRow, TableViewModel,
 let item: TableViewItem = ...;
 </code></pre>
 
-<pre><code class="language-ts good">// Better: use the module for namespacing.
+<pre><code class="language-ts good">// Лучше: используйте модуль для пространства имен. 
 import * as tableview from './tableview';
 let item: tableview.Item = ...;
 </code></pre>
