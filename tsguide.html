@@ -1651,22 +1651,19 @@ explicitly).</p>
 <pre><code class="language-ts good">const x = 15;  // Type inferred.
 </code></pre>
 
-<p>Leave out type annotations for trivially inferred types: variables or parameters
-initialized to a <code>string</code>, <code>number</code>, <code>boolean</code>, <code>RegExp</code> literal or <code>new</code>
-expression.</p>
+<p>Не указывайте типы для тривиально выводимых типов: переменных или параметров, инициализированных строковыми (<code>string</code>), числовыми (<code>number</code>), логическими (<code>boolean</code>) литералами, литералами регулярных выражений (<code>RegExp</code>) или выражением <code>new</code>.</p>
 
-<pre><code class="language-ts bad">const x: boolean = true;  // Bad: 'boolean' here does not aid readability
+<pre><code class="language-ts bad">const x: boolean = true;  // Плохо: 'boolean' здесь не способствует удобочитаемости
 </code></pre>
 
-<pre><code class="language-ts bad">// Bad: 'Set' is trivially inferred from the initialization
+<pre><code class="language-ts bad">// Плохо: 'Set' тривиально выводится из инициализации
 const x: Set&lt;string&gt; = new Set();
 </code></pre>
 
 <pre><code class="language-ts good">const x = new Set&lt;string&gt;();
 </code></pre>
 
-<p>For more complex expressions, type annotations can help with readability of the
-program. Whether an annotation is required is decided by the code reviewer.</p>
+<p>Для более сложных выражений аннотации типов могут улучшить читабельность программы. Необходимость аннотации решает рецензент кода.</p>
 
 <h4 id="return-types">Return types</h4>
 
