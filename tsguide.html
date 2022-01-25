@@ -1751,11 +1751,9 @@ function pourCoffee(volume?: Milliliter) { ... }
 }
 </code></pre>
 
-<h3 id="structural-types-vs-nominal-types">Structural Types vs Nominal Types</h3>
+<h3 id="structural-types-vs-nominal-types">Структурная и номинальная типизация</h3>
 
-<p>TypeScript's type system is structural, not nominal. That is, a value matches a
-type if it has at least all the properties the type requires and the properties'
-types match, recursively.</p>
+<p>Система типов TypeScript является структурной, а не номинальной. Т.е. значение соответствует типу, если оно имеет по крайней мере все свойства, требуемые типом, и типы свойств совпадают рекурсивно.</p>
 
 <p>Use structural typing where appropriate in your code. Outside of test code, use
 interfaces to define structural types, not classes. In test code it can be
