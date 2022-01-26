@@ -1756,13 +1756,11 @@ function pourCoffee(volume?: Milliliter) { ... }
 <p>Система типов TypeScript является структурной, а не номинальной. Т.е. значение соответствует типу, если оно имеет по крайней мере все свойства, требуемые типом, и типы свойств совпадают рекурсивно.</p>
 
 <p>Use structural typing where appropriate in your code. Outside of test code, use
-interfaces to define structural types, not classes. In test code it can be
-useful to have mock implementations structurally match the code under test
-without introducing an extra interface.</p>
+  interfaces to define structural types, not classes. In test code it can be
+  useful to have mock implementations structurally match the code under test
+  without introducing an extra interface.</p>
 
-<p>When providing a structural-based implementation, explicitly include the type at
-the declaration of the symbol (this allows more precise type checking and error
-reporting).</p>
+<p>При предоставлении реализации, основанной на структуре, явно указывайте тип в объявлении элемента (это позволяет более точно проверить тип и сообщить об ошибке).</p>
 
 <pre><code class="language-ts good">const foo: Foo = {
   a: 123,
@@ -1777,7 +1775,7 @@ reporting).</p>
 </code></pre>
 
 <section class="zippy">
-Why?
+Почему?
 
 <p>The <q>badFoo</q> object above relies on type inference. Additional fields could be
 added to <q>badFoo</q> and the type is inferred based on the object itself.</p>
