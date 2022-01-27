@@ -1777,12 +1777,9 @@ function pourCoffee(volume?: Milliliter) { ... }
 <section class="zippy">
 Почему?
 
-<p>The <q>badFoo</q> object above relies on type inference. Additional fields could be
-added to <q>badFoo</q> and the type is inferred based on the object itself.</p>
+<p>Приведенный выше объект <q>badFoo</q> полагается на вывод типа. В <q>badFoo</q> могут быть добавлены дополнительные поля, а тип будет выводиться на основе самого объекта.</p>
 
-<p>When passing a <q>badFoo</q> to a function that takes a <q>Foo</q>, the error will be at
-the function call site, rather than at the object declaration site. This is also
-useful when changing the surface of an interface across broad codebases.</p>
+<p>При передаче <q>badFoo</q> в функцию, которая принимает <q>Foo</q>, ошибка будет возникать на месте вызова функции, а не на месте объявления объекта. Это также существенно при изменении описания интерфейса в обширной кодовой базе.</p>
 
 <pre><code class="language-ts">interface Animal {
   sound: string;
