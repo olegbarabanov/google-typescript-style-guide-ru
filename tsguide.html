@@ -1789,22 +1789,22 @@ function pourCoffee(volume?: Milliliter) { ... }
 function makeSound(animal: Animal) {}
 
 /**
- * 'cat' has an inferred type of '{sound: string}'
+ * 'cat' имеет выводимый тип '{sound: string}'
  */
 const cat = {
   sound: 'meow',
 };
 
 /**
- * 'cat' does not meet the type contract required for the function, so the
- * TypeScript compiler errors here, which may be very far from where 'cat' is
- * defined.
+ * 'cat' не соответствует требуемому для функции типу,
+ * поэтому компилятор TypeScript выдает ошибку здесь,
+ * что может быть очень далеко от места определения 'cat'.
  */
 makeSound(cat);
 
 /**
- * Horse has a structural type and the type error shows here rather than the
- * function call.  'horse' does not meet the type contract of 'Animal'.
+ * Horse имеет структурный тип, и ошибка типа возникает здесь, а не в вызове функции,
+ * поскольку 'horse' не соответствует требованиям типа 'Animal'
  */
 const horse: Animal = {
   sound: 'niegh',
