@@ -1678,17 +1678,11 @@ functions and methods:</p>
 that change the return type of the function.</li>
 </ul>
 
-<h3 id="null-vs-undefined">Null vs Undefined</h3>
+<h3 id="null-vs-undefined">Null & Undefined</h3>
 
-<p>TypeScript supports <code>null</code> and <code>undefined</code> types. Nullable types can be
-constructed as a union type (<code>string|null</code>); similarly with <code>undefined</code>. There
-is no special syntax for unions of <code>null</code> and <code>undefined</code>.</p>
+<p>В TypeScript поддерживаются <code>null</code> и <code>undefined</code> типы. Nullable-типы могут быть созданы как union-типы (<code>string|null</code>), что также относится и к <code>undefined</code>. Специального синтаксиса для объединений с <code>null</code> и <code>undefined</code> не существует.</p>
 
-<p>TypeScript code can use either <code>undefined</code> or <code>null</code> to denote absence of a
-value, there is no general guidance to prefer one over the other. Many
-JavaScript APIs use <code>undefined</code> (e.g. <code>Map.get</code>), while many DOM and Google APIs
-use <code>null</code> (e.g. <code>Element.getAttribute</code>), so the appropriate absent value
-depends on the context.</p>
+<p>В TypeScript коде для обозначения отсутствия значения можно использовать <code>undefined</code> или <code>null</code>, при этом нет общих рекомендаций для предпочтения одного другому. Множество JavaScript API используют <code>undefined</code> (например, <code>Map.get</code>), в то время как во многих DOM API и Google API используется <code>null</code> (например, <code>Element.getAttribute</code>), поэтому подходящее обозначение отсутствия значения зависит от контекста.</p>
 
 <h4 id="nullableundefined-type-aliases">Nullable/undefined type aliases</h4>
 
