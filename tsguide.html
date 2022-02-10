@@ -1684,19 +1684,14 @@ that change the return type of the function.</li>
 
 <p>В TypeScript коде для обозначения отсутствия значения можно использовать <code>undefined</code> или <code>null</code>, при этом нет общих рекомендаций для предпочтения одного другому. Множество JavaScript API используют <code>undefined</code> (например, <code>Map.get</code>), в то время как во многих DOM API и Google API используется <code>null</code> (например, <code>Element.getAttribute</code>), поэтому подходящее обозначение отсутствия значения зависит от контекста.</p>
 
-<h4 id="nullableundefined-type-aliases">Nullable/undefined type aliases</h4>
+<h4 id="nullableundefined-type-aliases">Nullable/undefined псевдонимы типов</h4>
 
-<p>Type aliases <em>must not</em> include <code>|null</code> or <code>|undefined</code> in a union type.
-Nullable aliases typically indicate that null values are being passed around
-through too many layers of an application, and this clouds the source of the
-original issue that resulted in <code>null</code>. They also make it unclear when specific
-values on a class or interface might be absent.</p>
+<p>Псевдонимы типов <em>не должны</em> включать <code>|null</code> или <code>|undefined</code> в union-тип.
+  Псевдонимы, допускающие значение null, обычно указывают на то, что нулевые значения проходят через слишком много уровней приложения, и это затуманивает источник исходной проблемы, которая привела к значению <code>null</code>. Они также делают неясной ситуацию, когда конкретные значения в классе или интерфейсе могут отсутствовать.</p>
 
-<p>Instead, code <em>must</em> only add <code>|null</code> or <code>|undefined</code> when the alias is actually
-used. Code <em>should</em> deal with null values close to where they arise, using the
-above techniques.</p>
+<p>Вместо этого код <em>должен</em> добавлять <code>|null</code> или <code>|undefined</code> только тогда, когда псевдоним фактически используется. В коде  <em>рекомендуется</em> работать с null в непосредственной близости от места их возникновения, используя вышеуказанные приемы.</p>
 
-<pre><code class="language-ts bad">// Bad
+<pre><code class="language-ts bad">// Плохо
 type CoffeeResponse = Latte|Americano|undefined;
 
 class CoffeeService {
@@ -1704,7 +1699,7 @@ class CoffeeService {
 }
 </code></pre>
 
-<pre><code class="language-ts good">// Better
+<pre><code class="language-ts good">// Лучше
 type CoffeeResponse = Latte|Americano;
 
 class CoffeeService {
@@ -1712,12 +1707,12 @@ class CoffeeService {
 }
 </code></pre>
 
-<pre><code class="language-ts good">// Best
+<pre><code class="language-ts good">// Наилучший вариант
 type CoffeeResponse = Latte|Americano;
 
 class CoffeeService {
   getLatte(): CoffeeResponse {
-    return assert(fetchResponse(), 'Coffee maker is broken, file a ticket');
+    return assert(fetchResponse(), 'Кофеварка сломана, подайте заявку');
   };
 }
 </code></pre>
