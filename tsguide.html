@@ -138,11 +138,9 @@ class Teapot {
 
 <h4 id="naming-style">Стиль именования</h4>
 
-<p>TypeScript expresses information in types, so names <em>should not</em> be decorated
-with information that is included in the type. (See also
-<a href="https://testing.googleblog.com/2017/10/code-health-identifiernamingpostforworl.html">Testing Blog</a>
- for more about what
-not to include.)</p>
+
+<p>TypeScript отражает информацию в типах, поэтому имена <em>не рекомендуется</em> дополнять информацией, которая включена в тип. (См. также
+  <a href="https://testing.googleblog.com/2017/10/code-health-identifiernamingpostforworl.html">Блог о тестировании (Testing Blog)</a> для получения дополнительной информации о том, что не следует включать.)</p>
 
 <p>Несколько конкретных примеров для этого правила:</p>
 
@@ -152,13 +150,8 @@ not to include.)</p>
 <ul>
 <li>Для аксессоров, см. ниже <a href="#getters-and-setters-accessors">правила использования аксессоров</a>.</li>
 </ul></li>
-<li>Do not mark interfaces specially (<del><code>IMyInterface</code></del> or
-<del><code>MyFooInterface</code></del>) unless it's idiomatic in its
-environment. When
-introducing an interface for a class, give it a name that expresses why the
-interface exists in the first place (e.g. <code>class TodoItem</code> and <code>interface
-TodoItemStorage</code> if the interface expresses the format used for
-storage/serialization in JSON).</li>
+<li>Не стоит специально помечать интерфейсы (<del><code>IMyInterface</code></del> или
+<del><code>MyFooInterface</code></del>), если только они не идиоматичны в своей среде. Когда вы вводите интерфейс для класса, дайте ему имя, которое выражает причину существования интерфейса (например, <code>class TodoItem</code> и <code>interface TodoItemStorage</code> если интерфейс выражает формат, используемый для хранения/сериализации в JSON).</li>
 <li>Suffixing <code>Observable</code>s with <code>$</code> is a common external convention and can
 help resolve confusion regarding observable values vs concrete values.
 Judgement on whether this is a useful convention is left up to individual
