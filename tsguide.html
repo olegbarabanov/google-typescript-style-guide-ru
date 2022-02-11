@@ -250,14 +250,13 @@ parameter in a single declaration, by marking a parameter in the constructor.
 E.g. <code>constructor(private readonly foo: Foo)</code>, declares that the class has a
 <code>foo</code> field.</p>
 
-<p>To document these fields, use JSDoc's <code>@param</code> annotation. Editors display the
-description on constructor calls and property accesses.</p>
+<p>Чтобы задокументировать эти поля, используйте JSDoc <code>@param</code> аннотацию. Редакторы отображают описание при вызовах конструктора и доступе к свойствам.</p>
 
-<pre><code class="language-ts good">/** This class demonstrates how parameter properties are documented. */
+<pre><code class="language-ts good">/** Этот класс демонстрирует, как документируются параметризованные свойства. */
 class ParamProps {
   /**
-   * @param percolator The percolator used for brewing.
-   * @param beans The beans to brew.
+   * @param percolator Кофеварка, используемая для варки.
+   * @param beans Зерна для варки.
    */
   constructor(
     private readonly percolator: Percolator,
@@ -265,9 +264,9 @@ class ParamProps {
 }
 </code></pre>
 
-<pre><code class="language-ts good">/** This class demonstrates how ordinary fields are documented. */
+<pre><code class="language-ts good">/** Этот класс демонстрирует, как документируются обычные поля. */
 class OrdinaryClass {
-  /** The bean that will be used in the next call to brew(). */
+  /** Кофейные зерна, которые будут использоваться в следующем вызове brew(). */
   nextBean: CoffeeBean;
 
   constructor(initialBean: CoffeeBean) {
