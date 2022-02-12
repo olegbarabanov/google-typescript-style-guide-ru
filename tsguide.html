@@ -243,12 +243,9 @@ brew(amountLitres: number, logger: Logger) {
 </code></pre></li>
 </ul>
 
-<h4 id="parameter-property-comments">Комментарии к свойствам параметров</h4>
+<h4 id="parameter-property-comments">Комментарии к параметризованным свойствам</h4>
 
-<p>A parameter property is when a class declares a field and a constructor
-parameter in a single declaration, by marking a parameter in the constructor.
-E.g. <code>constructor(private readonly foo: Foo)</code>, declares that the class has a
-<code>foo</code> field.</p>
+<p>Параметризованное свойство — это когда класс объявляет поле и параметр конструктора в одном объявлении путем пометки параметра как свойства в конструкторе. Например <code>constructor(private readonly foo: Foo)</code>, объявляет, что класс имеет поле <code>foo</code>.</p>
 
 <p>Чтобы задокументировать эти поля, используйте JSDoc <code>@param</code> аннотацию. Редакторы отображают описание при вызовах конструктора и доступе к свойствам.</p>
 
@@ -302,22 +299,22 @@ export class Percolator implements CoffeeBrewer {
 
 <h4 id="place-documentation-prior-to-decorators">Размещайте документацию перед декораторами</h4>
 
-<p>When a class, method, or property have both decorators like <code>@Component</code> and
-JsDoc, please make sure to write the JsDoc before the decorator.</p>
+<p>Когда класс, метод или свойство имеют и декораторы вида <code>@Component</code> и
+JsDoc, убедитесь, что JsDoc написан перед декоратором.</p>
 
 <ul>
-<li><p>Do not write JsDoc between the Decorator and the decorated statement.</p>
+<li><p>Не пишите JsDoc между декоратором и декорируемым выражением.</p>
 
 <pre><code class="language-ts bad">@Component({
   selector: 'foo',
   template: 'bar',
 })
-/** Component that prints "bar". */
+/** Компонент, который печатает "bar". */
 export class FooComponent {}
 </code></pre></li>
-<li><p>Write the JsDoc block before the Decorator.</p>
+<li><p>Пишите блок с JsDoc перед декоратором.</p>
 
-<pre><code class="language-ts good">/** Component that prints "bar". */
+<pre><code class="language-ts good">/** Компонент, который печатает "bar". */
 @Component({
   selector: 'foo',
   template: 'bar',
@@ -423,11 +420,8 @@ class NoInstantiation {
 <h4 id="use-readonly">Используйте модификатор <code>readonly</code></h4>
 <p>Пометьте модификатором <code>readonly</code> те свойства, которые никогда не переназначаются вне конструктора (они не обязательно должны быть глубоко неизменяемыми).</p>
 
-<h4 id="parameter-properties">Parameter properties</h4>
-
-<p>Rather than plumbing an obvious initializer through to a class member, use a
-TypeScript
-<a href="https://www.typescriptlang.org/docs/handbook/classes.html#parameter-properties">parameter property</a>.</p>
+<h4 id="parameter-properties">Параметризованные свойства</h4>
+<p>Вместо того чтобы просто передавать очевидный инициализатор в член класса, используйте <a href="https://www.typescriptlang.org/docs/handbook/classes.html#parameter-properties">параметризованные свойства</a> TypeScript.</p>
 
 <pre><code class="language-ts bad">class Foo {
   private readonly barService: BarService;
@@ -443,13 +437,12 @@ TypeScript
 }
 </code></pre>
 
-<p>If the parameter property needs documentation,
-<a href="#parameter-property-comments">use an <code>@param</code> JSDoc tag</a>.</p>
+<p>Если параметризованное свойство нуждается в документировании
+<a href="#parameter-property-comments">используйте JSDoc тег <code>@param</code></a>.</p>
 
 <h4 id="field-initializers">Field initializers</h4>
 
-<p>If a class member is not a parameter, initialize it where it's declared, which
-sometimes lets you drop the constructor entirely.</p>
+<p>Если элемент класса не является параметризованным свойством,инициализируйте его там, где он объявлен, что иногда позволяет совсем отбросить конструктор.</p>
 
 <pre><code class="language-ts bad">class Foo {
   private readonly userList: string[];
