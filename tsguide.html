@@ -708,7 +708,7 @@ for (const [key, value] of Object.entries(someObj)) { // note: for _of_!
 }
 
 for (let i = 0; i &lt; someArr.length; i++) {
-  // Explicitly count if the index is needed, otherwise use the for/of form.
+  // Если необходим индекс, то используйте явный пересчет, а иначе используйте форму for/of.
   const x = someArr[i];
   // ...
 }
@@ -769,7 +769,7 @@ foo3.num === 1;
 <p>При использовании spread-оператора раскладываемое значение должно соответствовать создаваемому. Т.е. при создании объекта с spread-оператором  можно использовать только объекты, а при создании массива раскладывайте только итерируемые объекты. Примитивы, включая <code>null</code> и <code>undefined</code>, никогда не могут быть разложены.</p>
 
 <pre><code class="language-ts bad">const foo = {num: 7};
-const bar = {num: 5, ...(shouldUseFoo &amp;&amp; foo)}; // might be undefined
+const bar = {num: 5, ...(shouldUseFoo &amp;&amp; foo)}; // может быть undefined
 
 // Creates {0: 'a', 1: 'b', 2: 'c'} but has no length
 const fooStrings = ['a', 'b', 'c'];
