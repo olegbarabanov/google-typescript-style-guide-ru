@@ -457,32 +457,20 @@ class NoInstantiation {
 }
 </code></pre>
 
-<h4 id="properties-used-outside-of-class-lexical-scope">Properties used outside of class lexical scope</h4>
+<h4 id="properties-used-outside-of-class-lexical-scope">Свойства, используемые за пределами лексической области класса</h4>
 
-<p>Properties used from outside the lexical scope of their containing class, such
-as an AngularJS controller's properties used from a template, must not use
-<code>private</code> visibility, as they are used outside of the lexical scope of their
-containing class.</p>
+<p>Для свойств, используемых вне лексической области видимости содержащего их класса, например, для свойств контроллера AngularJS, используемых из шаблона, не должна использоваться приватная (<code>private</code>) область видимости, поскольку они используются вне лексической области видимости содержащего их класса.</p>
 
-<p>Prefer <code>public</code> visibility for these properties, however <code>protected</code> visibility
-can also be used as needed. For example, Angular and Polymer template properties
-should use <code>public</code>, but AngularJS should use <code>protected</code>.</p>
+<p>Для этих свойств предпочтительна публичная (<code>public</code>) видимость, однако при необходимости можно использовать и защищенную (<code>protected</code>) видимость. Например, для свойств используемых в шаблонах Angular и Polymer следует использовать <code>public</code>, а в AngularJS - <code>protected</code>.</p>
 
-<p>TypeScript code must not not use <code>obj['foo']</code> to bypass the visibility of a
-property</p>
+<p>В TypeScript коде не должны использоваться <code>obj['foo']</code> для обхода видимости свойства</p>
 
 <section class="zippy">
-Why?
+Почему?
 
-<p>When a property is <code>private</code>, you are declaring to both automated systems and
-humans that the property accesses are scoped to the methods of the declaring
-class, and they will rely on that. For example, a check for unused code will
-flag a private property that appears to be unused, even if some other file
-manages to bypass the visibility restriction.</p>
+<p>Когда свойство является приватным (<code>private</code>), вы объявляете автоматизированным системам и людям, что доступ к свойству ограничен методами объявленного класса, и они будут полагаться на это. Например, проверка на неиспользуемый код отметит приватное свойство, которое может посчитаться неиспользуемым, даже если какому-то коду из другого файла удастся обойти ограничение видимости.</p>
 
-<p>Though it may appear that <code>obj['foo']</code> can bypass visibility in the TypeScript
-compiler, this pattern can be broken by rearranging the build rules,
-and also violates <a href="#optimization-compatibility">optimization compatibility</a>.
+<p>Хотя может показаться, что <code>obj['foo']</code> может обойти область видимости в компиляторе TypeScript, эта схема может быть нарушена путем изменения правил сборки, а также нарушается согласованность с оптимизациями.
 </p></section>
 
 <h4>Геттеры и Сеттеры (Аксессоры)</h4>
