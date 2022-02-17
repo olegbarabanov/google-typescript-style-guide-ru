@@ -43,7 +43,7 @@ function CreateTOC(tocElement) {
   toc.appendChild(tocHeading);
   tocHeading.className = 'ignoreLink';
   tocHeading.id = 'toc';
-  var tocText = document.createTextNode('Table of Contents');
+  var tocText = document.createTextNode('Содержание');
   tocHeading.appendChild(tocText);
 
   // Add table and tbody
