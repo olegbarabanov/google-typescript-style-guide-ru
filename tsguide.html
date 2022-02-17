@@ -902,7 +902,7 @@ const fooSearch: SearchFunction = (source, subString) =&gt; { ... };
 
 <p>Use arrow functions with expressions or blocks as their body as appropriate.</p>
 
-<pre><code class="language-ts good">// Top level functions use function declarations.
+<pre><code class="language-ts good">// Для объявления функции верхнего уровня используйте Function Declarations.
 function someFunction() {
   // Block arrow function bodies, i.e. bodies with =&gt; { }, are fine:
   const receipts = books.map((b: Book) =&gt; {
@@ -915,7 +915,7 @@ function someFunction() {
   const longThings = myValues.filter(v =&gt; v.length &gt; 1000).map(v =&gt; String(v));
 
   function payMoney(amount: number) {
-    // function declarations are fine, but don't access `this` in them.
+    // Function Declarations - это хорошо, но не обращайтесь к `this` в них. 
   }
 }
 </code></pre>
