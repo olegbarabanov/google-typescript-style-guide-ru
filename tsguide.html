@@ -1328,9 +1328,7 @@ export default class Foo { ... } // ПЛОХО!
 <section class="zippy">
 Почему?
 
-<p>Default exports provide no canonical name, which makes central maintenance
-difficult with relatively little benefit to code owners, including potentially
-decreased readability:</p>
+<p>Экспорт по умолчанию не предоставляет канонического имени, что затрудняет централизованное обслуживание при относительно небольшой пользе для владельцев кода, причем возможно ухудшение читабельности:</p>
 
 <pre><code class="language-ts bad">import Foo from './bar';  // Legal.
 import Bar from './bar';  // Also legal.
