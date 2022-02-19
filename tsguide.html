@@ -1268,7 +1268,7 @@ class MyComp {
 }
 </code></pre>
 
-<h2 id="source-organization">Source Organization</h2>
+<h2 id="source-organization">Организация структуры исходного кода</h2>
 
 <h3 id="modules">Модули</h3>
 
@@ -2084,18 +2084,16 @@ three mentioned above, plus <code>symbol</code> and <code>bigint</code>).</li>
   existing APIs that have return type only generics always explicitly specify the
   generics.</p>
 
-<h2 id="consistency">Consistency</h2>
+<h2 id="consistency">Согласованность</h2>
 
 <p>For any style question that isn't settled definitively by this specification, do
 what the other code in the same file is already doing (<q>be consistent</q>). If that
 doesn't resolve the question, consider emulating the other files in the same
 directory.</p>
 
-<h3 id="goals">Goals</h3>
+<h3 id="goals">Цели</h3>
 
-<p>In general, engineers usually know best about what's needed in their code, so if
-there are multiple options and the choice is situation dependent, we should let
-decisions be made locally. So the default answer should be <q>leave it out</q>.</p>
+<p>В основном, инженеры обычно лучше знают, что необходимо в их коде, поэтому если есть несколько вариантов и выбор зависит от ситуации, мы должны позволить принимать решения на месте. So the default answer should be <q>leave it out</q>.</p>
 
 <p>The following points are the exceptions, which are the reasons we have some
 global rules. Evaluate your style guide proposal against the following:</p>
@@ -2118,50 +2116,36 @@ function names with underscores.</li>
 projects should be consistent across
 irrelevant variations.</strong></p>
 
-<p>When there are two options that are equivalent in a superficial way, we
-should consider choosing one just so we don't divergently evolve for no
-reason and avoid pointless debates in code reviews.</p>
+<p>Когда есть два варианта, которые эквивалентны в поверхностном смысле, стоит рассмотреть возможность выбора одного из них, просто чтобы не развивались расхождения без причины и избежать бессмысленных дебатов в обзорах кода.</p>
 
-<p>We should usually match JavaScript style as well, because people often write
-both languages together.</p>
+<p>Обычно нам также стоит соответствовать стилю JavaScript, потому что люди часто пишут на обоих языках вместе.</p>
 
 <p>Примеры:</p>
 
 <ul>
-<li>The capitalization style of names.</li>
-<li><code>x as T</code> syntax vs the equivalent <code>&lt;T&gt;x</code> syntax (disallowed).</li>
-<li><code>Array&lt;[number, number]&gt;</code> vs <code>[number, number][]</code>.</li>
+<li>Стиль написания имен с использованием заглавных букв.</li>
+<li><code>x as T</code> синтаксис по сравнению с эквивалентным синтаксисом <code>&lt;T&gt;x</code> (запрещено).</li>
+<li><code>Array&lt;[number, number]&gt;</code> по сравнению с <code>[number, number][]</code>.</li>
 </ul></li>
-<li><p><strong>Code should be maintainable in the long term.</strong></p>
+<li><p><strong>Код рекомендуется писать так, чтобы он был поддерживаемым в долгосрочной перспективе.</strong></p>
 
-<p>Code usually lives longer than the original author works on it, and the
-TypeScript team must keep all of Google working into the future.</p>
+<p>Код обычно живет дольше, чем над ним работает его автор, и команда специалистов по TypeScript должна обеспечить работоспособность всего кода Google в будущем</p>
 
 <p>Примеры:</p>
 
 <ul>
-<li>We use software to automate changes to code, so code is autoformatted so
-it's easy for software to meet whitespace rules.</li>
-<li>We require a single set of Closure compilation flags, so a given TS
-library can be written assuming a specific set of flags, and users can
-always safely use a shared library.</li>
+<li>Мы используем программы для автоматизации изменений в коде, поэтому код автоматически форматируется, чтобы программа легко соблюдала правила оформления пробельных символов.</li>
+<li>Мы предъявляем требования к единому набору флагов компиляции Closure, поэтому конкретная библиотека TS может быть написана с учетом определенного набора флагов, и пользователи всегда могут безопасно использовать разделяемые библиотеки.</li>
 <li>Code must import the libraries it uses (<q>strict deps</q>) so that a
 refactor in a dependency doesn't change the dependencies of its users.</li>
-<li>We ask users to write tests. Without tests we cannot have confidence
-that changes that we make to the language, or google3-wide library
-changes, don't break users.</li>
+<li>Мы просим пользователей писать тесты. Без тестов мы не можем быть уверены, что изменения, которые вносятся в язык, или изменения в библиотеках google3, не нарушат работу пользователей.</li>
 </ul></li>
-<li><p><strong>Code reviewers should be focused on improving the quality of the code, not
-enforcing arbitrary rules.</strong></p>
+<li><p><strong>Рецензенты кода должны быть сосредоточены на улучшении качества кода, а не на соблюдении произвольных правил.</strong></p>
 
-<p>If it's possible to implement your rule as an
-
-automated check that is often a good sign.
+<p>Если есть возможность реализовать ваше правило в автоматизированном варианте, это часто является хорошим знаком.
 This also supports principle 3.</p>
 
-<p>If it really just doesn't matter that much -- if it's an obscure corner of
-the language or if it avoids a bug that is unlikely to occur -- it's
-probably worth leaving out.</p></li>
+<p>Если это действительно не имеет большого значения - если это не совсем понятная часть языка или если это позволяет избежать ошибки, которая вряд ли возникнет - вероятно, это стоит оставить без изменений.</p></li>
 </ol>
 
 </div>
