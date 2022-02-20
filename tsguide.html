@@ -440,7 +440,7 @@ class NoInstantiation {
 <p>Если параметризованное свойство нуждается в документировании
 <a href="#parameter-property-comments">используйте JSDoc тег <code>@param</code></a>.</p>
 
-<h4 id="field-initializers">Field initializers</h4>
+<h4 id="field-initializers">Инициализаторы полей</h4>
 
 <p>Если элемент класса не является параметризованным свойством,инициализируйте его там, где он объявлен, что иногда позволяет совсем отбросить конструктор.</p>
 
@@ -1783,11 +1783,9 @@ makeSound(horse);
 
 <p>TypeScript supports
 <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases">type aliases</a>
-for naming a type expression. This can be used to name primitives, unions,
-tuples, and any other types.</p>
+for naming a type expression. Это может быть использовано для именования примитивов, объединений, кортежей и любых других типов.</p>
 
-<p>However, when declaring types for objects, use interfaces instead of a type
-alias for the object literal expression.</p>
+<p>Однако при объявлении типов для объектов используйте интерфейсы вместо использования псевдонима типа для литеральной нотации объекта.</p>
 
 <pre><code class="language-ts good">interface User {
   firstName: string;
@@ -1802,12 +1800,12 @@ alias for the object literal expression.</p>
 </code></pre>
 
 <section class="zippy">
-Why?
+Почему?
 
 <p>These forms are nearly equivalent, so under the principle of just choosing one
-out of two forms to prevent variation, we should choose one. Additionally, there
-also
-<a href="https://ncjamieson.com/prefer-interfaces/">interesting technical reasons to prefer interface</a>.
+out of two forms to prevent variation, we should choose one. 
+Кроме того, существуют также <a href="https://ncjamieson.com/prefer-interfaces/"></a>интересные технические причины, по которым предпочтение отдается интерфейсу</a>.
+
 That page quotes the TypeScript team lead: <q>Honestly, my take is that it should
 really just be interfaces for anything that they can model. There is no benefit
 to type aliases when there are so many issues around display/perf.</q>
@@ -1844,8 +1842,7 @@ const j: readonly (string|number)[];
 fileSizes['readme.txt'] = 541;
 </code></pre>
 
-<p>In TypeScript, provide a meaningful label for the key. (The label only exists
-for documentation; it's unused otherwise.)</p>
+<p>В TypeScript укажите осмысленное обозначение для ключа. (Обозначение существует только для документации; в остальном оно не используется.)</p>
 
 <pre><code class="language-ts bad">const users: {[key: string]: number} = ...;
 </code></pre>
