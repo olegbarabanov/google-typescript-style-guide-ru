@@ -80,17 +80,12 @@
 </blockquote>
 
 <ul>
-<li><p><strong>Imports</strong>: Module namespace imports are <code>lowerCamelCase</code> while files are
-<code>snake_case</code>, which means that imports correctly will not match in casing
-style, such as</p>
+<li><p><strong>Импорты</strong>: Импорты пространств имен модулей имеют верблюжий регистр (<code>lowerCamelCase</code>) в то время как файлы имеют змеиный регистр (<code>snake_case</code>), что означает, что корректные импорты не будут совпадать по стилю написания, например</p>
 
 <pre><code class="language-ts good">import * as fooBar from './foo_bar';
 </code></pre>
 
-<p>Some libraries might commonly use a namespace import prefix that violates
-this naming scheme, but overbearingly common open source use makes the
-violating style more readable. The only libraries that currently fall under
-this exception are:</p>
+<p>Некоторые библиотеки могут широко использовать префиксы для импорта пространств имен, которые противоречат этой схеме именования, но широко распространенное использование в открытых источниках делает этот нарушающий стиль более понятным. Единственными библиотеками, которые в настоящее время подпадают под это исключение, являются:</p>
 
 <ul>
 <li><a href="https://jquery.com/">jquery</a>, использует <code>$</code> как префикс</li>
