@@ -229,8 +229,8 @@ documentation purposes is confusing.</p>
 <li><p>Исходя из этого правила, строки <code>@param</code> и <code>@return</code> требуются только тогда, когда они добавлявляют новую информацию, а иначе их можно исключить.</p>
 
 <pre><code class="language-ts good">/**
- * POSTs the request to start coffee brewing.
- * @param amountLitres The amount to brew. Must fit the pot size!
+ * Отправляет POST-запрос для начала варки кофе.
+ * @param amountLitres Количество для заваривания. Должно соответствовать размеру емкости!
  */
 brew(amountLitres: number, logger: Logger) {
   // ...
