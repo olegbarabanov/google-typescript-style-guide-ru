@@ -1930,9 +1930,7 @@ understand.
 <h3 id="any">Тип <code>any</code></h3>
 
 <p>TypeScript's <code>any</code> type is a super and subtype of all other types, and allows
-dereferencing all properties. As such, <code>any</code> is dangerous - it can mask severe
-programming errors, and its use undermines the value of having static types in
-the first place.</p>
+dereferencing all properties. Как таковой, <code>any</code> опасен - он может маскировать серьезные программные ошибки, и его использование разрушает ценность наличия статических типов в первую очередь.</p>
 
 <section>
 <strong>Подумайте о том, чтобы <em>не</em> использовать <code>any</code>.</strong> В тех обстоятельствах, в которых вы захотите использовать <code>any</code>, рассмотрите один из вариантов:
@@ -1946,8 +1944,7 @@ the first place.</p>
 
 <h4 id="any-specific">Providing a more specific type</h4>
 
-<p>Use interfaces , an inline object type, or
-a type alias:</p>
+<p>Используйте интерфейсы, встраиваемый объектный тип или псевдоним типа:</p>
 
 <pre><code class="language-ts good">// Use declared interfaces to represent server-side JSON.
 declare interface MyUserJson {
