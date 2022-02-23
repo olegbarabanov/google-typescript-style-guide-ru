@@ -1499,17 +1499,11 @@ import '@polymer/paper-button';
 
 <p>Как модульный, так и деструктурирующий импорт имеют свои преимущества в зависимости от ситуации.</p>
 
-<p>Despite the <code>*</code>, a module import is not comparable to a <q>wildcard</q> import as
-seen in other languages. Instead, module imports give a name to the entire
-module and each symbol reference mentions the module, which can make code more
-readable and gives autocompletion on all symbols in a module. They also require
-less import churn (all symbols are available), fewer name collisions, and allow
-terser names in the module that's imported. Module imports are particularly
-useful when using many different symbols from large APIs.</p>
+<p>Несмотря на <code>*</code>, импорт модуля не сопоставим с <q>wildcard</q> импортом , который встречается в других языках. Вместо этого импорт модулей дает имя всему модулю и каждой ссылке на элемент связанным с упомянутым модулем, что может сделать код более читабельным и обеспечивает функцию автоматического определения всех элементов в модуле. Они также требуют меньшего количества операций импорта (все элементы доступны), меньше коллизий имен и позволяют использовать более лаконичные имена в импортируемом модуле. Импорт модулей особенно полезен при использовании множества различных элементов из больших API.</p>
 
 <p>Деструктурирующий импорт дает локальные имена для каждого импортируемого элемента. Они позволяют использовать более краткий и лаконичный код при использовании импортируемого элемента, что особенно полезно для очень часто используемых элементов, как например, <code>describe</code> и <code>it</code> в Jasmine.</p>
 
-<pre><code class="language-ts bad">// Bad: overlong import statement of needlessly namespaced names.
+<pre><code class="language-ts bad">// Плохо: слишком длинный оператор импорта с излишними пространствами имен.
 import {TableViewItem, TableViewHeader, TableViewRow, TableViewModel,
   TableViewRenderer} from './tableview';
 let item: TableViewItem = ...;
