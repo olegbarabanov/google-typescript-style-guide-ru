@@ -1952,18 +1952,18 @@ declare interface MyUserJson {
   email: string;
 }
 
-// Use type aliases for types that are repetitive to write.
+// Используйте псевдонимы типов для тех типов, которые приходится писать многократно.
 type MyType = number|string;
 
-// Or use inline object types for complex returns.
+// Или используйте встраиваемый объектный тип для возврата комплексных значений.
 function getTwoThings(): {something: number, other: string} {
   // ...
   return {something, other};
 }
 
-// Use a generic type, where otherwise a library would say `any` to represent
-// they don't care what type the user is operating on (but note "Return type
-// only generics" below).
+// Используйте generic-тип там, где в ином случае библиотека указала бы `any`,
+// чтобы обозначить, что ей все равно, с каким типом работает пользователь (но обратите 
+// внимание на "Return type only generics" ниже).
 function nicestElement&lt;T&gt;(items: T[]): T {
   // Find the nicest element in items.
   // Code can also put constraints on T, e.g. &lt;T extends HTMLElement&gt;.
