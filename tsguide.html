@@ -2006,9 +2006,9 @@ const mockBookService = ({get() { return mockBook; }} as any) as BookService;
 const component = new MyComponent(mockBookService, /* неиспользуемый ShoppingCart */ null as any);
 </code></pre>
 
-<h3 id="tuple-types">Tuple Types</h3>
+<h3 id="tuple-types">Кортежные типы</h3>
 
-<p>If you are tempted to create a Pair type, instead use a tuple type:</p>
+<p>Если у вас возникнет соблазн создать парный тип, то используйте вместо него кортежный тип:</p>
 
 <pre><code class="language-ts bad">interface Pair {
   first: string;
