@@ -1978,8 +1978,8 @@ just needs to express that a type is unknown. Use the built-in type <code>unknow
 that situation — it expresses the concept and is much safer as it does not allow
 dereferencing arbitrary properties.</p>
 
-<pre><code class="language-ts good">// Can assign any value (including null or undefined) into this but cannot
-// use it without narrowing the type or casting.
+<pre><code class="language-ts good">// Можно присваивать любое значение (включая null или undefined), но нельзя 
+// использовать его без сужения типа или приведения.
 const val: unknown = value;
 </code></pre>
 
