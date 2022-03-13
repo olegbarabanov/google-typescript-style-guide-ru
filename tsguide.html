@@ -1602,13 +1602,12 @@ communicates intent.</p>
 
 <h3 id="type-inference">Вывод типа</h3>
 
-<p>Code may rely on type inference as implemented by the TypeScript compiler for
-all type expressions (variables, fields, return types, etc). The google3
+<p>Код может полагаться на вывод типа, реализуемый компилятором TypeScript для всех типов выражений (переменных, полей класса, возвращаемых типов и т. д.). The google3
 compiler flags reject code that does not have a type annotation and cannot be
 inferred, so all code is guaranteed to be typed (but might use the <code>any</code> type
 explicitly).</p>
 
-<pre><code class="language-ts good">const x = 15;  // Type inferred.
+<pre><code class="language-ts good">const x = 15;  // Тип выведен.
 </code></pre>
 
 <p>Не указывайте типы для тривиально выводимых типов: переменных или параметров, инициализированных строковыми (<code>string</code>), числовыми (<code>number</code>), логическими (<code>boolean</code>) литералами, литералами регулярных выражений (<code>RegExp</code>) или выражением <code>new</code>.</p>
