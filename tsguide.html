@@ -1444,39 +1444,36 @@ export function bar() { return 1; }
 
 <tbody>
 <tr>
-<td>module
+<td>модульный
 </td>
 <td><code>import * as foo from
 '...';</code></td>
-<td>TypeScript imports
+<td>Импорты TypeScript
 </td>
 </tr>
 <tr>
-<td>destructuring
+<td>деструктурирующий
 </td>
 <td><code>import {SomeThing} from
 '...';</code></td>
-<td>TypeScript imports
+<td>Импорты TypeScript
 </td>
 </tr>
 <tr>
-<td>default
+<td>по умолчанию
 </td>
 <td><code>import SomeThing from
 '...';</code></td>
-<td>Only for other external code that
-requires them</td>
+<td>Только для поддержки стороннего кода, который их требует</td>
 </tr>
 <tr>
-<td>side-effect
+<td>для использования побочных эффектов
 
 </td>
 <td><code>import '...';</code>
 
 </td>
-<td>Only to import libraries for
-their side-effects on load (such
-as custom elements)</td>
+<td>Только для импорта библиотек ради использования их побочных эффектов при загрузке (таких как пользовательские элементы)</td>
 </tr>
 </tbody>
 </table>
