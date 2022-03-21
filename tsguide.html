@@ -322,8 +322,7 @@ export class FooComponent {}
 
 <h3 id="visibility">Видимость</h3>
 
-<p>Restricting visibility of properties, methods, and entire types helps with
-keeping code decoupled.</p>
+<p>Ограничение видимости свойств, методов и целых типов помогает поддерживать уменьшение связанности (decoupled) кода.</p>
 
 <ul>
 <li>Максимально ограничивайте область видимости обозначений.</li>
@@ -333,14 +332,14 @@ keeping code decoupled.</p>
 </ul>
 
 <pre><code class="language-ts bad">class Foo {
-  public bar = new Bar();  // BAD: нет необходимости в модификаторе "public"
+  public bar = new Bar();  // ПЛОХО: нет необходимости в модификаторе "public"
 
-  constructor(public readonly baz: Baz) {}  // BAD: модификатор "readonly" подразумевает, что это свойство имеет по умолчанию модификатор "public"
+  constructor(public readonly baz: Baz) {}  // ПЛОХО: модификатор "readonly" подразумевает, что это свойство имеет по умолчанию модификатор "public"
 }
 </code></pre>
 
 <pre><code class="language-ts good">class Foo {
-  bar = new Bar();  // GOOD: нет необходимости в модификаторе "public"
+  bar = new Bar();  // ХОРОШО: нет необходимости в модификаторе "public"
 
   constructor(public baz: Baz) {}  // допускается модификатор "public"
 }
