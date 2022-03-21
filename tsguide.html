@@ -917,11 +917,11 @@ function someFunction() {
 <p>Only use an expression body if the return value of the function is actually
 used.</p>
 
-<pre><code class="language-ts bad">// BAD: use a block ({ ... }) if the return value of the function is not used.
+<pre><code class="language-ts bad">// ПЛОХО: use a block ({ ... }) if the return value of the function is not used.
 myPromise.then(v =&gt; console.log(v));
 </code></pre>
 
-<pre><code class="language-ts good">// GOOD: return value is unused, use a block body.
+<pre><code class="language-ts good">// ХОРОШО: return value is unused, use a block body.
 myPromise.then(v =&gt; {
   console.log(v);
 });
