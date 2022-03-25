@@ -561,8 +561,7 @@ const bool2 = !!str;
 const str2 = `result: ${bool2}`;
 </code></pre>
 
-<p>Using string concatenation to cast to string is discouraged, as we check that
-operands to the plus operator are of matching types.</p>
+<p>Не приветствуется для приведения к строке использовать конкатенацию строк, так как при проверке кода мы отслеживаем, чтобы операнды оператора «плюс» имели совпадающие типы.</p>
 
 <p>Код должен использовать <code>Number()</code> для парсинга числовых значений, и <em>должен</em> явно проверять его возврат на значения <code>NaN</code>, за исключением случаев, когда из контекста точно известно, что сбой парсинга невозможен.</p>
 
@@ -1976,8 +1975,8 @@ dereferencing arbitrary properties.</p>
 const val: unknown = value;
 </code></pre>
 
-<pre><code class="language-ts bad">const danger: any = value /* result of an arbitrary expression */;
-danger.whoops();  // This access is completely unchecked!
+<pre><code class="language-ts bad">const danger: any = value /* результат произвольного выражения */;
+danger.whoops();  //  Этот доступ к переменной абсолютно бесконтролен
 </code></pre>
 
 <section>
@@ -2083,8 +2082,7 @@ global rules. Evaluate your style guide proposal against the following:</p>
 <li>Точки в именах файлов делают их уродливыми/запутанными для импорта из JavaScript.</li>
 <li>Static functions in classes optimize confusingly, while often file-level
 functions accomplish the same goal.</li>
-<li>Users unaware of the <code>private</code> keyword will attempt to obfuscate their
-function names with underscores.</li>
+<li>Пользователи, не знающие о ключевом слове <code>private</code>, попытаются скрыть имена своих функций с помощью подчеркивания.</li>
 </ul></li>
 <li><p><strong>Code across
 projects should be consistent across
