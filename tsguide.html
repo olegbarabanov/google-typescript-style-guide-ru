@@ -1837,19 +1837,12 @@ fileSizes['readme.txt'] = 541;
 
 <p>Встроенный в TypeScript тип <code>Record&lt;Keys, ValueType&gt;</code> позволяет создавать типы с определенным набором ключей. Это отличается от ассоциативных массивов тем, что ключи известны статически. См. рекомендации по этому вопросу <a href="#mapped-conditional-types">ниже</a>.</p>
 
-<h3 id="mapped-conditional-types">Mapped &amp; Conditional Types</h3>
+<h3 id="mapped-conditional-types">Сопоставленные (Mapped) &amp; Условные (Conditional) Типы</h3>
 
-<p>TypeScript's
-<a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types">mapped types</a>
-and
-<a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#conditional-types">conditional types</a>
-allow specifying new types based on other types. TypeScript's standard library
-includes several type operators based on these (<code>Record</code>, <code>Partial</code>, <code>Readonly</code>
-etc).</p>
+<p>В TypeScript <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types">сопоставленные типы</a> и <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#conditional-types">условные типы</a> позволяют определять новые типы на основе других типов. TypeScript's standard library includes several type operators based on these (<code>Record</code>, <code>Partial</code>, <code>Readonly</code> etc).</p>
 
 <p>These type system features allow succinctly specifying types and constructing
-powerful yet type safe abstractions. They come with a number of drawbacks
-though:</p>
+powerful yet type safe abstractions. Однако они обладают определенным количеством недостатков:</p>
 
 <ul>
 <li>Compared to explicitly specifying properties and type relations (e.g. using
