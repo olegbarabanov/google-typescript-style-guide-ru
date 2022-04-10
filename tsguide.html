@@ -1865,7 +1865,7 @@ hyperlink them.</li>
 <li>
 </ul>
 
-<p>The style recommendation is:</p>
+<p>Рекомендация по стилю такова:</p>
 
 <ul>
 <li>Always use the simplest type construct that can possibly express your code.</li>
@@ -1875,9 +1875,7 @@ term cost of complex type expressions.</li>
 </ul>
 
 <section class="zippy">
-For example, TypeScript's builtin <code>Pick&lt;T, Keys&gt;</code> type allows creating a new
-type by subsetting another type <code>T</code>, but simple interface extension can often be
-easier to understand.
+Например, встроенный в TypeScript тип <code>Pick&lt;T, Keys&gt;</code> позволяет создать новый тип на основе подмножества другого типа <code>T</code>, но простое расширение интерфейса часто может быть проще для понимания.
 
 <pre><code class="language-ts">interface User {
   shoeSize: number;
@@ -1885,11 +1883,11 @@ easier to understand.
   favoriteChocolate: string;
 }
 
-// FoodPreferences has favoriteIcecream and favoriteChocolate, but not shoeSize.
+// В типе FoodPreferences есть favoriteIcecream и favoriteChocolate, но нет shoeSize.
 type FoodPreferences = Pick&lt;User, 'favoriteIcecream'|'favoriteChocolate'&gt;;
 </code></pre>
 
-<p>This is equivalent to spelling out the properties on <code>FoodPreferences</code>:</p>
+<p>Это эквивалентно указанию свойств в интерфейсе <code>FoodPreferences</code>:</p>
 
 <pre><code class="language-ts">interface FoodPreferences {
   favoriteIcecream: string;
@@ -1897,19 +1895,16 @@ type FoodPreferences = Pick&lt;User, 'favoriteIcecream'|'favoriteChocolate'&gt;;
 }
 </code></pre>
 
-<p>To reduce duplication, <code>User</code> could extend <code>FoodPreferences</code>, or (possibly
-better) nest a field for food preferences:</p>
+<p>Чтобы сократить количество дублирований, <code>User</code> может расширить <code>FoodPreferences</code>, или (что, возможно, лучше) вложить отдельное поле для указания предпочтений в еде:</p>
 
-<pre><code class="language-ts good">interface FoodPreferences { /* as above */ }
+<pre><code class="language-ts good">interface FoodPreferences { /* как описано выше */ }
 interface User extends FoodPreferences {
   shoeSize: number;
-  // also includes the preferences.
+  // также включает в себя предпочтения.
 }
 </code></pre>
 
-<p>Using interfaces here makes the grouping of properties explicit, improves IDE
-support, allows better optimization, and arguably makes the code easier to
-understand.
+<p>Использование интерфейсов здесь делает группирование свойств более очевидным, улучшает поддержку IDE, обеспечивает лучшую оптимизацию и, вполне возможно, сделает код проще для понимания.
 </p></section>
 
 <h3 id="any">Тип <code>any</code></h3>
@@ -1973,8 +1968,8 @@ danger.whoops();  //  Этот доступ к переменной абсолю
 </code></pre>
 
 <section>
-To safely use <code>unknown</code> values, narrow the type using a
-<a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types">type guard</a>
+Чтобы благополучно использовать <code>unknown</code> значения, следует сужать тип с помощью
+<a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types">защитников типа (type guards)</a>
 </section>
 
 <h4 id="any-suppress">Подавление предупреждений линтера, связанных с использованием <code>any</code></h4>
