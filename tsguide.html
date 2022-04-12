@@ -1376,7 +1376,7 @@ export class Foo {
 <section>
 
 <pre><code class="language-ts bad">export let foo = 3;
-// In pure ES6, foo is mutable and importers will observe the value change after a second.
+// В чистом ES6 foo является мутабельным, и импортеры будут видеть изменение его значения уже через секунду.
 // In TS, if foo is re-exported by a second file, importers will not see the value change.
 window.setTimeout(() =&gt; {
   foo = 4;
