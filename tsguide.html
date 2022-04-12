@@ -897,14 +897,14 @@ const fooSearch: SearchFunction = (source, subString) =&gt; { ... };
 
 <pre><code class="language-ts good">// Для объявления функции верхнего уровня используйте Function Declarations.
 function someFunction() {
-  // Block arrow function bodies, i.e. bodies with =&gt; { }, are fine:
+  // Вполне подходит использование блочных тел стрелочных функций, т.е. у которых тело функции представляет =&gt; { } :
   const receipts = books.map((b: Book) =&gt; {
     const receipt = payMoney(b.price);
     recordTransaction(receipt);
     return receipt;
   });
 
-  // Expression bodies are fine, too, if the return value is used:
+  // Использование выражения в качестве тела функции тоже подходит, если возвращаемое значение будет использоваться:
   const longThings = myValues.filter(v =&gt; v.length &gt; 1000).map(v =&gt; String(v));
 
   function payMoney(amount: number) {
@@ -913,18 +913,17 @@ function someFunction() {
 }
 </code></pre>
 
-<p>Only use an expression body if the return value of the function is actually
-used.</p>
+<p>Используйте выражения в качестве тела функции только в том случае, если возвращаемое значение функции действительно используется.</p>
 
-<pre><code class="language-ts bad">// ПЛОХО: use a block ({ ... }) if the return value of the function is not used.
+<pre><code class="language-ts bad">// ПЛОХО: используйте блочное тело функции ({ ... }) если возвращаемое значение функции не используется.
 myPromise.then(v =&gt; console.log(v));
 </code></pre>
 
-<pre><code class="language-ts good">// ХОРОШО: return value is unused, use a block body.
+<pre><code class="language-ts good">// ХОРОШО: возвращаемое значение не используется, поэтому используйте блочное тело функции.
 myPromise.then(v =&gt; {
   console.log(v);
 });
-// ХОРОШО: code may use blocks for readability.
+// ХОРОШО: в коде можно использовать блочное тело функции для повышения удобочитаемости.
 const transformed = [1, 2, 3].map(v =&gt; {
   const intermediate = someComplicatedExpr(v);
   const more = acrossManyLines(intermediate);
@@ -1509,9 +1508,9 @@ let item: tableview.Item = ...;
 
 <pre><code class="language-ts">import * as testing from './testing';
 
-// All tests will use the same three functions repeatedly.
-// When importing only a few symbols that are used very frequently, also
-// consider importing the symbols directly (see below).
+// Все тесты будут неоднократно использовать одни и те же три функции.
+// При импорте только некоторых определенных элементов, которые используются очень часто, также
+// рассмотрите возможность импорта элементов напрямую (см. пример ниже).
 testing.describe('foo', () =&gt; {
   testing.it('bar', () =&gt; {
     testing.expect(...);
