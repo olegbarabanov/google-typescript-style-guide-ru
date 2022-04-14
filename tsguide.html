@@ -196,7 +196,7 @@ const output = '\ufeff' + content;
 
 <p>В общих чертах, следуйте <a href="https://google.github.io/styleguide/jsguide.html#jsdoc">правилам для JSDoc из руководства по стилю написания JavaScript</a>, разделы 7.1 - 7.5. В остальной части этого раздела описываются исключения из этих правил.</p>
 
-<h4 id="document-all-top-level-exports-of-modules">Document all top-level exports of modules</h4>
+<h4 id="document-all-top-level-exports-of-modules">Документирование всех экспортов верхнего уровня в составе модулей</h4>
 
 <p>Используйте <code>/** JSDoc */</code> комментарии для передачи информации пользователям вашего кода. Избегайте простого повторения имени свойства или параметра. Вам <em>рекомендуется</em> документировать все свойства и методы (экспортируемые/публичные или нет), назначение которых, по мнению вашего рецензента, не сразу очевидно из их названия.</p>
 
@@ -662,13 +662,13 @@ Object.keys(...))</code>.</p>
 
 <pre><code class="language-ts good">for (const x in someObj) {
   if (!someObj.hasOwnProperty(x)) continue;
-  // now x was definitely defined on someObj
+  // сейчас x был точно определен в принадлежности someObj
 }
-for (const x of Object.keys(someObj)) { // note: for _of_!
-  // now x was definitely defined on someObj
+for (const x of Object.keys(someObj)) { // примечание: for _of_!
+  // сейчас x был точно определен в принадлежности someObj
 }
-for (const [key, value] of Object.entries(someObj)) { // note: for _of_!
-  // now key was definitely defined on someObj
+for (const [key, value] of Object.entries(someObj)) { // примечание: for _of_!
+  // сейчас key был точно определен в принадлежности someObj
 }
 </code></pre>
 
