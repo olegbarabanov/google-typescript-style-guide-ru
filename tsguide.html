@@ -73,7 +73,7 @@
 </ul>
 
 <blockquote>
-  <p>Совет: Если вам нужны только некоторые элементы из массива (или TypeScript кортежа), вы можете вставить дополнительные запятые в выражение деструктуризации, чтобы игнорировать промежуточные элементы:</p>
+  <p class="tip">Совет: Если вам нужны только некоторые элементы из массива (или TypeScript кортежа), вы можете вставить дополнительные запятые в выражение деструктуризации, чтобы игнорировать промежуточные элементы:</p>
 
 <pre><code class="language-ts">const [a, , b] = [1, 5, 10];  // a &lt;- 1, b &lt;- 10
 </code></pre>
@@ -672,8 +672,7 @@ for (const [key, value] of Object.entries(someObj)) { // примечание: f
 
 <h3 id="iterating-containers">Iterating containers</h3>
 
-<p>Не используйте <code>for (... in ...)</code> для итерации по массивам. It will counterintuitively
-  give the array's indices (as strings!), not values:</p>
+<p>Не используйте <code>for (... in ...)</code> для итерации по массивам. Это будет контринтуитивно давать индексы массива (в виде строк!), а не значения:</p>
 
 <pre><code class="language-ts bad">for (const x in someArray) {
   // x - это индекс!
@@ -798,8 +797,7 @@ for (let i = 0; i &lt; x; i++)
 }
 </code></pre>
 
-<p>Non-empty statement groups (<code>case ...</code>) may not fall through (enforced by the
-compiler):</p>
+<p>Непустые группы операторов (<code>case ...</code>) могут не проваливаться (обеспечивается настройками компилятора):</p>
 
 <pre><code class="language-ts bad">switch (x) {
   case X:
@@ -862,7 +860,7 @@ const foo = function() { ... }
 </code></pre>
 
 <blockquote>
-<p>Обратите внимание на разницу между объявлениями функций (<code>function foo() {}</code>) обсуждаемыми здесь, и функциональными выражениями (<del><code>doSomethingWith(function()
+<p class="note">Обратите внимание на разницу между объявлениями функций (<code>function foo() {}</code>) обсуждаемыми здесь, и функциональными выражениями (<del><code>doSomethingWith(function()
 {});</code></del>) которые обсуждаются <a href="#function-expressions">ниже</a>.</p>
 </blockquote>
 
@@ -954,9 +952,7 @@ document.body.onclick = setTextFn.bind(null, document.body);
 Использование стрелочных функций как свойств требует, чтобы вызывающая их функция корректно понимала, что у вызываемой функции уже есть привязанный <code>this</code>, что увеличивает путаницу в понимании того, что такое <code>this</code>, а сами места вызовов и ссылки использующие эти функции, могут смотреться некорректно работающими (т.к. это требует дополнительных знаний из-за пределов локального пространства вызывающей функции, чтобы определить, что они корректны). В коде <em>рекомендуется</em> всегда использовать стрелочные функции для вызова методов экземпляра (<code>const handler = (x) =&gt; { this.listener(x); };</code>), и <em>не рекомендуется</em> получать или передавать ссылки на методы экземпляра (<del><code>const handler = this.listener; handler(x);</code></del>).</p>
 
 <blockquote>
-<p>Note: in some specific situations, e.g. when binding functions in a template,
-arrow functions as properties are useful and create much more readable code.
-Use judgement with this rule. Также см. раздел <a href="#event-handlers"><code>Обработчики событий</code></a> ниже.</p>
+<p class="note">Примечание: в некоторых специфических ситуациях, например, в случае привязки функций к шаблонам, стрелочные функции в качестве свойств полезны и создают гораздо более читабельный код. Руководствуйтесь здравым смыслом при использовании этого правила. Также см. раздел <a href="#event-handlers"><code>Обработчики событий</code></a> ниже.</p>
 </blockquote>
 
 <pre><code class="language-ts bad">class DelayHandler {
@@ -1296,7 +1292,7 @@ import x = require('mydep');
 </code></pre>
 
 <blockquote>
-  <p>Примечание: В TypeScript  пространства имен (<code>namespace</code>) раньше назывались внутренними модулями и использовали ключевое слово <code>module</code> в виде <code>module Foo { ... }</code>. Не используйте такую форму. Всегда используйте ES6 импорты.</p>
+  <p class="note">Примечание: В TypeScript пространства имен (<code>namespace</code>) раньше назывались внутренними модулями и использовали ключевое слово <code>module</code> в виде <code>module Foo { ... }</code>. Не используйте такую форму. Всегда используйте ES6 импорты.</p>
 </blockquote>
 
 <h3 id="exports">Экспорты</h3>
@@ -1829,7 +1825,7 @@ fileSizes['readme.txt'] = 541;
 </code></pre>
 
 <blockquote>
-<p>Вместо использования одного из тех вариантов, рассмотрите возможность использования типов ES6 <code>Map</code> и <code>Set</code>. Объекты JavaScript обладают довольно <a href="http://2ality.com/2012/01/objects-as-maps.html">неожиданным нежелательным поведением</a>, а типы ES6 более явно передают ваши намерения. Также, <code>Set</code>могут хранить значения, а <code>Map</code> еще и ключи, отличные от <code>string</code>.</p>
+<p class="note">Вместо использования одного из тех вариантов, рассмотрите возможность использования типов ES6 <code>Map</code> и <code>Set</code>. Объекты JavaScript обладают довольно <a href="http://2ality.com/2012/01/objects-as-maps.html">неожиданным нежелательным поведением</a>, а типы ES6 более явно передают ваши намерения. Также, <code>Set</code>могут хранить значения, а <code>Map</code> еще и ключи, отличные от <code>string</code>.</p>
 </blockquote>
 
 <p>Встроенный в TypeScript тип <code>Record&lt;Keys, ValueType&gt;</code> позволяет создавать типы с определенным набором ключей. Это отличается от ассоциативных массивов тем, что ключи известны статически. См. рекомендации по этому вопросу <a href="#mapped-conditional-types">ниже</a>.</p>
@@ -1859,7 +1855,6 @@ most prone to create hard to understand and maintain programs.</li>
 E.g. your IDE's find references (and thus rename property refactoring) will
 not find properties in a <code>Pick&lt;T, Keys&gt;</code> type, and Code Search won't
 hyperlink them.</li>
-<li>
 </ul>
 
 <p>Рекомендация по стилю такова:</p>
