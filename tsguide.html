@@ -343,7 +343,7 @@ export class FooComponent {}
 }
 </code></pre>
 
-<p>See also <a href="#export-visibility">export visibility</a> below.</p>
+<p>См. также <a href="#export-visibility">Область видимости экспортируемых элементов</a> ниже.</p>
 
 <h3 id="constructors">Конструкторы</h3>
 
@@ -1359,7 +1359,7 @@ export class Foo {
 
 </section>
 
-<h4 id="export-visibility">Export visibility</h4>
+<h4 id="export-visibility">Область видимости экспортируемых элементов</h4>
 
 <p>TypeScript не поддерживает ограничение видимости экспортируемых элементов. Экспортируйте только те элементы, которые используются вне модуля. Как правило, минимизируйте экспортируемую часть API модулей.</p>
 
@@ -1574,8 +1574,7 @@ dependency on some import through a different transitive path.</p>
 API. However it does not give guarantees either: downstream code might still
 import an API through a different path. A better way to split &amp; guarantee type
 vs value usages of an API is to actually split the symbols into e.g.
-<code>UserService</code> and <code>AjaxUserService</code>. This is less error prone and also better
-communicates intent.</p>
+<code>UserService</code> and <code>AjaxUserService</code>. Это менее подвержено ошибкам и лучше передает смысл.</p>
 
 </section>
 
