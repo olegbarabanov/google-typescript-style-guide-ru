@@ -14,7 +14,7 @@
 <h1>TypeScript - руководство по стилю написания кода</h1>
 
 <section>
-  Это внешнее руководство, основанное на внутренней версии Google, но адаптированное для более широкой аудитории. There is no automatic deployment process for this version as it's pushed on-demand by volunteers.
+  Это внешнее руководство, основанное на внутренней версии Google, но адаптированное для более широкой аудитории. Для этой версии руководства не существует какого-либо механизма автоматического развертывания, поскольку она предоставляется волонтерами в ответ на запросы пользователей.
 
 <p>В нем содержатся как правила, так и лучшие практики. Выберите те, которые лучше всего подходят для вашей команды.</p>
 </section>
@@ -64,8 +64,7 @@
 Относитесь к аббревиатурам, подобным акронимам, в наименовании как к целым словам, т.е. используйте 
 <code>loadHttpUrl</code>, а не <del><code>loadHTTPURL</code></del>, unless required by a platform name
 (например <code>XMLHttpRequest</code>).</p></li>
-<li><p><strong>Знак доллара</strong>: В идентификаторах, как правило, <em>не рекомендуется</em> использовать символ <code>$</code>, за исключением случаев, когда это соответствуют соглашениям об именовании для сторонних фреймворков.
-<a href="#naming-style">See below</a> for more on using <code>$</code> with <code>Observable</code> values.</p></li>
+<li><p><strong>Знак доллара</strong>: В идентификаторах, как правило, <em>не рекомендуется</em> использовать символ <code>$</code>, за исключением случаев, когда это соответствуют соглашениям об именовании для сторонних фреймворков. Подробнее об использовании суффикса <code>$</code> для наблюдаемых (<code>Observable</code>) значений <a href="#naming-style">см. ниже</a>.</p></li>
 <li><p><strong>Параметры типа</strong>: Параметры типов, как например в <code>Array&lt;T&gt;</code>, могут использовать один символ верхнего регистра (<code>T</code>) или <code>UpperCamelCase</code>.</p></li>
 <li><p><strong>Названия тестов</strong>: Название тестовых методов в Closure <code>testSuite</code> и подобных тестовых фреймворках в стиле xUnit могут быть представлены с разделителями <code>_</code>, например <code>testX_whenY_doesZ()</code>.</p></li>
 <li><p><strong><code>_</code> префикс/суффикс</strong>: Идентификаторы не должны использовать <code>_</code> в качестве префикса или суффикса.</p>
@@ -147,10 +146,7 @@ class Teapot {
 </ul></li>
 <li>Не стоит специально помечать интерфейсы (<del><code>IMyInterface</code></del> или
 <del><code>MyFooInterface</code></del>), если только они не идиоматичны в своей среде. Когда вы вводите интерфейс для класса, дайте ему имя, которое выражает причину существования интерфейса (например, <code>class TodoItem</code> и <code>interface TodoItemStorage</code> если интерфейс выражает формат, используемый для хранения/сериализации в JSON).</li>
-<li>Suffixing <code>Observable</code>s with <code>$</code> is a common external convention and can
-help resolve confusion regarding observable values vs concrete values.
-Judgement on whether this is a useful convention is left up to individual
-teams, but <em>should</em> be consistent within projects.</li>
+<li>Добавление к наблюдаемым элементам (<code>Observable</code>) суффикса <code>$</code> является распространенным внешним соглашением и может помочь устранить путаницу между наблюдаемыми и конкретными значениями. Решение о том, является ли это полезным соглашением, остается на усмотрение отдельных команд, но <em>рекомендуется</em>, чтобы оно было согласованным в рамках проектов.</li>
 </ul>
 
 <h4 id="descriptive-names">Описательные названия</h4>
@@ -321,6 +317,7 @@ export class FooComponent {}
 <h3 id="visibility">Видимость</h3>
 
 <p>Restricting visibility of properties, methods, and entire types helps with keeping code decoupled.</p>
+<!-- <p>Ограничение видимости свойств, методов и всех типов помогает сохранить код слабо связанным.</p> -->
 
 <ul>
 <li>Максимально ограничивайте область видимости обозначений.</li>
