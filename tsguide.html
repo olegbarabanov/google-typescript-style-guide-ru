@@ -887,9 +887,9 @@ const fooSearch: SearchFunction = (source, subString) =&gt; { ... };
 
 <p>Функциональные выражения (определенные с помощью ключевого слова <code>function</code>) могут использоваться только в том случае, если код должен динамически перепривязать <code>this</code>, но в коде в принципе  <em>не рекомендуется</em> перепривязывать <code>this</code>. В коде обычных функций (в отличие от стрелочных функций и методов) <em>не рекомендуется</em> обращаться к <code>this</code>.</p>
 
-<h4 id="expression-bodies-vs-block-bodies">Expression bodies vs block bodies</h4>
+<h4 id="expression-bodies-vs-block-bodies">Использование выражений или блоков в качестве тела функции</h4>
 
-<p>Use arrow functions with expressions or blocks as their body as appropriate.</p>
+<p>Используйте стрелочные функции с выражениями или блоками в качестве тела там, где это целесообразно.</p>
 
 <pre><code class="language-ts good">// Для объявления функции верхнего уровня используйте Function Declarations.
 function someFunction() {
@@ -1329,7 +1329,7 @@ export default foo;
 <pre><code class="language-ts bad">import {fizz} from './foo';
 </code></pre>
 
-<p>В результате возникает ошибка <code>error TS2614: Module '"./foo"' has no exported member 'fizz'.</code> While
+<p>В результате возникает ошибка <code>error TS2614: Module '"./foo"' has no exported member 'fizz'.</code> Если указать в
 <code>bar.ts</code>:</p>
 
 <pre><code class="language-ts bad">import fizz from './foo';
@@ -1555,8 +1555,7 @@ export type {Bar} from './bar';
 export {Bar} from './bar';
 </code></pre>
 
-<p>TypeScript tooling automatically distinguishes symbols used as types vs symbols
-used as values and only generates runtime loads for the latter.</p>
+<p>Инструментарий TypeScript автоматически различает элементы, используемые как типы, и элементы, используемые как значения, и только для последних генерируется загружаемый во время выполнения код.</p>
 
 <section class="zippy">
 Почему?
