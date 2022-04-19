@@ -1172,11 +1172,9 @@ console.log(x['someField']);
 console.log(x.someField);
 </code></pre>
 
-<p>Code must not rely on disabling renaming, but must rather declare all properties
-that are external to the application to prevent renaming:</p>
+<p>Код должен не полагаться на отключение переименования, а должен объявить все свойства, которые являются внешними по отношению к приложению, чтобы предотвратить переименование:</p>
 
-<p>Prefer for code to account for a possible property-renaming optimization, and
-declare all properties that are external to the application to prevent renaming:</p>
+<p>Предусмотрите, чтобы в коде учитывалось потенциальное переименование свойств при оптимизации и объявляйте все свойства, которые являются внешними по отношению к приложению, чтобы предотвратить переименование:</p>
 
 <pre><code class="language-ts good">// Хорошо: объявление интерфейса
 declare interface ServerInfoJson {
@@ -1203,10 +1201,9 @@ class A {
 }
 </code></pre>
 
-<h4 id="exception">Exception</h4>
+<h4 id="exception">Исключение</h4>
 
-<p>This optimization compatibility rule applies to all web apps. It does not apply
-to code that only runs server side (e.g. in NodeJS for a test runner). Но все же для поддержания чистоты кода очень поощряется всегда объявлять все типы и избегать смешивания доступа к свойствам с кавычками и без кавычек.</p>
+<p>Это правило согласованности с оптимизациями применимо ко всем веб-приложениям. Оно не применяется к коду, который выполняется только на стороне сервера (например, в NodeJS для системы запуска тестов). Но все же для поддержания чистоты кода очень поощряется всегда объявлять все типы и избегать смешивания доступа к свойствам с кавычками и без кавычек.</p>
 
 <h3 id="enums">Перечисления (Enums)</h3>
 
