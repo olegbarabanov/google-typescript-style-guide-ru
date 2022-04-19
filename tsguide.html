@@ -1383,9 +1383,7 @@ window.setTimeout(() =&gt; {
 export function getFoo() { return foo; };
 </code></pre>
 
-<p>For the common pattern of conditionally exporting either of two values, first do
-the conditional check, then the export. Make sure that all exports are final
-after the module's body has executed.</p>
+<p>При экспорте одного из двух значений в зависимости от условий, в качестве стандартного шаблона, сначала выполняется проверка условий, а затем экспорт. Убедитесь, что все экспортируемые значения являются окончательными после выполнения всего тела модуля</p>
 
 <pre><code class="language-ts good">function pickApi() {
   if (useOtherApi()) return OtherApi;
