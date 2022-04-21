@@ -1818,26 +1818,15 @@ fileSizes['readme.txt'] = 541;
 
 <h3 id="mapped-conditional-types">Сопоставленные (Mapped) &amp; Условные (Conditional) Типы</h3>
 
-<p>В TypeScript <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types">сопоставленные типы</a> и <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#conditional-types">условные типы</a> позволяют определять новые типы на основе других типов. TypeScript's standard library includes several type operators based on these (<code>Record</code>, <code>Partial</code>, <code>Readonly</code> etc).</p>
+<p>В TypeScript <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types">сопоставленные типы</a> и <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#conditional-types">условные типы</a> позволяют определять новые типы на основе других типов. Стандартная библиотека TypeScript включает в себя ряд основанных на этих операциях типов (<code>Record</code>, <code>Partial</code>, <code>Readonly</code>  и др.).</p>
 
-<p>These type system features allow succinctly specifying types and constructing
-powerful yet type safe abstractions. Однако они обладают определенным количеством недостатков:</p>
+<p>Эти особенности системы типов позволяют лаконично задавать типы и создавать мощные, но в то же время безопасные абстракции типов. Однако они обладают определенным количеством недостатков:</p>
 
 <ul>
-<li>Compared to explicitly specifying properties and type relations (e.g. using
-interfaces and extension, see below for an example), type operators require
-the reader to mentally evaluate the type expression. This can make programs
-substantially harder to read, in particular combined with type inference and
-expressions crossing file boundaries.</li>
-<li>Mapped &amp; conditional types' evaluation model, in particular when combined
-with type inference, is underspecified, not always well understood, and
-often subject to change in TypeScript compiler versions. Code can
-<q>accidentally</q> compile or seem to give the right results. This increases
-future support cost of code using type operators.</li>
-<li>Mapped &amp; conditional types are most powerful when deriving types from
-complex and/or inferred types. On the flip side, this is also when they are
-most prone to create hard to understand and maintain programs.</li>
-<li>Some language tooling does not work well with these type system features.
+<li>По сравнению с явным указанием свойств и взаимосвязей типов (например, с использованием интерфейсов и расширений, пример см. ниже), операции с типами требуют от читателя мысленно просчитывать выражения типа. Это может существенно затруднить чтение программ, особенно в сочетании с выводом типов и выражениями, пересекающими границы файлов.</li>
+<li>Модель оценки сопоставленных и условных типов, особенно в сочетании с выводом типов, недостаточно определена, не всегда хорошо понятна и нередко претерпевает изменения в версиях компилятора TypeScript. Код может скомпилироваться <q>по ошибке</q> или казаться дающим правильные результаты. Это увеличивает стоимость будущей поддержки кода, использующего операции с типами.</li>
+<li>Сопоставленные и условные типы являются наиболее мощными при получении типов на основе комплексных и/или выводимых типов. С другой стороны, это также тот случай, когда они наиболее склонны создавать трудные для понимания и обслуживания программы.</li>
+<li>Некоторые языковые инструменты недостаточно хорошо работают с этими особенностями системы типов.
 E.g. your IDE's find references (and thus rename property refactoring) will
 not find properties in a <code>Pick&lt;T, Keys&gt;</code> type, and Code Search won't
 hyperlink them.</li>
