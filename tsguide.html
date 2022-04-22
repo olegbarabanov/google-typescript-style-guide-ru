@@ -19,9 +19,7 @@
 <p>В нем содержатся как правила, так и лучшие практики. Выберите те, которые лучше всего подходят для вашей команды.</p>
 </section>
 
-<p>Данное руководство ссылается на терминологию стандарта <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a> при использовании фраз <em>ДОЛЖНЫ</em>, <em>НЕ ДОЛЖНЫ</em>, <em>РЕКОМЕНДУЕТСЯ</em>, <em>НЕ РЕКОМЕНДУЕТСЯ</em>, и <em>ВОЗМОЖНО</em>.
-  All examples given are non-normative and serve only to illustrate the normative
-  language of the style guide.</p>
+<p>Данное руководство ссылается на терминологию стандарта <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a> при использовании фраз <em>ДОЛЖНЫ</em>, <em>НЕ ДОЛЖНЫ</em>, <em>РЕКОМЕНДУЕТСЯ</em>, <em>НЕ РЕКОМЕНДУЕТСЯ</em>, и <em>ВОЗМОЖНО</em>. Все приведенные примеры не носят нормативного характера и служат лишь для иллюстрации стандартных формулировок из данного руководства по стилю.</p>
 
 <h2 id="syntax">Синтаксис</h2>
 
@@ -61,8 +59,8 @@
 
 <ul>
 <li><p><strong>Аббревиатуры</strong>:
-Относитесь к аббревиатурам, подобным акронимам, в наименовании как к целым словам, т.е. используйте 
-<code>loadHttpUrl</code>, а не <del><code>loadHTTPURL</code></del>, unless required by a platform name
+Рассматривайте используемые в именах аббревиатуры типа акронимов как целые слова, т.е. используйте 
+<code>loadHttpUrl</code>, а не <del><code>loadHTTPURL</code></del>, если только это не обусловлено названием конкретной платформы
 (например <code>XMLHttpRequest</code>).</p></li>
 <li><p><strong>Знак доллара</strong>: В идентификаторах, как правило, <em>не рекомендуется</em> использовать символ <code>$</code>, за исключением случаев, когда это соответствуют соглашениям об именовании для сторонних фреймворков. Подробнее об использовании суффикса <code>$</code> для наблюдаемых (<code>Observable</code>) значений <a href="#naming-style">см. ниже</a>.</p></li>
 <li><p><strong>Параметры типа</strong>: Параметры типов, как например в <code>Array&lt;T&gt;</code>, могут использовать один символ верхнего регистра (<code>T</code>) или <code>UpperCamelCase</code>.</p></li>
@@ -403,7 +401,7 @@ class NoInstantiation {
 <section class="zippy">
 Почему?
 
-<p> Приватные идентификаторы вызывают существенные проблемы с размером и производительностью при понижении версии стандарта ECMAScript, в которую будет скомпилирован код TypeScript и не поддерживаются до ES2015. Они могут быть понижены только до уровня ES2015, но не ниже. At the same time, they do not offer substantial benefits when static type checking is used to enforce visibility.</p>
+<p> Приватные идентификаторы вызывают существенные проблемы с размером и производительностью при понижении версии стандарта ECMAScript, в которую будет скомпилирован код TypeScript и не поддерживаются до ES2015. Они могут быть понижены только до уровня ES2015, но не ниже. В то же время, они не дают существенных преимуществ, когда для контроля области видимости используется статическая проверка типов.</p>
 </section>
 
 <h4 id="use-readonly">Используйте модификатор <code>readonly</code></h4>
@@ -1837,7 +1835,7 @@ hyperlink them.</li>
 <ul>
 <li>Всегда используйте самую простую конструкцию типа, которая может выразить ваш код.</li>
 <li>Небольшое количество повторений или многословность зачастую обходятся гораздо дешевле, чем долговременные затраты на сложные выражения объявления типов.</li>
-<li>Mapped &amp; conditional types may be used, subject to these considerations.</li>
+<li>Сопоставленные и условные типы могут быть использованы с учетом перечисленных аспектов.</li>
 </ul>
 
 <section class="zippy">
@@ -1875,8 +1873,7 @@ interface User extends FoodPreferences {
 
 <h3 id="any">Тип <code>any</code></h3>
 
-<p>TypeScript's <code>any</code> type is a super and subtype of all other types, and allows
-dereferencing all properties. Как таковой, <code>any</code> опасен - он может маскировать серьезные программные ошибки, и его использование разрушает ценность наличия статических типов в первую очередь.</p>
+<p>В TypeScript тип <code>any</code> является супертипом и подтипом всех других типов и при разыменовании допускает обращение к любым свойствам. Как таковой, <code>any</code> опасен - он может маскировать серьезные программные ошибки, и его использование разрушает ценность наличия статических типов в первую очередь.</p>
 
 <section>
 <strong>Подумайте о том, чтобы <em>не</em> использовать <code>any</code>.</strong> В тех обстоятельствах, в которых вы захотите использовать <code>any</code>, рассмотрите один из вариантов:
@@ -1892,7 +1889,7 @@ dereferencing all properties. Как таковой, <code>any</code> опасе
 
 <p>Используйте интерфейсы, встраиваемый объектный тип или псевдоним типа:</p>
 
-<pre><code class="language-ts good">// Use declared interfaces to represent server-side JSON.
+<pre><code class="language-ts good">// Используйте декларируемые интерфейсы для представления серверного JSON.
 declare interface MyUserJson {
   name: string;
   email: string;
@@ -1918,11 +1915,7 @@ function nicestElement&lt;T&gt;(items: T[]): T {
 
 <h4 id="any-unknown">Использование <code>unknown</code> вместо <code>any</code></h4>
 
-<p>The <code>any</code> type allows assignment into any other type and dereferencing any
-property off it. Often this behaviour is not necessary or desirable, and code
-just needs to express that a type is unknown. Use the built-in type <code>unknown</code> in
-that situation — it expresses the concept and is much safer as it does not allow
-dereferencing arbitrary properties.</p>
+<p>Тип <code>any</code> позволяет присваивать значение любого другого типа и разыменовывать любые его свойства. Часто такое поведение не является необходимым или желательным, и в коде просто необходимо обозначить, что тип неизвестен. В такой ситуации используйте встроенный тип <code>unknown</code> - он точнее описывает суть концепции и гораздо безопаснее, поскольку не позволяет разыменовывать произвольные свойства.</p>
 
 <pre><code class="language-ts good">// Можно присваивать любое значение (включая null или undefined), но нельзя 
 // использовать его без сужения типа или приведения.
