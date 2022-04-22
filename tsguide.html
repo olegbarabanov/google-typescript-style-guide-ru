@@ -1762,9 +1762,7 @@ makeSound(horse);
 <section class="zippy">
 Почему?
 
-<p>These forms are nearly equivalent, so under the principle of just choosing one
-out of two forms to prevent variation, we should choose one. 
-Кроме того, существуют также <a href="https://ncjamieson.com/prefer-interfaces/">интересные технические причины, по которым предпочтение отдается интерфейсу</a>.
+<p>Эти формы почти эквивалентны, поэтому следуя принципу выбора только одной из двух форм для предотвращения вариативности, нам стоит выбрать одну из них. Кроме того, существуют также <a href="https://ncjamieson.com/prefer-interfaces/">интересные технические причины, по которым предпочтение отдается интерфейсу</a>.
 
 На той странице также приводятся слова руководителя команды разработчиков TypeScript: <q>Честно говоря, я считаю, что на самом деле это должны быть просто интерфейсы для всего, что они могут моделировать. Нет особой выгоды в псевдонимах типов, когда существует так много проблем с их отображением и производительностью.</q>
 </p></section>
@@ -1991,10 +1989,7 @@ const {host, port} = splitHostPort(userAddress);
 <ul>
 <li><code>String</code>, <code>Boolean</code>, и <code>Number</code> имеют несколько иное значение, чем соответствующие примитивные типы <code>string</code>, <code>boolean</code>, and <code>number</code>. Всегда используйте версию со строчными буквами.</li>
 
-<li><code>Object</code> has similarities to both <code>{}</code> and <code>object</code>, but is slightly looser.
-Use <code>{}</code> for a type that include everything except <code>null</code> and <code>undefined</code>,
-or lowercase <code>object</code> to further exclude the other primitive types (the
-three mentioned above, plus <code>symbol</code> and <code>bigint</code>).</li>
+<li><code>Object</code> имеет сходство с <code>{}</code> и <code>object</code>, но является несколько менее строгим. Используйте <code>{}</code> для типа, который включает в себя всё, кроме <code>null</code> и <code>undefined</code>, или строчный <code>object</code> для того, чтобы дополнительно исключить другие примитивные типы (три упомянутых выше, плюс <code>symbol</code> и <code>bigint</code>).</li>
 </ul>
 
 <p>Кроме того, никогда не вызывайте типы-обертки в качестве конструкторов (с помощью <code>new</code>).</p>
