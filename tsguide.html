@@ -1550,13 +1550,15 @@ export {Bar} from './bar';
 <section class="zippy">
 Почему?
 
-<p>TypeScript tooling automatically handles the distinction and does not insert
+<p>Инструментарий TypeScript автоматически определяет различия и не внедряет динамическую (runtime) загрузку для обращений к типам. Это обеспечивает более удобный UX для разработчиков: переключение туда-сюда между <code>import type</code> и <code>import</code> весьма утомительно. В то же время, <code>import type</code> не дает никаких гарантий: ваш код все равно может иметь жесткую зависимость от какого-либо импорта через различные транзитивные пути.</p>
+
+<!-- <p>TypeScript tooling automatically handles the distinction and does not insert
 runtime loads for type references. This gives a better developer UX: toggling
 back and forth between <code>import type</code> and <code>import</code> is bothersome. At the same
 time, <code>import type</code> gives no guarantees: your code might still have a hard
-dependency on some import through a different transitive path.</p>
+dependency on some import through a different transitive path.</p> -->
 
-<p>If you need to force a runtime load for side effects, use <code>import '...';</code>. See
+<p>Если вам необходима обязательная динамическая (runtime) загрузка для получения сторонних эффектов, используйте <code>import '...';</code>. See
 </p>
 
 <p><code>export type</code> might seem useful to avoid ever exporting a value symbol for an
@@ -1883,7 +1885,7 @@ interface User extends FoodPreferences {
 <li><a href="#any-suppress">Подавить предупреждение анализатора кода и задокументировать, почему </a></li>
 </ul>
 
-<h4 id="any-specific">Providing a more specific type</h4>
+<h4 id="any-specific">Предоставление более специфичного типа</h4>
 
 <p>Используйте интерфейсы, встраиваемый объектный тип или псевдоним типа:</p>
 
@@ -2022,8 +2024,7 @@ global rules. Evaluate your style guide proposal against the following:</p>
   <li>Типом <code>any</code> легко злоупотребить (<em>действительно</em> ли эта переменная может быть и числом, и вызываться как функция?),поэтому у нас есть рекомендации по его использованию.</li>
 <li>В TypeScript пространство имен (<code>namespace</code>) создает проблемы с оптимизациями Closure.</li>
 <li>Точки в именах файлов делают их уродливыми/запутанными для импорта из JavaScript.</li>
-<li>Static functions in classes optimize confusingly, while often file-level
-functions accomplish the same goal.</li>
+<li>Статические функции в классах оптимизируются довольно запутанно, в то время как функции на уровне файлов достигают тех же целей.</li>
 <li>Пользователи, не знающие о ключевом слове <code>private</code>, попытаются скрыть имена своих функций с помощью подчеркивания.</li>
 </ul></li>
 <li><p><strong>Code across
