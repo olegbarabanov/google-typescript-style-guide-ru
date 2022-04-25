@@ -1552,20 +1552,10 @@ export {Bar} from './bar';
 
 <p>Инструментарий TypeScript автоматически определяет различия и не внедряет динамическую (runtime) загрузку для обращений к типам. Это обеспечивает более удобный UX для разработчиков: переключение туда-сюда между <code>import type</code> и <code>import</code> весьма утомительно. В то же время, <code>import type</code> не дает никаких гарантий: ваш код все равно может иметь жесткую зависимость от какого-либо импорта через различные транзитивные пути.</p>
 
-<!-- <p>TypeScript tooling automatically handles the distinction and does not insert
-runtime loads for type references. This gives a better developer UX: toggling
-back and forth between <code>import type</code> and <code>import</code> is bothersome. At the same
-time, <code>import type</code> gives no guarantees: your code might still have a hard
-dependency on some import through a different transitive path.</p> -->
-
 <p>Если вам необходима обязательная динамическая (runtime) загрузка для получения сторонних эффектов, используйте <code>import '...';</code>. See
 </p>
 
-<p><code>export type</code> might seem useful to avoid ever exporting a value symbol for an
-API. However it does not give guarantees either: downstream code might still
-import an API through a different path. A better way to split &amp; guarantee type
-vs value usages of an API is to actually split the symbols into e.g.
-<code>UserService</code> and <code>AjaxUserService</code>. Это менее подвержено ошибкам и лучше передает смысл.</p>
+<p><code>export type</code> может показаться полезным, чтобы избежать какого-либо экспортирования значения элемента в API. Однако и это не дает гарантий: последующий код может по-прежнему импортировать API другим путем. Лучший способ для разделения и гарантии использования API по типу и значению - разделить элементы, например, на <code>UserService</code> и <code>AjaxUserService</code>. Это менее подвержено ошибкам и лучше передает смысл.</p>
 
 </section>
 
@@ -1677,10 +1667,7 @@ function pourCoffee(volume?: Milliliter) { ... }
 
 <p>Система типов TypeScript является структурной, а не номинальной. Т.е. значение соответствует типу, если оно имеет по крайней мере все свойства, требуемые типом, и типы свойств совпадают рекурсивно.</p>
 
-<p>Use structural typing where appropriate in your code. Outside of test code, use
-  interfaces to define structural types, not classes. In test code it can be
-  useful to have mock implementations structurally match the code under test
-  without introducing an extra interface.</p>
+<p>Используйте структурную типизацию в коде, там где это уместно. Вне тестов для определения структурных типов используйте интерфейсы, а не классы. В тестовом коде может быть полезно иметь Mock-объекты, структурно соответствующие тестируемому коду, без введения дополнительного интерфейса.</p>
 
 <p>При предоставлении реализации, основанной на структуре, явно указывайте тип в объявлении элемента (это позволяет более точно проверить тип и сообщить об ошибке).</p>
 
@@ -1980,7 +1967,7 @@ const [leftHalf, rightHalf] = splitInHalf('my string');
 const address = splitHostPort(userAddress);
 use(address.port);
 
-// You can also get tuple-like behavior using destructuring:
+// Вы также можете использовать деструктуризацию, чтобы получить поведение, подобное разложению кортежа на отдельные переменные:
 const {host, port} = splitHostPort(userAddress);
 </code></pre>
 
@@ -2010,7 +1997,7 @@ directory.</p>
 
 <h3 id="goals">Цели</h3>
 
-<p>В основном, инженеры обычно лучше знают, что необходимо в их коде, поэтому если есть несколько вариантов и выбор зависит от ситуации, мы должны позволить принимать решения на месте. So the default answer should be <q>leave it out</q>.</p>
+<p>В основном, инженеры обычно лучше знают, что необходимо в их коде, поэтому если есть несколько вариантов и выбор зависит от ситуации, мы должны позволить принимать решения на месте. Поэтому рекомендуемым ответом по умолчанию здесь является <q>оставить это как есть</q>.</p>
 
 <p>The following points are the exceptions, which are the reasons we have some
 global rules. Evaluate your style guide proposal against the following:</p>
@@ -2027,9 +2014,7 @@ global rules. Evaluate your style guide proposal against the following:</p>
 <li>Статические функции в классах оптимизируются довольно запутанно, в то время как функции на уровне файлов достигают тех же целей.</li>
 <li>Пользователи, не знающие о ключевом слове <code>private</code>, попытаются скрыть имена своих функций с помощью подчеркивания.</li>
 </ul></li>
-<li><p><strong>Code across
-projects should be consistent across
-irrelevant variations.</strong></p>
+<li><p><strong>Код в различных проектах рекомендуется разрабатывать единообразно, с учетом незначительных отклонений.</strong></p>
 
 <p>Когда есть два варианта, которые эквивалентны в поверхностном смысле, стоит рассмотреть возможность выбора одного из них, просто чтобы не развивались расхождения без причины и избежать бессмысленных дебатов в обзорах кода.</p>
 
