@@ -1888,7 +1888,7 @@ function getTwoThings(): {something: number, other: string} {
 
 // Используйте generic-тип там, где в ином случае библиотека указала бы `any`,
 // чтобы обозначить, что ей все равно, с каким типом работает пользователь (но обратите 
-// внимание на "Return type only generics" ниже).
+// внимание на раздел "Возвращаемый тип представлен только generic-типом" представленный ниже).
 function nicestElement&lt;T&gt;(items: T[]): T {
   // Поиск наиболее подходящего элемента в items.
   // Код может также накладывать ограничения на T, например &lt;T extends HTMLElement&gt;.
@@ -1978,11 +1978,9 @@ const {host, port} = splitHostPort(userAddress);
 
 <p>Кроме того, никогда не вызывайте типы-обертки в качестве конструкторов (с помощью <code>new</code>).</p>
 
-<h3 id="return-type-only-generics">Return type only generics</h3>
+<h3 id="return-type-only-generics">Возвращаемый тип представлен только generic-типом</h3>
 
-<p>Avoid creating APIs that have return type only generics. When working with
-  existing APIs that have return type only generics always explicitly specify the
-  generics.</p>
+<p>Избегайте создания API, которые у которых возвращаемый тип представлен только generic-типом. При работе с существующими API, которые имеют возвращаемый у которых тип представлен только generic-типом, всегда явно указывайте generic-тип.</p>
 
 <h2 id="consistency">Согласованность</h2>
 
