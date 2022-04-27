@@ -314,8 +314,7 @@ export class FooComponent {}
 
 <h3 id="visibility">Видимость</h3>
 
-<p>Restricting visibility of properties, methods, and entire types helps with keeping code decoupled.</p>
-<!-- <p>Ограничение видимости свойств, методов и всех типов помогает сохранить код слабо связанным.</p> -->
+<p>Ограничение видимости свойств, методов и целых типов помогает сохранить код слабо связанным.</p>
 
 <ul>
 <li>Максимально ограничивайте область видимости обозначений.</li>
@@ -665,7 +664,7 @@ for (const [key, value] of Object.entries(someObj)) { // примечание: f
 }
 </code></pre>
 
-<h3 id="iterating-containers">Iterating containers</h3>
+<h3 id="iterating-containers">Итерация массивов</h3>
 
 <p>Не используйте <code>for (... in ...)</code> для итерации по массивам. Это будет контринтуитивно давать индексы массива (в виде строк!), а не значения:</p>
 
@@ -1131,7 +1130,7 @@ function func(): Foo {
 }
 </code></pre>
 
-<h3 id="member-property-declarations">Member property declarations</h3>
+<h3 id="member-property-declarations">Объявление свойств элементов</h3>
 
 <p>В объявлениях интерфейсов и классов для разделения объявлений отдельных членов необходимо использовать символ<code>;</code></p>
 
@@ -1159,7 +1158,7 @@ function func(): Foo {
 let someProperty: {memberC: string, memberD: number};
 </code></pre>
 
-<h4 id="optimization-compatibility-for-property-access">Optimization compatibility for property access</h4>
+<h4 id="optimization-compatibility-for-property-access">Совместимость с оптимизациями доступа к свойствам</h4>
 
 <p>Код не должен смешивать доступ к свойству в кавычках с доступом к свойству через точку</p>
 
@@ -1179,10 +1178,10 @@ declare interface ServerInfoJson {
   user: UserJson;
 }
 const data = JSON.parse(serverResponse) as ServerInfoJson;
-console.log(data.appVersion); // Type safe &amp; renaming safe!
+console.log(data.appVersion); // Тип защищен и переименование безопасно!
 </code></pre>
 
-<h4 id="optimization-compatibility-for-module-object-imports">Optimization compatibility for module object imports</h4>
+<h4 id="optimization-compatibility-for-module-object-imports">Совместимость с оптимизациями импорта объектов модуля</h4>
 
 <p>При импорте объекта модуля напрямую обращайтесь к свойствам объекта модуля, а не передавайте его. Это гарантирует, что модули могут быть проанализированы и оптимизированы. Отношение к <a href="#module-versus-destructuring-imports">импорту модулей</a> как к пространствам имен является нормальным.</p>
 
@@ -1263,7 +1262,7 @@ import {Symbol3} from './sibling';
 
 <h4 id="namespaces-vs-modules">Пространства имен (namespace) & Модули</h4>
 
-<p>TypeScript поддерживает два метода организации кода: пространства имен (<em>namespaces</em>) и модули, но использование пространств имен необходимо избегать. В коде должны использоваться TypeScript <em>модули</em> (которые являются <a href="http://exploringjs.com/es6/ch_modules.html">модулями ECMAScript 6</a>). То есть ваш код <em>должен</em> ссылаться на код в других файлах с помощью импорта и экспорта вида <code>import {foo} from 'bar';</code></p>
+<p>TypeScript поддерживает два метода организации кода: пространства имен (<em>namespaces</em>) и модули, но использование пространств имен необходимо избегать. В google3 в коде должны использоваться TypeScript <em>модули</em> (которые являются <a href="http://exploringjs.com/es6/ch_modules.html">модулями ECMAScript 6</a>). То есть ваш код <em>должен</em> ссылаться на код в других файлах с помощью импорта и экспорта вида <code>import {foo} from 'bar';</code></p>
 
 <p>В вашем коде не должны использоваться <code>namespace Foo { ... }</code> конструкции. Пространства имен (<code>namespace</code>) могут использоваться только тогда, когда это необходимо для взаимодействия с внешним сторонним кодом. Чтобы семантически разделить пространство имен вашего кода, используйте отдельные файлы.</p>
 
@@ -1305,8 +1304,8 @@ export default class Foo { ... } // ПЛОХО!
 
 <p>Экспорт по умолчанию не предоставляет канонического имени, что затрудняет централизованное обслуживание при относительно небольшой пользе для владельцев кода, причем возможно ухудшение читабельности:</p>
 
-<pre><code class="language-ts bad">import Foo from './bar';  // Legal.
-import Bar from './bar';  // Also legal.
+<pre><code class="language-ts bad">import Foo from './bar';  // Валидно.
+import Bar from './bar';  // Также валидно.
 </code></pre>
 
 <p>Преимущество именованного экспорта заключается в том, что оно приводит к ошибкам, когда операторы импорта пытаются импортировать что-то, что не было объявлено. В <code>foo.ts</code>:</p>
@@ -1567,10 +1566,7 @@ export {Bar} from './bar';
 
 <h3 id="type-inference">Вывод типа</h3>
 
-<p>Код может полагаться на вывод типа, реализуемый компилятором TypeScript для всех типов выражений (переменных, полей класса, возвращаемых типов и т. д.). The google3
-compiler flags reject code that does not have a type annotation and cannot be
-inferred, so all code is guaranteed to be typed (but might use the <code>any</code> type
-explicitly).</p>
+<p>Код может полагаться на вывод типа, реализуемый компилятором TypeScript для всех типов выражений (переменных, полей класса, возвращаемых типов и т.д.). Флаги компилятора в google3 позволяют не допускать код, который не имеет аннотации типа и тип при этом не может быть выведен, поэтому весь код гарантированно является типизированным (но может явно использовать тип <code>any</code>).</p>
 
 <pre><code class="language-ts good">const x = 15;  // Тип выведен.
 </code></pre>
@@ -1589,7 +1585,7 @@ const x: Set&lt;string&gt; = new Set();
 
 <p>Для более сложных выражений аннотации типов могут улучшить читабельность программы. Необходимость аннотации решает рецензент кода.</p>
 
-<h4 id="return-types">Return types</h4>
+<h4 id="return-types">Возвращаемые типы</h4>
 
 <p>Вопрос о том, следует ли включать аннотации типа возвращаемого значения для функций и методов, зависит от автора кода. Рецензенты <em>могут</em> запросить аннотации для уточнения сложных типов возвращаемых данных, которые трудно понять. В проектах <em>может</em> существовать локальная политика, согласно которой всегда требуется указывать возвращаемые типы, но это не является общим требованием стиля TypeScript.</p>
 
@@ -1772,7 +1768,7 @@ const e: ReadonlyArray&lt;string|number&gt;;
 
 <pre><code class="language-ts bad">const f: Array&lt;string&gt;;            //  синтаксический сахар короче 
 const g: ReadonlyArray&lt;string&gt;;
-const h: {n: number, s: string}[]; // the braces/parens make it harder to read
+const h: {n: number, s: string}[]; // фигурные/круглые скобки ухудшают читабельность
 const i: (string|number)[];
 const j: readonly (string|number)[];
 </code></pre>
@@ -1990,16 +1986,13 @@ const {host, port} = splitHostPort(userAddress);
 
 <h2 id="consistency">Согласованность</h2>
 
-<p>Для любого вопроса о стиле, который не решен окончательно этой спецификацией, делайте то, что уже делает другой код в том же файле (<q>будьте последовательны</q>). If that
-doesn't resolve the question, consider emulating the other files in the same
-directory.</p>
+<p>Для любого вопроса о стиле, который не решен окончательно этой спецификацией, делайте то, что уже делает другой код в том же файле (<q>будьте последовательны</q>). Если это не решит проблему, рассмотрите возможность подражания другим файлам в том же каталоге.</p>
 
 <h3 id="goals">Цели</h3>
 
 <p>В основном, инженеры обычно лучше знают, что необходимо в их коде, поэтому если есть несколько вариантов и выбор зависит от ситуации, мы должны позволить принимать решения на месте. Поэтому рекомендуемым ответом по умолчанию здесь является <q>оставить это как есть</q>.</p>
 
-<p>The following points are the exceptions, which are the reasons we have some
-global rules. Evaluate your style guide proposal against the following:</p>
+<p>Следующие пункты это те исключительные моменты, на основании которых мы имеем некоторые всеобщие правила. Оцените ваше предложение по составлению руководства по стилю с учетом следующего:</p>
 
 <ol>
 <li><p><strong>В коде рекомендуется избегать шаблонов, которые известны как вызывающие проблемы, особенно для пользователей, только начинающих изучать язык.</strong></p>
