@@ -584,3 +584,51 @@ for (const [key, value] of Object.entries(someObj)) { // примечание: f
 }
 ```
 
+### Итерация массивов
+
+Не используйте `for (... in ...)` для итерации по массивам. Это будет контринтуитивно давать индексы массива (в виде строк!), а не значения:
+
+```ts
+for (const x in someArray) {
+  // x - это индекс!
+}
+```
+
+Для итерации по массивам используйте `for (... of someArr)` или обычные циклы `for` с индексами.
+
+```ts
+for (const x of someArr) {
+  // x - ссылается на значение из someArr
+}
+
+for (let i = 0; i < someArr.length; i++) {
+  // Если необходим индекс, то используйте явный пересчет, а иначе используйте форму for/of.
+  const x = someArr[i];
+  // ...
+}
+for (const [i, x] of someArr.entries()) {
+  // Альтернативная версия предыдущего.
+}
+```
+
+Не используйте `Array.prototype.forEach`, `Set.prototype.forEach`, и `Map.prototype.forEach`. Они усложняют отладку кода и препятствуют некоторым полезным проверкам компилятора (например, проверку достижимости).
+
+```ts
+someArr.forEach((item, index) => {
+  someFn(item, index);
+});
+```
+
+Почему?
+Рассмотрим следующий код:
+
+```ts
+let x: string|null = 'abc';
+myArray.forEach(() => { x.charAt(0); });
+```
+
+Вы можете видеть, что этот код вполне в порядке: `x` не является null и не изменяется до обращения к нему. Но компилятор не может знать, что этот вызов `.forEach()` не привязан к переданному замыканию и не вызовет его позже, возможно, после того, как `x` будет установлен в null, поэтому он помечает этот код как ошибку. Эквивалентный цикл for-of работает нормально.
+
+[Посмотреть в песочнице ошибочный и безошибочный варианты](https://www.typescriptlang.org/play?#code/DYUwLgBAHgXBDOYBOBLAdgcwD5oK7GAgF4IByAQwCMBjUgbgCgBtAXQDoAzAeyQFFzqACwAUwgJTEAfBADeDCNDZDySAIJhhABjGMAvjoYNQkAJ5xEqTDnyESFGvQbckEYdS5pEEAPoQuHCFYJOQUTJUEVdS0DXQYgA)
+
+На практике различные варианты этих ограничений анализа потока управления проявляются в более сложных путях выполнения кода, где это может быть более неожиданно.
