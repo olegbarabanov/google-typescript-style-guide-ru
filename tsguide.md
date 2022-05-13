@@ -2181,7 +2181,7 @@ const {host, port} = splitHostPort(userAddress);
 Избегайте создания API, которые у которых возвращаемый тип представлен только generic-типом. При работе с существующими API, которые имеют возвращаемый у которых тип представлен только generic-типом, всегда явно указывайте generic-тип[^comment-return-only-generic].
 
 [^comment-return-only-generic]: Комментарий переводчика:
-Данную проблема под названием "return-only generics" обсуждалась в [issue к TypeScript](https://github.com/microsoft/TypeScript/issues/33272). На странице [https://effectivetypescript.com/2020/08/12/generics-golden-rule/](https://effectivetypescript.com/2020/08/12/generics-golden-rule/) хорошо поясняется эта проблема на примере кода:
+Данная проблема под названием "return-only generics" обсуждалась в [issue к TypeScript](https://github.com/microsoft/TypeScript/issues/33272). На странице [https://effectivetypescript.com/2020/08/12/generics-golden-rule/](https://effectivetypescript.com/2020/08/12/generics-golden-rule/) хорошо поясняется эта проблема на примере кода:
     ```ts
     function parseYAML<T>(input: string): T {
       // ...
