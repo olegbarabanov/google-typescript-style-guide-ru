@@ -2091,9 +2091,9 @@ function getTwoThings(): {something: number, other: string} {
   return {something, other};
 }
 
-// Используйте generic-тип там, где в ином случае библиотека указала бы `any`,
+// Используйте дженерик там, где в ином случае библиотека указала бы `any`,
 // чтобы обозначить, что ей все равно, с каким типом работает пользователь (но обратите 
-// внимание на раздел "Возвращаемый тип представлен только generic-типом" представленный ниже).
+// внимание на раздел "Возвращаемый тип представлен только дженериком" представленный ниже).
 function nicestElement<T>(items: T[]): T {
   // Поиск наиболее подходящего элемента в items.
   // Код может также накладывать ограничения на T, например <T extends HTMLElement>.
@@ -2195,12 +2195,12 @@ const {host, port} = splitHostPort(userAddress);
 
 Кроме того, никогда не вызывайте типы-обертки в качестве конструкторов (с помощью `new`).
 
-### Возвращаемый тип представлен только generic-типом
+### Возвращаемый тип представлен только дженериком
 
-Избегайте создания API, которые у которых возвращаемый тип представлен только generic-типом. При работе с существующими API, которые имеют возвращаемый у которых тип представлен только generic-типом, всегда явно указывайте generic-тип[^comment-return-only-generic].
+Избегайте создания API у которых возвращаемый тип представлен только дженериком. При работе с существующими API у которых возвращаемый тип представлен только дженериком, всегда явно указывайте дженерик [^comment-return-only-generic].
 
 [^comment-return-only-generic]: Комментарий переводчика:
-Данная проблема под названием "return-only generics" обсуждалась в [issue к TypeScript](https://github.com/microsoft/TypeScript/issues/33272). На странице [https://effectivetypescript.com/2020/08/12/generics-golden-rule/](https://effectivetypescript.com/2020/08/12/generics-golden-rule/) хорошо поясняется эта проблема на примере кода:
+Данная проблема под названием "return-only generics" обсуждалась в [issue к TypeScript](https://github.com/microsoft/TypeScript/issues/33272). На странице [https://effectivetypescript.com/2020/08/12/generics-golden-rule/](https://effectivetypescript.com/2020/08/12/generics-golden-rule/) хорошо поясняется суть этой проблемы на примере кода:
     ```ts
     function parseYAML<T>(input: string): T {
       // ...
