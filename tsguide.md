@@ -1,15 +1,17 @@
-# Google TypeScript - руководство по стилю написания кода
+# Руководство Google по стилю написания кода на языке TypeScript
 
 ## Дополнительная информация по переводу
-С оригинальным руководством по стилю вы можете ознакомиться по ссылке — [Google TypeScript Style Guide
-](https://google.github.io/styleguide/tsguide.html).
+Репозиторий текущего перевода расположен по адресу: [https://github.com/olegbarabanov/google-typescript-style-guide-ru](https://github.com/olegbarabanov/google-typescript-style-guide-ru).
+
+С оригинальным руководством по стилю вы можете ознакомиться по ссылке — [Google TypeScript Style Guide](https://google.github.io/styleguide/tsguide.html).
+
 Данный перевод основан на следующей ревизии оригинального документа, представленного по ссылке — [https://github.com/google/styleguide/blob/1faa779a126c3564e74d6254d596da8dd2b4bf56/tsguide.html](https://github.com/google/styleguide/blob/1faa779a126c3564e74d6254d596da8dd2b4bf56/tsguide.html).
 
 Хотя данный перевод и стремится быть максимально соответствующим оригинальному тексту, в текст перевода были добавлены сноски на комментарии и примечания переводчика, которые дополняют или разъясняют суть конкретного выражения.
 
-Если Вы нашли несоответствие, ошибку или неточность в переводе, вы можете оформить это в виде *issue* или предложить собственное исправление в виде *pull request*, либо написать переводчику по адресу [mail@olegbarabanov.ru](mailto:mail@olegbarabanov.ru)
+Если Вы нашли несоответствие, ошибку или неточность в переводе, вы можете оформить это в виде *[issue](https://github.com/olegbarabanov/google-typescript-style-guide-ru/issues)* или предложить собственное исправление в виде *[pull request](https://github.com/olegbarabanov/google-typescript-style-guide-ru/pulls)*, либо написать переводчику по адресу [mail@olegbarabanov.ru](mailto:mail@olegbarabanov.ru).
 
-# TypeScript - руководство по стилю написания кода
+## Введение
 
 Это внешнее руководство, основанное на внутренней версии Google, но адаптированное для более широкой аудитории. Для этой версии руководства не существует какого-либо механизма автоматического развертывания, поскольку она предоставляется волонтерами в ответ на запросы пользователей. 
 В нем содержатся как правила, так и лучшие практики. Выберите те, которые лучше всего подходят для вашей команды.
