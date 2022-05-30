@@ -1,0 +1,41 @@
+<html lang="ru" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark_dimmed">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> <%= title %> </title>
+</head>
+
+<body class="d-flex flex-column height-full">
+  <header class="header p-1 p-md-2 p-lg-3 d-flex flex-items-center flex-justify-between flex-nowrap flex-shrink-0">
+    <div class="f3-mktg text-bold mx-2 text-left text-sm-center">
+      <a class="title-link"> <%= title %> </a>
+    </div>
+
+    <div class="d-flex flex-nowrap mx-2">
+      <details class="details-reset details-overlay">
+        <summary>
+          <div class="btn d-flex flex-items-center flex-row flex-nowrap">
+            <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z">
+              </path>
+            </svg>
+            <span class="ml-2 d-none d-md-inline"> <%= menuTitle %> </span>
+          </div>
+        </summary>
+        <div class="selectmenu right-0">
+          <div class="selectmenu-modal">
+            <nav class="selectmenu-list"></nav>
+          </div>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <div class="markdown-body p-5 overflow-auto mt-1">
+    <%= content %>
+  </div>
+</body>
+
+</html>

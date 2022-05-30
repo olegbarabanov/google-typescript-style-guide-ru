@@ -1,0 +1,33 @@
+{
+  "name": "google-typescript-style-guide-ru",
+  "version": "1.0.0",
+  "description": "Russian translation of the guide \"Google TypeScript Style Guide\"",
+  "homepage": "https://github.com/olegbarabanov/google-typescript-style-guide-ru",
+  "scripts": {
+    "serve": "webpack serve --mode=development --hot=only",
+    "build": "webpack build"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Oleg Barabanov",
+    "email": "mail@olegbarabanov.ru",
+    "url": "https://olegbarabanov.ru"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "highlight.js": "^11.5.1",
+    "html-webpack-plugin": "^5.5.0",
+    "markdown-it": "^13.0.1",
+    "markdown-it-anchor": "^8.6.3",
+    "markdown-it-footnote": "^3.0.3",
+    "mini-css-extract-plugin": "^2.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  },
+  "dependencies": {
+    "@primer/css": "^20.1.0"
+  }
+}
