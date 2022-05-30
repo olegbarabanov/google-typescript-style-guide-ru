@@ -1,8 +1,9 @@
 # Руководство Google по стилю написания кода на языке TypeScript (перевод руководства "Google TypeScript Style Guide")
 
-С переводом руководства вы можете ознакомиться в двух вариантах:
-1. Markdown: [google-typescript-style-guide-ru.md](/src/google-typescript-style-guide-ru.md)
-2. Веб-версия: 
+С переводом руководства вы можете ознакомиться в нескольких вариантах:
+1. Markdown: [google-typescript-style-guide-ru.md](https://github.com/olegbarabanov/google-typescript-style-guide-ru/blob/main/src/google-typescript-style-guide-ru.md)
+2. Веб-версия: [https://olegbarabanov.github.io/google-typescript-style-guide-ru/](https://olegbarabanov.github.io/google-typescript-style-guide-ru/)
+   - Зеркало: [https://ts-guide.olegbarabanov.ru/google/](https://ts-guide.olegbarabanov.ru/google/)
 
 С оригинальным руководством по стилю вы можете ознакомиться по ссылке: [https://google.github.io/styleguide/tsguide.html](https://google.github.io/styleguide/tsguide.html).
 

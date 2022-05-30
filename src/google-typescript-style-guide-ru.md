@@ -2,11 +2,11 @@
 
 ## Дополнительная информация по переводу
 
-С оригинальным руководством по стилю вы можете ознакомиться по ссылке: [https://google.github.io/styleguide/tsguide.html](https://google.github.io/styleguide/tsguide.html).
-
 Репозиторий текущего перевода расположен по адресу: [https://github.com/olegbarabanov/google-typescript-style-guide-ru](https://github.com/olegbarabanov/google-typescript-style-guide-ru).
 
-Перевод основан на следующей версии оригинального руководства: [https://github.com/google/styleguide/blob/1faa779a126c3564e74d6254d596da8dd2b4bf56/tsguide.html](https://github.com/google/styleguide/blob/1faa779a126c3564e74d6254d596da8dd2b4bf56/tsguide.html)
+С оригинальным руководством по стилю вы можете ознакомиться по адресу: [https://google.github.io/styleguide/tsguide.html](https://google.github.io/styleguide/tsguide.html).
+
+Перевод основан на следующей версии оригинального руководства: [https://github.com/google/styleguide/blob/1faa779a126c3564e74d6254d596da8dd2b4bf56/tsguide.html](https://github.com/google/styleguide/blob/1faa779a126c3564e74d6254d596da8dd2b4bf56/tsguide.html).
 
 Хотя данный перевод и стремится быть максимально соответствующим оригинальному тексту, в текст перевода были добавлены сноски на комментарии и примечания переводчика, которые дополняют или разъясняют суть конкретного выражения. Также подобные сноски присутствуют в местах исправления *явных* ошибок, которые присутствовали в оригинале и которые могли бы ввести в заблуждение.
 
