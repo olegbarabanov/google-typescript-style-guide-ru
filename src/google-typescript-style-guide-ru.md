@@ -845,7 +845,7 @@ foo3.num === 1;
 const foo = {num: 7};
 const bar = {num: 5, ...(shouldUseFoo && foo)}; // может быть undefined
 
-// Creates {0: 'a', 1: 'b', 2: 'c'} but has no length
+// Создает {0: 'a', 1: 'b', 2: 'c'} но при этом не содержит длины (length)
 const fooStrings = ['a', 'b', 'c'];
 const ids = {...fooStrings};
 ```
