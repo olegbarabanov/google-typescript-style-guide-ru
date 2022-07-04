@@ -388,7 +388,7 @@ foo3.<span class="hljs-property">num</span> === <span class="hljs-number">1</spa
 <span class="hljs-keyword">const</span> foo = {<span class="hljs-attr">num</span>: <span class="hljs-number">7</span>};
 <span class="hljs-keyword">const</span> bar = {<span class="hljs-attr">num</span>: <span class="hljs-number">5</span>, ...(shouldUseFoo &amp;&amp; foo)}; <span class="hljs-comment">// может быть undefined</span>
 
-<span class="hljs-comment">// Creates {0: &#x27;a&#x27;, 1: &#x27;b&#x27;, 2: &#x27;c&#x27;} but has no length</span>
+<span class="hljs-comment">// Создает {0: &#x27;a&#x27;, 1: &#x27;b&#x27;, 2: &#x27;c&#x27;} но при этом не содержит длины (length)</span>
 <span class="hljs-keyword">const</span> fooStrings = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>];
 <span class="hljs-keyword">const</span> ids = {...fooStrings};
 </code></pre><pre><code class="language-ts"><span class="hljs-comment">// ✅ ХОРОШО ↴</span>
