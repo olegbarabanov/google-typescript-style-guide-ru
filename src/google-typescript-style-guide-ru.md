@@ -232,15 +232,7 @@ const LONG_STRING = 'Это очень длинная строка, котора
 
 #### Исключите те комментарии, которые излишни в TypeScript
 
-Для примера, не указывайте типы в `@param` или `@return` блоках, не пишите `@implements`, `@enum`, `@private` в коде, который использует `implements`, `enum`, `private` и пр. ключевые слова.
-
-#### Не используйте `@override`
-
-Не используйте `@override` в исходном коде TypeScript[^comment-override].
-
-`@override` не применяется компилятором, что может стать неожиданным сюрпризом и привести к несогласованности аннотаций и реализации. Использование `@override` только для документирования может привести к путанице.
-
-[^comment-override]: Прим. пер.: В TS 4.3 появилась полноценная поддержка модификатора `override`, поэтому нет необходимости в JSDoc `@override` (См. [исключите те комментарии, которые излишни в TypeScript](#исключите-те-комментарии-которые-излишни-в-typescript)). Подробнее с нативным `override` вы можете ознакомиться тут: [https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-3.html#override-and-the---noimplicitoverride-flag](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-3.html#override-and-the---noimplicitoverride-flag).
+Для примера, не указывайте типы в `@param` или `@return` блоках, не пишите `@implements`, `@enum`, `@private`, `@override` в коде, который использует `implements`, `enum`, `private`, `override` и пр. ключевые слова.
 
 #### Делайте комментарии, которые действительно добавляют информацию
 
