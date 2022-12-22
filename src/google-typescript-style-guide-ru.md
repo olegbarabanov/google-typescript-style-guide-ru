@@ -971,7 +971,9 @@ for (const x in someArray) {
 }
 ```
 
-Для итерации по массивам используйте `for (... of someArr)` или обычные циклы `for` с индексами.
+Для итерации по массивам предпочтительно использовать `for (... of someArr)`[^comment-error-link-to-page-iteration]. Также приемлемо использовать `Array.prototype.forEach` или обычные циклы `for`:
+
+[^comment-error-link-to-page-iteration]: Прим. пер.: В оригинале, в данном предложении предоставлена сокращенная [go-ссылка](https://opensource.google/documentation/reference/glossary#go_links): go/tsjs-practices/iteration, которая к сожалению доступна только из внутреннего окружения Google.
 
 ```ts
 // ✅ ХОРОШО ↴
