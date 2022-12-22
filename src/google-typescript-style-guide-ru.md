@@ -526,7 +526,7 @@ class Foo {
 
 В TypeScript коде *не должны* использоваться `obj['foo']` для обхода ограничения видимости свойства [^comment-error-link-to-page-export-private-visibility].
 
-[^comment-error-link-to-page-export-private-visibility]: Прим. пер.: Далее в данном абзаце предлагается ознакомиться со страницей "Тестирование и приватная видимость", если вы хотите получить доступ к защищенным полям из теста. К сожалению, предоставленная сокращенная [go-ссылка](https://opensource.google/documentation/reference/glossary#go_links): go/typescript-testing#export-private-visibility, доступна только из внутреннего окружения Google.
+[^comment-error-link-to-page-export-private-visibility]: Прим. пер.: В оригинале, далее в данном абзаце предлагается ознакомиться со страницей "Тестирование и приватная видимость", если вы хотите получить доступ к защищенным полям из теста. К сожалению, предоставленная сокращенная [go-ссылка](https://opensource.google/documentation/reference/glossary#go_links): go/typescript-testing#export-private-visibility, доступна только из внутреннего окружения Google.
 
 > Почему?
 > 
