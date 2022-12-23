@@ -1622,20 +1622,31 @@ console.log(data.appVersion); // Тип защищен и переименова
 При импорте объекта модуля напрямую обращайтесь к свойствам объекта модуля, а не передавайте его. Это гарантирует, что модули могут быть проанализированы и оптимизированы. Отношение к [импорту модулей](#модульный-и-деструктурирующий-импорты) как к пространствам имен является нормальным.
 
 ```ts
+// ❌ ПЛОХО ↴
+
+import * as utils from 'utils';
+class A {
+  readonly utils = utils;  // <--- ПЛОХО: передача всего объекта модуля
+}
+```
+
+```ts
+// ✅ ХОРОШО ↴
+
+import * as utils from 'utils';
+class A {
+  readonly utils = {method1: utils.method1, method2: utils.method2};
+}
+```
+
+или более кратко:
+
+```ts
 // ✅ ХОРОШО ↴
 
 import {method1, method2} from 'utils';
 class A {
   readonly utils = {method1, method2};
-}
-```
-
-```ts
-// ❌ ПЛОХО ↴
-
-import * as utils from 'utils';
-class A {
-  readonly utils = utils;
 }
 ```
 
