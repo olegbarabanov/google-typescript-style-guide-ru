@@ -88,7 +88,7 @@ const output = '\ufeff' + content;
 
 Если необходимо указать в файле информацию о лицензии или авторских правах, добавьте ее в JSDoc в верхней части файла[^comment-copyright-or-license-jsdoc].
 
-[^comment-copyright-or-license-jsdoc]: Прим. пер.: В JSDoc для указания информации о лицензии используется тег `@license`, а для информации об авторских правах тег `@copyright`, 
+[^comment-copyright-or-license-jsdoc]: Прим. пер.: В JSDoc для указания информации о лицензии используется тег `@license`, а для информации об авторских правах тег `@copyright`. 
 
 ### JSDoc тег `@fileoverview`
 
