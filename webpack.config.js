@@ -22,6 +22,7 @@ const srcMarkdownFilePath = path.join(
 const title = `Руководство Google по стилю написания кода
 на языке TypeScript (перевод)`;
 const menuTitle = "Содержание";
+const canonicalLink = "https://olegbarabanov.github.io/google-typescript-style-guide-ru/";
 
 module.exports = {
   cache: false,
@@ -42,6 +43,7 @@ module.exports = {
     new webpack.DefinePlugin({
       title: JSON.stringify(title),
       menuTitle: JSON.stringify(menuTitle),
+      canonicalLink: JSON.stringify(canonicalLink),
       content: webpack.DefinePlugin.runtimeValue(
         () => {
           const markdown = fs.readFileSync(srcMarkdownFilePath);
