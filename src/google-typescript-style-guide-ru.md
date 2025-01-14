@@ -1857,3 +1857,54 @@ while ((x = someFunction())) {
   // ...
 }
 ```
+
+##### Итерация по массивам
+
+Для итерации по массивам предпочтительно использовать `for (... of someArr)`. Также приемлемо использовать `Array.prototype.forEach` или обычные циклы `for`:
+
+```ts
+// ✅ ХОРОШО ↴
+
+for (const x of someArr) {
+  // x - ссылается на значение из someArr
+}
+
+for (let i = 0; i < someArr.length; i++) {
+  // Если необходим индекс, то используйте явный пересчет, а иначе используйте форму for/of.
+  const x = someArr[i];
+  // ...
+}
+for (const [i, x] of someArr.entries()) {
+  // Альтернативная версия предыдущего.
+}
+```
+
+Циклы `for`-`in` можно использовать только для объектов со словарными ключами. Не используйте `for (... in ...)` для итерации по массивам, т.к. это будет контринтуитивно давать индексы массива (в виде строк!), а не значения:
+
+```ts
+// ❌ ПЛОХО ↴
+
+for (const x in someArray) {
+  // x - это индекс!
+}
+```
+
+В циклах `for`-`in` рекомендуется использовать `Object.prototype.hasOwnProperty` для исключения нежелательных свойств прототипа. По возможности, вместо `for`-`in` предпочтительно использовать `for`-`of` с `Object.keys`, `Object.values` или `Object.entries`.
+
+```ts
+// ✅ ХОРОШО ↴
+
+for (const key in obj) {
+  if (!obj.hasOwnProperty(key)) continue;
+  doWork(key, obj[key]);
+}
+for (const key of Object.keys(obj)) {
+  doWork(key, obj[key]);
+}
+for (const value of Object.values(obj)) {
+  doWorkValOnly(value);
+}
+for (const [key, value] of Object.entries(obj)) {
+  doWork(key, value);
+}
+```
