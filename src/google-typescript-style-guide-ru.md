@@ -2342,3 +2342,7 @@ function debugMe() {
 #### Оператор `with`
 
 Не используйте ключевое слово `with`. Это делает ваш код более трудным для понимания и к тому же он [запрещен в строгом режиме (`strict mode`) начиная с ES5](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with).
+
+#### Динамическое выполнение кода
+
+Не используйте `eval` или конструктор `Function(...string)` (за исключением загрузчиков кода). Эти функции потенциально опасны и просто не работают в окружениях, использующих строгие политики [CSP (Content Security Policy)](https://developer.mozilla.org/ru/docs/Web/HTTP/CSP).
