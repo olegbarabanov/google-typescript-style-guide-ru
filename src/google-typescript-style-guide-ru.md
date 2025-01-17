@@ -2979,3 +2979,38 @@ const mockBookService = ({get() { return mockBook; }} as any) as BookService;
 // tslint:disable-next-line:no-any
 const component = new MyComponent(mockBookService, /* неиспользуемый ShoppingCart */ null as any);
 ```
+
+### Тип `{}`
+
+Тип {}, также известный как пустой тип интерфейса, представляет собой интерфейс без свойств. Пустой тип интерфейса не имеет заданных свойств, поэтому ему можно присвоить любое значение, не являющееся `null` или `undefined`.
+
+```ts
+// ❌ ПЛОХО ↴
+
+let player: {};
+
+player = {
+  health: 50,
+}; // Allowed.
+
+console.log(player.health) // Property 'health' does not exist on type '{}'.
+```
+
+```ts
+// ❌ ПЛОХО ↴
+
+function takeAnything(obj:{}) {
+
+}
+
+takeAnything({});
+takeAnything({ a: 1, b: 2 });
+```
+
+В большинстве случаев в коде Google3[^comment-google3] не рекомендуется использовать `{}`. `{}` представляет собой любой кроме `null` и `undefined` примитив или объектный тип, что редко когда бывает уместно. Предпочтите один из следующих более описательных типов:
+
+[^comment-google3]: google3 - название основного внутреннего монорепозитория Google. Подробнее: [https://opensource.google/documentation/reference/glossary#google3](https://opensource.google/documentation/reference/glossary#google3) 
+
+- `unknown` может содержать любое значение, включая `null` или `undefined`, и обычно больше подходит для значений с непрозрачной структурой данных.
+- `Record<string, T>` лучше подходит для подобных словарю объектов и обеспечивает лучшую безопасность типов за счет явного указания типа `T` для содержащихся значений (которые сами по себе могут иметь тип `unknown`).
+- `object` исключает примитивы, в т.ч. `null` и `undefined`, оставляя только функции и объекты, но без каких-либо других предположений о том, какие свойства могут быть доступны.
