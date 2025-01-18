@@ -3370,3 +3370,31 @@ someFunction(obviousParam, /* shouldRender= */ true, /* name= */ 'hello');
 
 someFunction(obviousParam, true /* shouldRender */, 'hello' /* name */);
 ```
+
+### Размещайте документацию перед декораторами
+
+Если класс, метод или свойство содержит и JSDoc и декораторы вроде `@Component`, то убедитесь, что JSDoc написан перед декоратором.
+
+- Не пишите JSDoc между декоратором и декорируемым выражением.
+  ```ts
+  // ❌ ПЛОХО ↴
+  
+  @Component({
+    selector: 'foo',
+    template: 'bar',
+  })
+  /** Компонент, который печатает "bar". */
+  export class FooComponent {}
+  ```
+
+- Напишите JSDoc перед декоратором.
+  ```ts
+  // ✅ ХОРОШО ↴
+  
+  /** Компонент, который печатает "bar". */
+  @Component({
+    selector: 'foo',
+    template: 'bar',
+  })
+  export class FooComponent {}
+  ```
