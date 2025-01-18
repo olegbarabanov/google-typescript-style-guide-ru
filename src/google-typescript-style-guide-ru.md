@@ -3013,7 +3013,7 @@ takeAnything({ a: 1, b: 2 });
 
 В большинстве случаев в коде Google3[^comment-google3] не рекомендуется использовать `{}`. `{}` представляет собой любой кроме `null` и `undefined` примитив или объектный тип, что редко когда бывает уместно. Предпочтите один из следующих более описательных типов:
 
-[^comment-google3]: google3 - название основного внутреннего монорепозитория Google. Подробнее: [https://opensource.google/documentation/reference/glossary#google3](https://opensource.google/documentation/reference/glossary#google3) 
+[^comment-google3]: Прим. пер.: google3 - название основного внутреннего монорепозитория Google. Подробнее: [https://opensource.google/documentation/reference/glossary#google3](https://opensource.google/documentation/reference/glossary#google3) 
 
 - `unknown` может содержать любое значение, включая `null` или `undefined`, и обычно больше подходит для значений с непрозрачной структурой данных.
 - `Record<string, T>` лучше подходит для подобных словарю объектов и обеспечивает лучшую безопасность типов за счет явного указания типа `T` для содержащихся значений (которые сами по себе могут иметь тип `unknown`).
